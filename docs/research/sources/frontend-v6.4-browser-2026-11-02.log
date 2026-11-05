@@ -1,0 +1,28 @@
+PASS dashboard is the entry point and primary navigation has three stable pages
+PASS approval does not dispatch; success creates traceable ZAP output
+PASS clarifications preserve approval while explicit request edits invalidate it
+PASS next-step explanation follows the current request and keeps its assessment context
+PASS timeout retains failed attempt and retry needs fresh approval
+PASS evidence raw bytes have a real fixture checksum; no scanner provenance claim
+PASS correlation keeps provenance; false positives stay in frozen report
+PASS new draft starts empty and switching assessments preserves isolation
+PASS scope revisions, denied and expired actions never dispatch
+PASS risk context changes review order without changing source severity or validation
+PASS failed and partial runs retain limitations; async results stay with their assessment
+PASS unknown outcomes require reconciliation and retry cannot repeat a successful replacement
+PASS cancel confirms a terminal state and produces no successful evidence
+PASS target and port changes require current service evidence for web planning
+PASS HTTP port80 fixture preserves the bound endpoint scheme
+PASS new report draft retains the previous snapshot until explicit replacement
+PASS text escaping, local downloads, focus trap and mobile navigation
+PASS background simulation updates retain an unsaved scope form
+PASS successful retry resolves dashboard issue count while retaining failed history
+PASS dashboard attention deep link preserves assessment context and recomputes after approval
+PASS workspace defaults affect new drafts only and invalid values preserve existing state
+PASS evidence replaces the finding drawer and Back retains review rationale
+PASS one header creation action and no sidebar or mobile-menu duplication
+PASS one assistant profile shows truthful model and assessment activity
+PASS visible lifecycle and assistant binding remain across all assessment views
+PASS workflow current task moves from approval to collection and human review
+PASS desktop/tablet/mobile keep all working views and single-overlay keyboard focus
+RESULT 27 checks passed; zero page errors; zero external requests.

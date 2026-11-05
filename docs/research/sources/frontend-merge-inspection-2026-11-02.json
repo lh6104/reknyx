@@ -1,0 +1,90 @@
+{
+  "evidence": [
+    {
+      "version": "6.2",
+      "width": 1440,
+      "h1": "Let evidence guide the next move.",
+      "nav": [
+        "Assessments",
+        "Assessment agent",
+        "Integrations",
+        "New assessment"
+      ],
+      "workspaceNav": [
+        "01 Scope Registered",
+        "02 Plan Needs approval",
+        "03 Run Evidence collected",
+        "04 Analyze Evidence available",
+        "05 Review Needs review",
+        "06 Report Not generated"
+      ],
+      "workflowSummaryCollapsed": null,
+      "visibleNewAssessmentButtons": 1,
+      "agentsNavigationPresent": false,
+      "overflow": false
+    },
+    {
+      "version": "6.2",
+      "width": 390,
+      "h1": "Let evidence guide the next move.",
+      "nav": [],
+      "workspaceNav": [
+        "01 Scope Registered",
+        "02 Plan Needs approval",
+        "03 Run Evidence collected",
+        "04 Analyze Evidence available",
+        "05 Review Needs review",
+        "06 Report Not generated"
+      ],
+      "workflowSummaryCollapsed": null,
+      "visibleNewAssessmentButtons": 1,
+      "agentsNavigationPresent": false,
+      "overflow": false
+    },
+    {
+      "version": "6.3",
+      "width": 1440,
+      "h1": "Customer portal assessment",
+      "nav": [
+        "Dashboard",
+        "Assessments",
+        "Customer portal assessment",
+        "New assessment",
+        "Tools & defaults"
+      ],
+      "workspaceNav": [
+        "Agent & runs",
+        "Findings 1",
+        "Report"
+      ],
+      "workflowSummaryCollapsed": true,
+      "visibleNewAssessmentButtons": 1,
+      "agentsNavigationPresent": false,
+      "overflow": false
+    },
+    {
+      "version": "6.3",
+      "width": 390,
+      "h1": "Customer portal assessment",
+      "nav": [],
+      "workspaceNav": [
+        "Agent & runs",
+        "Findings 1",
+        "Report"
+      ],
+      "workflowSummaryCollapsed": true,
+      "visibleNewAssessmentButtons": 1,
+      "agentsNavigationPresent": false,
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "method": "Read-only local browser navigation of the existing assessment at 1440 and 390 CSS pixels; source comparison and temporary screenshots. Closed-details geometry was excluded from visibility counts.",
+  "boundary": "No prototype/source mutation, scanner/model/backend execution or broad prototype-suite rerun.",
+  "source_sha256": {
+    "1.pdf": "cfc55fc52fdecd8b4c65c5eec9217d39335ac4ab92461e869092fde8a33816cc",
+    "corevapt_frontend_v6.2.html": "ab49f45427282523b99a22f25c45c6d2257d44a795da8343b2fbabf22e6d78d6",
+    "corevapt_frontend_v6.3.html": "11a63ffdcecfdf269f7a6c807d895768aab992dfb7c31506d395067426b6cf69"
+  }
+}

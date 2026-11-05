@@ -1,0 +1,280 @@
+{
+  "run_id": "reknyx-frontend-2026-11-05",
+  "recorded_at": "2026-11-04T18:51:47.834036+00:00",
+  "evidence_level": "synthetic_frontend_preview",
+  "contract_revision": "none; G0 integration pending",
+  "environment": {
+    "node": "22.23.2",
+    "npm": "10.9.8",
+    "os": "Linux",
+    "browser": "Playwright Chromium",
+    "desktop": "1440x1100",
+    "mobile": "390x844"
+  },
+  "source_bundle_sha256": "509f3f0cf0638462f24b3107c3d5a4acb467d9f940a3ec993d172ab13cf797e8",
+  "checks": [
+    {
+      "command": "npm install --no-fund",
+      "cwd": "frontend",
+      "status": "pass",
+      "detail": "Pinned dependencies installed; package-lock.json created; npm reported 0 vulnerabilities."
+    },
+    {
+      "command": "npm test",
+      "cwd": "frontend",
+      "status": "pass",
+      "passed": 13,
+      "failed": 0,
+      "total": 13
+    },
+    {
+      "command": "npm run typecheck",
+      "cwd": "frontend",
+      "status": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run build",
+      "cwd": "frontend",
+      "status": "pass",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:e2e",
+      "cwd": "frontend",
+      "status": "pass",
+      "passed": 19,
+      "failed": 0,
+      "total": 19,
+      "duration_seconds": 15.1
+    },
+    {
+      "command": "sha256sum 1.pdf reknyx_frontend_v7_4.html",
+      "cwd": ".",
+      "status": "pass",
+      "detail": "Both original hashes unchanged."
+    },
+    {
+      "command": "pdfinfo and pdftotext -layout on retained sample PDF",
+      "cwd": ".",
+      "status": "pass",
+      "detail": "7 A4 pages, six required sections and synthetic notice; sidebar absent."
+    },
+    {
+      "command": "Python documentation and manifest checks",
+      "cwd": ".",
+      "status": "pass",
+      "detail": "5 document identities/fences, 36 local links, 43 source file hashes, 3 artifact hashes and both original source hashes checked."
+    }
+  ],
+  "not_run": [
+    {
+      "check": "G0/F01-F15 live HTTP contracts and backend persistence",
+      "reason": "Executable backend schemas, API, authentication, and DB integration do not exist in this deliverable."
+    },
+    {
+      "check": "Native scanner parsing and authorized live execution",
+      "reason": "No parser/launcher/scanner integration assigned or enabled."
+    },
+    {
+      "check": "Real model/provider evaluation",
+      "reason": "No provider configured or called; deterministic preview only."
+    },
+    {
+      "check": "Backend PDF release and pilot acceptance",
+      "reason": "Browser sample printing only; no report service or release gate."
+    }
+  ],
+  "sources": {
+    "1.pdf": "cfc55fc52fdecd8b4c65c5eec9217d39335ac4ab92461e869092fde8a33816cc",
+    "reknyx_frontend_v7_4.html": "9e6d7bfe6c203eb557398b3be42ded175258f84077e36aab8b939c258d8be48b"
+  },
+  "files": [
+    {
+      "path": "frontend/.env.example",
+      "sha256": "0ca6e17b793f6998d737780f76349df7abbcbbc59543458c4acfd30ce918caaa"
+    },
+    {
+      "path": "frontend/.gitignore",
+      "sha256": "bc78a8cfe77c852692c0e23bf1baaad8e914d597b9813b559f78fd5f2f5773cd"
+    },
+    {
+      "path": "frontend/AGENTS.md",
+      "sha256": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0"
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "0d2cd4d6d6e7e3d01cc538cfaaf920233133708a04f4dc5e3a060281456ed812"
+    },
+    {
+      "path": "frontend/next-env.d.ts",
+      "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b"
+    },
+    {
+      "path": "frontend/next.config.ts",
+      "sha256": "5fa04a810adc1aaac0575af373dd8b43b61690efb2e13f6a116c270782c6f791"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "0b9b64363a831199387c58ed3043c9f7f4cfb0eec1aba31bce88bd89ac5ea271"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "3619df7852456258629256cdae6eaac8221a2a49cd24baf0228468a2c3787847"
+    },
+    {
+      "path": "frontend/playwright.config.ts",
+      "sha256": "4cc2f978d0995444f7fee4f2c4cd095a392144c874e37e22034e14cec610443d"
+    },
+    {
+      "path": "frontend/postcss.config.mjs",
+      "sha256": "a1a188221f064d964dd9958c3d48b0c23252fabbeb6099d95ee8e15c764718b0"
+    },
+    {
+      "path": "frontend/src/app/approvals/page.tsx",
+      "sha256": "8880eb13d5595f60b45562612dc4fa17508565228ca700e9e18893e776e0ef16"
+    },
+    {
+      "path": "frontend/src/app/assessments/[id]/[[...view]]/page.tsx",
+      "sha256": "7bec4c464062224de321032139ab8956f64c585f7a745ca175c351b3c1d9cf33"
+    },
+    {
+      "path": "frontend/src/app/assessments/page.tsx",
+      "sha256": "3720a60c42ec5853173730086f5941aea8245a0b97edb928f1f7e7577a2f9f19"
+    },
+    {
+      "path": "frontend/src/app/dashboard/page.tsx",
+      "sha256": "81e3168fe2139bd875a917b93439e8a4f05de01d15997374d2f74e79733b1b01"
+    },
+    {
+      "path": "frontend/src/app/error.tsx",
+      "sha256": "8064d83c499520cd6d9d1c195d58e6fa3e7e8dfa3f251104a6f4871e4dfd665d"
+    },
+    {
+      "path": "frontend/src/app/findings/page.tsx",
+      "sha256": "760604a5820dc75464ee06c08bfd4f9dbfef78e6978807144ddd00c1292823c8"
+    },
+    {
+      "path": "frontend/src/app/globals.css",
+      "sha256": "e0fad2af96c164199bbe16459d4da010853da35b58e9b965e8bc43416c08fc8c"
+    },
+    {
+      "path": "frontend/src/app/icon.svg",
+      "sha256": "bf4e7daf78c24d142e095a6f15a9db71938a9291f37f432a0d6385310f5f8e90"
+    },
+    {
+      "path": "frontend/src/app/layout.tsx",
+      "sha256": "6e70a91d88c8d8abda02e9f56e587daa1d3a72d24e8a50efa42ee390532b1c85"
+    },
+    {
+      "path": "frontend/src/app/not-found.tsx",
+      "sha256": "059e4da7a7b15689ce6e6b20a61388a8fedd89d29926e4f66c091c5f139f0218"
+    },
+    {
+      "path": "frontend/src/app/page.tsx",
+      "sha256": "6541da8f99193e8e8db83406d55f2086c21ab915f49e76eb8ace6fc5c77440ae"
+    },
+    {
+      "path": "frontend/src/app/reports/page.tsx",
+      "sha256": "b819a51c2051f1a868fb192c0173c686b373872c376b24c2adfa2618c92e54be"
+    },
+    {
+      "path": "frontend/src/app/settings/page.tsx",
+      "sha256": "5195dc44317e7c84c725fa6af27e5dbcdf8b1d81c67077e4f8f0efef795f1a06"
+    },
+    {
+      "path": "frontend/src/components/app-shell.tsx",
+      "sha256": "6fc60e51fbd6c7ff895d84828ef93ad38ad07486cf51d3343edfc7e2b215cbfd"
+    },
+    {
+      "path": "frontend/src/components/approvals.tsx",
+      "sha256": "103fa56a1875a637e7171ffd6e307b1accfcc7fddf93c5fad9fb37bdd7eeb346"
+    },
+    {
+      "path": "frontend/src/components/assessment-dialogs.tsx",
+      "sha256": "49e186b9f0dbf41b043e0adaa2e3491df308f647f6cef8f78234dc662eeb947c"
+    },
+    {
+      "path": "frontend/src/components/assessments.tsx",
+      "sha256": "f28be969ad439921f24dc906c0527291de6b15465be05c7b2235a6c2d88b8ef5"
+    },
+    {
+      "path": "frontend/src/components/assistant-dialog.tsx",
+      "sha256": "9e2e8355ce5496b99101b4837de2d5105685cb09048308fe1f3bce6e4c73c735"
+    },
+    {
+      "path": "frontend/src/components/dashboard.tsx",
+      "sha256": "961e57c9d1cdb8e88c1b0aaa54dfee663395fcfeedf10012ba6880ce6c0a64ce"
+    },
+    {
+      "path": "frontend/src/components/findings.tsx",
+      "sha256": "d230ebcfbcad5f187767ced3c1b7797f21a1cbf57b4fbdf17e4c01abf63b174d"
+    },
+    {
+      "path": "frontend/src/components/import-dialog.tsx",
+      "sha256": "47da01399691fcf339e949c3bb6b9f058fb798d5bd45cdc868f39f20d74218b6"
+    },
+    {
+      "path": "frontend/src/components/overlays.tsx",
+      "sha256": "3c21eae6fe8fcee2fb650b14f3814e1c23821c18b2381abb62bab05cd5aef99e"
+    },
+    {
+      "path": "frontend/src/components/report-document.tsx",
+      "sha256": "abe8518e3a8dee06b3d0b31f228d3982a8de759924af5d8442bdd7ab3de9761a"
+    },
+    {
+      "path": "frontend/src/components/reports.tsx",
+      "sha256": "1ac8995e991252baeffa859b930ffb592c95dd86fa5fdad40a031c78a2d4c15a"
+    },
+    {
+      "path": "frontend/src/components/settings.tsx",
+      "sha256": "03323a5a5e00f70ac833b518a28860b7d4c45e384bd309c413f071b6f228414c"
+    },
+    {
+      "path": "frontend/src/components/ui.tsx",
+      "sha256": "3e717c2cffc7c19d1c7066d58b14401273eb0b32727feb6fe3e36f60502fde8a"
+    },
+    {
+      "path": "frontend/src/lib/fixtures.ts",
+      "sha256": "cb9528cafb725686c53b689cc69d2da7be77b80c865f94aabc40d617581744e9"
+    },
+    {
+      "path": "frontend/src/lib/model.ts",
+      "sha256": "ed96b4209b2aad8d44962631583a92fad42403a828dcf9368c7c64285f8dd097"
+    },
+    {
+      "path": "frontend/src/lib/preview-context.tsx",
+      "sha256": "bc4b4adbce8d638fc1049b7b8d2f4f48f6c8425719c6851a21e98007eadd0aaf"
+    },
+    {
+      "path": "frontend/src/lib/types.ts",
+      "sha256": "e9fc08cefbe050078acf7ef968bb313c169f6355f60f851538e38f5b1f41cfb9"
+    },
+    {
+      "path": "frontend/tests/frontend.spec.ts",
+      "sha256": "53ff208be2e4b11c4986f4af7de25506f77315d9340ca87f90b822ef5f55cae4"
+    },
+    {
+      "path": "frontend/tests/model.test.ts",
+      "sha256": "d426b0aa246dd14a5c19870159159e6a0fef8fd7b515ea39ddbd6d2178fafdc9"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "660673187abfb0562872a808d2d061fff333320594a7224d72f81c64c66c1e04"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/implementation/evidence/reknyx-frontend/reknyx-dashboard-desktop.png",
+      "sha256": "806c40eef59eb75a2dbbe878ca408918b8463a97635b619da8d8c3ee3f1a61c1"
+    },
+    {
+      "path": "docs/implementation/evidence/reknyx-frontend/reknyx-dashboard-mobile.png",
+      "sha256": "6f5b868c4de118d4b1de59e8b231383dece965ab95d7b231eb514ea99b17e0b0"
+    },
+    {
+      "path": "docs/implementation/evidence/reknyx-frontend/reknyx-synthetic-sample.pdf",
+      "sha256": "af18f9b876a83c1d89b3d4f2fba3e841483c07e1e8e4b67740a2861e3983fcfb"
+    }
+  ]
+}

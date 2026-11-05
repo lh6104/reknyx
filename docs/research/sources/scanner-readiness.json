@@ -1,0 +1,379 @@
+{
+  "document_type": "research_source_inspection_manifest",
+  "access_date": "2026-11-02",
+  "inspected_at_utc": "2026-11-02T10:01:29.324644+00:00",
+  "scope": "Read-only public HTTPS fetch and standard-library structural inspection. No scanner/model execution, target requests, dependencies, Git, or raw sample redistribution.",
+  "r05_verified": false,
+  "application_parser_tested": false,
+  "raw_samples_retained_in_workspace": false,
+  "samples": [
+    {
+      "id": "nmap-complex",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "ndiff/test-scans/complex.xml",
+      "raw_url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/ndiff/test-scans/complex.xml",
+      "source_url": "https://github.com/nmap/nmap/blob/c75732fb03755051a8e131df09462230811056f7/ndiff/test-scans/complex.xml",
+      "byte_length": 3658,
+      "sha256": "d0e800cec37a3bbe2b3be3dc57a3c75596fb0fec7b6b205640d751479262d0ae",
+      "license_observed": "NPSL; ndiff/LICENSE points to Nmap LICENSE",
+      "evidence_boundary": "historical_upstream_test_sample_capture_chain_unverified",
+      "redistribution_decision": "metadata_only_no_raw_copy",
+      "observed": {
+        "root": "nmaprun",
+        "producer_version": "4.90RC2",
+        "xmloutputversion": "1.03",
+        "host_elements": 1,
+        "port_elements": 6,
+        "service_elements": 6,
+        "open_ports": 4,
+        "closed_ports": 2,
+        "service_methods": [
+          "probed",
+          "table"
+        ],
+        "finished_attributes": {
+          "time": "1247269755",
+          "timestr": "Fri Jul 10 17:49:15 2009",
+          "elapsed": "122.97"
+        },
+        "accepted_by_v1_selector": false
+      }
+    },
+    {
+      "id": "nmap-simple",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "ndiff/test-scans/simple.xml",
+      "raw_url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/ndiff/test-scans/simple.xml",
+      "source_url": "https://github.com/nmap/nmap/blob/c75732fb03755051a8e131df09462230811056f7/ndiff/test-scans/simple.xml",
+      "byte_length": 1377,
+      "sha256": "01a0c9ee525cf046acf734e5e445718b9e3b62d6bdcb169ad3ada337d3023007",
+      "license_observed": "NPSL; ndiff/LICENSE points to Nmap LICENSE",
+      "evidence_boundary": "historical_upstream_test_sample_capture_chain_unverified",
+      "redistribution_decision": "metadata_only_no_raw_copy",
+      "observed": {
+        "root": "nmaprun",
+        "producer_version": "4.90RC2",
+        "xmloutputversion": "1.03",
+        "host_elements": 1,
+        "port_elements": 2,
+        "service_elements": 2,
+        "open_ports": 1,
+        "closed_ports": 1,
+        "service_methods": [
+          "table"
+        ],
+        "finished_attributes": {
+          "time": "1247268210",
+          "timestr": "Fri Jul 10 17:23:30 2009",
+          "elapsed": "0.56"
+        },
+        "accepted_by_v1_selector": false
+      }
+    },
+    {
+      "id": "zap-traditional-json",
+      "repository": "zaproxy/zap-extensions",
+      "commit": "0190c80bd420c3bb900db944c7415901d1e677e2",
+      "path": "addOns/reports/src/test/resources/org/zaproxy/addon/reports/resources/basic-traditional-json.json",
+      "raw_url": "https://raw.githubusercontent.com/zaproxy/zap-extensions/0190c80bd420c3bb900db944c7415901d1e677e2/addOns/reports/src/test/resources/org/zaproxy/addon/reports/resources/basic-traditional-json.json",
+      "source_url": "https://github.com/zaproxy/zap-extensions/blob/0190c80bd420c3bb900db944c7415901d1e677e2/addOns/reports/src/test/resources/org/zaproxy/addon/reports/resources/basic-traditional-json.json",
+      "byte_length": 1389,
+      "sha256": "d05d5e466cebdb791ad0c25d58dde92d6e79ed5a1b27d44bf889ec0b8172b995",
+      "license_observed": "Apache-2.0 at repository LICENSE",
+      "evidence_boundary": "upstream_authored_test_expectation_not_captured_lab_scan",
+      "redistribution_decision": "metadata_only_no_raw_copy",
+      "observed": {
+        "program": "ZAP",
+        "producer_version": "Dev Build",
+        "generated": "Wed, 29 Oct 2025 10:53:54",
+        "created": "2025-10-29T10:53:54.857109Z",
+        "root_keys": [
+          "@programName",
+          "@version",
+          "@generated",
+          "created",
+          "site"
+        ],
+        "sites": 1,
+        "alert_groups": 1,
+        "instances": 2,
+        "alert_keys": [
+          "pluginid",
+          "alertRef",
+          "alert",
+          "name",
+          "riskcode",
+          "confidence",
+          "riskdesc",
+          "desc",
+          "instances",
+          "count",
+          "systemic",
+          "solution",
+          "otherinfo",
+          "reference",
+          "cweid",
+          "wascid",
+          "sourceid"
+        ],
+        "instance_keys": [
+          "id",
+          "uri",
+          "nodeName",
+          "method",
+          "param",
+          "attack",
+          "evidence",
+          "otherinfo"
+        ],
+        "first_rule": {
+          "pluginid": "1",
+          "alertRef": "1",
+          "riskcode": "3",
+          "confidence": "2",
+          "count": "2",
+          "cweid": "123"
+        },
+        "first_instance_id": "-1"
+      }
+    },
+    {
+      "id": "greenbone-detail",
+      "repository": "DefectDojo/django-DefectDojo",
+      "commit": "c360df03a9399cbe6b26138bd0289949c27eb732",
+      "path": "unittests/scans/openvas/report_detail_v2.xml",
+      "raw_url": "https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/c360df03a9399cbe6b26138bd0289949c27eb732/unittests/scans/openvas/report_detail_v2.xml",
+      "source_url": "https://github.com/DefectDojo/django-DefectDojo/blob/c360df03a9399cbe6b26138bd0289949c27eb732/unittests/scans/openvas/report_detail_v2.xml",
+      "byte_length": 9716,
+      "sha256": "3a0876e30d45f4f462c165112fc3250eb56a7fc6aaa1b81d4083f8dca118cc15",
+      "license_observed": "BSD-3-Clause at LICENSE.md; embedded feed text rights not established",
+      "evidence_boundary": "third_party_native_format_test_sample_capture_and_redaction_chain_unverified",
+      "redistribution_decision": "metadata_only_no_raw_copy",
+      "observed": {
+        "root": "report",
+        "outer_report_id": "88bbda4b-25db-43cf-896d-b90686833b29",
+        "inner_report_id": "88bbda4b-25db-43cf-896d-b90686833b29",
+        "format_id": "a994b278-1f62-11e1-96ac-406186ea4fc5",
+        "gmp_version": "22.6",
+        "scan_run_status": "Done",
+        "selected_result_path": "/report/report/results/result",
+        "result_elements": 1,
+        "unique_result_ids": 1,
+        "results_attributes": {
+          "max": "-1",
+          "start": "1"
+        },
+        "filters": null,
+        "scan_start": "2025-08-22T15:01:38+02:00",
+        "scan_end": "2025-08-22T17:09:57+02:00",
+        "first_result": {
+          "id": "ec5f93ff-3447-4171-8485-3b3b3af2edc0",
+          "nvt_oid": "1.3.6.1.4.1.25623.1.0.836484",
+          "port": "42/tcp",
+          "severity": "9.8",
+          "original_severity": "9.8",
+          "qod_value": "80",
+          "qod_type": "",
+          "nvt_ref_count": 99
+        },
+        "result_count_full": null,
+        "result_count_filtered": null,
+        "result_count_page": null,
+        "general_tcp_records": 0,
+        "accepted_by_v1_selector": true,
+        "genuine_capture_provenance_verified": false
+      }
+    },
+    {
+      "id": "greenbone-many",
+      "repository": "DefectDojo/django-DefectDojo",
+      "commit": "c360df03a9399cbe6b26138bd0289949c27eb732",
+      "path": "unittests/scans/openvas/many_vuln.xml",
+      "raw_url": "https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/c360df03a9399cbe6b26138bd0289949c27eb732/unittests/scans/openvas/many_vuln.xml",
+      "source_url": "https://github.com/DefectDojo/django-DefectDojo/blob/c360df03a9399cbe6b26138bd0289949c27eb732/unittests/scans/openvas/many_vuln.xml",
+      "byte_length": 135468,
+      "sha256": "135edfa30a4eb39bbe548d7e5f8373d2b27b5b6841b6d2506ec39fa94aee3c6b",
+      "license_observed": "BSD-3-Clause at LICENSE.md; embedded feed text rights not established",
+      "evidence_boundary": "third_party_modified_test_sample_not_genuine_acceptance_fixture",
+      "redistribution_decision": "metadata_only_no_raw_copy",
+      "observed": {
+        "root": "report",
+        "outer_report_id": "39f62b85-f870-4ccc-a052-3dc57e315016",
+        "inner_report_id": "c827dcd6-b6e5-4106-bdb7-94213b500669",
+        "format_id": "a994b278-1f62-11e1-96ac-406186ea4fc5",
+        "gmp_version": "9.0",
+        "scan_run_status": "Done",
+        "selected_result_path": "/report/report/results/result",
+        "result_elements": 44,
+        "unique_result_ids": 1,
+        "results_attributes": {
+          "start": "1",
+          "max": "-1"
+        },
+        "filters": "apply_overrides=0 levels=hml rows=-1 min_qod=70 first=1 sort-reverse=severity\n                notes=1 overrides=1",
+        "scan_start": "2023-09-26T10:50:34Z",
+        "scan_end": "2023-09-26T13:04:00Z",
+        "first_result": {
+          "id": "b87d3a32-8ff8-4010-aada-4b4f578b084d",
+          "nvt_oid": "1.3.6.1.4.1.25623.1.0.100111",
+          "port": "512/tcp",
+          "severity": "10.0",
+          "original_severity": "5",
+          "qod_value": "80",
+          "qod_type": "remote_banner",
+          "nvt_ref_count": 1
+        },
+        "result_count_full": "0",
+        "result_count_filtered": "0",
+        "result_count_page": null,
+        "general_tcp_records": 1,
+        "accepted_by_v1_selector": false,
+        "genuine_capture_provenance_verified": false
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "id": "nmap-schema",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "nmap.h",
+      "url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/nmap.h",
+      "byte_length": 10012,
+      "sha256": "4e15f13e3863d502229f0eb17cd07695c1643d8f1dd548c55742165f06268a97"
+    },
+    {
+      "id": "nmap-dtd",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "docs/nmap.dtd",
+      "url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/docs/nmap.dtd",
+      "byte_length": 10783,
+      "sha256": "6fcf69df3aea38a757221c2b64e37694ded71f5f6f56d84905f174e9ef47a37f"
+    },
+    {
+      "id": "nmap-license",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/LICENSE",
+      "byte_length": 29575,
+      "sha256": "9d9a9a763c0e6145172cfe7d8483e23b38ce60b6c79a82e4894242917bdae6d3"
+    },
+    {
+      "id": "nmap-ndiff-license",
+      "repository": "nmap/nmap",
+      "commit": "c75732fb03755051a8e131df09462230811056f7",
+      "path": "ndiff/LICENSE",
+      "url": "https://raw.githubusercontent.com/nmap/nmap/c75732fb03755051a8e131df09462230811056f7/ndiff/LICENSE",
+      "byte_length": 198,
+      "sha256": "4db05526b60da854b16260cc30ab944d6d69d6e6778632b27af2f2b8042460a6"
+    },
+    {
+      "id": "zap-baseline",
+      "repository": "zaproxy/zaproxy",
+      "commit": "528bdf4c8c808342cb1f12314a2492c8d3e0b551",
+      "path": "docker/zap-baseline.py",
+      "url": "https://raw.githubusercontent.com/zaproxy/zaproxy/528bdf4c8c808342cb1f12314a2492c8d3e0b551/docker/zap-baseline.py",
+      "byte_length": 27839,
+      "sha256": "7b50164e70c6df932dcd2d58f20b315e835d910536d074fe1ace7a44abdd1c69"
+    },
+    {
+      "id": "zap-common",
+      "repository": "zaproxy/zaproxy",
+      "commit": "528bdf4c8c808342cb1f12314a2492c8d3e0b551",
+      "path": "docker/zap_common.py",
+      "url": "https://raw.githubusercontent.com/zaproxy/zaproxy/528bdf4c8c808342cb1f12314a2492c8d3e0b551/docker/zap_common.py",
+      "byte_length": 24445,
+      "sha256": "a1f65469bdee238424d2c32bbe15345ba3fb7089baf9800fbe72f20fa88c72c0"
+    },
+    {
+      "id": "zap-legal",
+      "repository": "zaproxy/zaproxy",
+      "commit": "528bdf4c8c808342cb1f12314a2492c8d3e0b551",
+      "path": "LEGALNOTICE.md",
+      "url": "https://raw.githubusercontent.com/zaproxy/zaproxy/528bdf4c8c808342cb1f12314a2492c8d3e0b551/LEGALNOTICE.md",
+      "byte_length": 3024,
+      "sha256": "272f693d9952056ea7ac8af614ef4e256ff9d90913215ad9fa05453969aaef09"
+    },
+    {
+      "id": "zap-template",
+      "repository": "zaproxy/zap-extensions",
+      "commit": "0190c80bd420c3bb900db944c7415901d1e677e2",
+      "path": "addOns/reports/src/main/zapHomeFiles/reports/traditional-json/report.json",
+      "url": "https://raw.githubusercontent.com/zaproxy/zap-extensions/0190c80bd420c3bb900db944c7415901d1e677e2/addOns/reports/src/main/zapHomeFiles/reports/traditional-json/report.json",
+      "byte_length": 5739,
+      "sha256": "453576efa1a2f2186f32cf6b8b3acd2fc58c0d45b4eb831dcb989388b557a6b4"
+    },
+    {
+      "id": "zap-template-config",
+      "repository": "zaproxy/zap-extensions",
+      "commit": "0190c80bd420c3bb900db944c7415901d1e677e2",
+      "path": "addOns/reports/src/main/zapHomeFiles/reports/traditional-json/template.yaml",
+      "url": "https://raw.githubusercontent.com/zaproxy/zap-extensions/0190c80bd420c3bb900db944c7415901d1e677e2/addOns/reports/src/main/zapHomeFiles/reports/traditional-json/template.yaml",
+      "byte_length": 159,
+      "sha256": "52215801da88d92100f1b1dc252cb5a133679a4577e95452d19c0f897dcc6aa8"
+    },
+    {
+      "id": "zap-test-generator",
+      "repository": "zaproxy/zap-extensions",
+      "commit": "0190c80bd420c3bb900db944c7415901d1e677e2",
+      "path": "addOns/reports/src/test/java/org/zaproxy/addon/reports/ReportTestUtils.java",
+      "url": "https://raw.githubusercontent.com/zaproxy/zap-extensions/0190c80bd420c3bb900db944c7415901d1e677e2/addOns/reports/src/test/java/org/zaproxy/addon/reports/ReportTestUtils.java",
+      "byte_length": 35021,
+      "sha256": "436fb38060fb62502e9ae463d3c65aca462049449955365c086fab7320857d5d"
+    },
+    {
+      "id": "zap-license",
+      "repository": "zaproxy/zap-extensions",
+      "commit": "0190c80bd420c3bb900db944c7415901d1e677e2",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/zaproxy/zap-extensions/0190c80bd420c3bb900db944c7415901d1e677e2/LICENSE",
+      "byte_length": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "id": "defectdojo-license",
+      "repository": "DefectDojo/django-DefectDojo",
+      "commit": "c360df03a9399cbe6b26138bd0289949c27eb732",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/c360df03a9399cbe6b26138bd0289949c27eb732/LICENSE.md",
+      "byte_length": 1495,
+      "sha256": "7e6db954594a85fd09d22f9808b30f3701ce67129c1be949a25f9bb1b07cb780"
+    },
+    {
+      "id": "gvmd-license",
+      "repository": "greenbone/gvmd",
+      "commit": "b1515d4d3eb4b1806fb3c3db39c56af0a3020732",
+      "path": "COPYING",
+      "url": "https://raw.githubusercontent.com/greenbone/gvmd/b1515d4d3eb4b1806fb3c3db39c56af0a3020732/COPYING",
+      "byte_length": 34008,
+      "sha256": "7ab1e34881bc2916f942c72497d7c9b3fd427297aa3bf364c8995319e0c6c321"
+    },
+    {
+      "id": "nikto-json",
+      "repository": "sullo/nikto",
+      "commit": "312645d873478a77986627ab1fc8cffe595e85d4",
+      "path": "program/plugins/nikto_report_json.plugin",
+      "url": "https://raw.githubusercontent.com/sullo/nikto/312645d873478a77986627ab1fc8cffe595e85d4/program/plugins/nikto_report_json.plugin",
+      "byte_length": 4865,
+      "sha256": "6f978efed2ac39ffc75c2fb07148928fd1050cd8d0ce12d4fac36e12c418417e"
+    },
+    {
+      "id": "nikto-license",
+      "repository": "sullo/nikto",
+      "commit": "312645d873478a77986627ab1fc8cffe595e85d4",
+      "path": "COPYING",
+      "url": "https://raw.githubusercontent.com/sullo/nikto/312645d873478a77986627ab1fc8cffe595e85d4/COPYING",
+      "byte_length": 1132,
+      "sha256": "effcb7d17a1e83506bb6098b1c0b1aecc3bcda23474539bdfecc4b9b45a06ac1"
+    }
+  ],
+  "acquisition_notes": [
+    "GitHub REST commit/tree requests returned HTTP 403 rate-limit errors. Commit IDs were recovered from currentOid in public repository HTML, then source and samples were fetched through full-commit raw URLs.",
+    "No independent historical capture authorization, original scanner receipt, source export command, feed manifest, or redaction manifest was supplied by the public sample paths.",
+    "Eighteen additional Zenmap test XML paths were inspected in memory: xml_test1.xml through xml_test17.xml and nmap-output-error.xml at the same Nmap commit. Versions were 1.01 or 1.03; error sample was malformed. These do not establish XML 1.05 native coverage."
+  ]
+}

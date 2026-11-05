@@ -1,0 +1,7 @@
+# Preserve source documents and visual evidence as binary files.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff binary
+*.woff2 binary

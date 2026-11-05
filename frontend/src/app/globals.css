@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+@import "@fontsource/manrope/800.css";
+
+@theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --color-lime: #9fd04f;
+  --color-forest: var(--forest);
+}
+
+:root { --canvas:#ececec; --surface:#fff; --ink:#141a14; --muted:#626b62; --soft:#f3f4f2; --line:#e3e7df; --forest:#3f6a22; color-scheme:light; }
+:root[data-theme="dark"] { --canvas:#101410; --surface:#1a211a; --ink:#eef2ea; --muted:#a4b1a4; --soft:#252e25; --line:#354035; --forest:#b7e07a; color-scheme:dark; }
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) { --canvas:#101410; --surface:#1a211a; --ink:#eef2ea; --muted:#a4b1a4; --soft:#252e25; --line:#354035; --forest:#b7e07a; color-scheme:dark; }
+}
+@layer base {
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--canvas); color:var(--ink); font-family:"Manrope",sans-serif; font-size:14px; line-height:1.5; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color:transparent; }
+  button { cursor:pointer; }
+  button:disabled { cursor:not-allowed; }
+  :focus-visible { outline:3px solid var(--forest); outline-offset:4px; }
+  input:not([type="checkbox"]):not([type="file"]), textarea, select { width:100%; border:1px solid var(--line); border-radius:12px; background:var(--soft); padding:11px 13px; font-size:13px; color:var(--ink); }
+  textarea { resize:vertical; min-height:90px; }
+  input[type="checkbox"] { width:17px; height:17px; flex-shrink:0; accent-color:var(--forest); }
+  input::placeholder, textarea::placeholder { color:var(--muted); opacity:.8; }
+  ::selection { background:#9fd04f88; }
+}
+.hatched { background-image:repeating-linear-gradient(135deg,#ffffff66 0 2px,transparent 2px 7px); }
+.scope-art::after { content:""; position:absolute; width:200px; height:200px; border-radius:50%; right:-65px; bottom:-70px; background:repeating-linear-gradient(135deg,#ffffff55 0 2px,transparent 2px 8px); pointer-events:none; }
+.reknyx-dialog::backdrop { background:#10181088; backdrop-filter:blur(3px); }
+.fine-scrollbar { scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
+.report-copy h3 { font-weight:800; font-size:15px; margin:24px 0 8px; break-after:avoid; }
+.report-copy p { font-size:12px; line-height:1.8; }
+.report-copy table { width:100%; border-collapse:collapse; font-size:11px; margin-top:12px; }
+.report-copy td,.report-copy th { text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:anywhere; }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+@media print {
+  :root { --surface:white!important; --ink:black!important; --muted:#444!important; --soft:#f5f5f5!important; --line:#ccc!important; color-scheme:light!important; }
+  body { background:white; font-size:11px; overflow:visible!important; }
+  .app-shell, body > nextjs-portal, dialog:not([data-print-report]), .toast-message { display:none!important; }
+  dialog[data-print-report] { position:static; display:block; max-height:none; width:100%; max-width:none; margin:0; padding:0; overflow:visible; border:0; border-radius:0; box-shadow:none; }
+  dialog::backdrop { display:none; }
+  .report-copy article { break-inside:avoid; }
+  @page { margin:18mm; }
+}
