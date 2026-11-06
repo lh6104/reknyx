@@ -281,6 +281,14 @@ def validate_contracts(root=ROOT):
     digest = hashlib.sha256((root / "contracts/openapi.yaml").read_bytes()).hexdigest()
     if review["openapi_sha256"] != digest:
         raise ContractError("Review record does not identify current OpenAPI bytes")
+    owners_approved = True
+    for role in ("frontend_owner", "backend_owner"):
+        owner = review[role]
+        if owner["status"] == "approved":
+            if not owner.get("reviewer") or not owner.get("reviewed_at") or owner.get("openapi_sha256") != digest:
+                raise ContractError(f"{role}: approval must identify reviewer, time and current contract hash")
+        else:
+            owners_approved = False
     hashes = check_hash_vectors(root, spec)
     return {"openapi": spec["openapi"], "contract_version": spec["info"]["version"],
             "paths": len(spec["paths"]), "operations": len(ops),
@@ -288,7 +296,7 @@ def validate_contracts(root=ROOT):
             "semantic_cases": len(semantics), "http_cases": len(http_cases),
             "priority_cases": len(priorities),
             "hash_vectors": hashes, "openapi_sha256": digest,
-            "g0": "pending_owner_review"}
+            "g0": "pending_gate_verification" if owners_approved else "pending_owner_review"}
 
 
 def main():

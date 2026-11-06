@@ -27,7 +27,7 @@ def test_contract_suite_runs_offline_and_reports_review_pending():
     report = json.loads(result.stdout)
     assert report["openapi"] == "3.1.2"
     assert report["operations"] >= 40
-    assert report["g0"] == "pending_owner_review"
+    assert report["g0"] == "pending_gate_verification"
     assert report["schema_cases"] >= 50
     assert report["semantic_cases"] >= 20
 

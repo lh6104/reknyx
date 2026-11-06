@@ -1,9 +1,9 @@
 # Reknyx contract candidate 0.1.0
 
-P1-01 delivers an executable **candidate**, not a running API or a passed G0 gate.
-Frontend/backend owner review remains pending in [review-status.json](review-status.json).
-That record binds the review to the exact OpenAPI SHA-256. No endpoint, scanner,
-provider, database, parser or PDF service is enabled by these files.
+P1-01 delivers an executable **candidate**, not a passed G0 gate. Frontend/backend
+owner approvals are recorded under `admin` in [review-status.json](review-status.json)
+against the exact OpenAPI SHA-256. Foundation services are being implemented;
+scanner execution, providers and PDF generation remain in development.
 
 ## Authority and files
 
@@ -74,8 +74,8 @@ The main validator performs full OpenAPI validation, schema validation with form
 checks, valid/invalid example checks, semantic acceptance, complete route/HTTP
 coverage, twelve priority expectations and both hash implementations. Remote
 references and duplicate YAML/JSON members are rejected. Its output identifies the
-candidate hash and keeps G0 pending owner review. No backend `pytest`, Compose or
-full-stack acceptance result is implied.
+candidate hash and keeps G0 pending final gate verification. Contract validation alone
+does not imply backend, Compose or full-stack acceptance.
 
 To regenerate declarations after a deliberate contract change:
 
@@ -224,14 +224,14 @@ draft until that review exists. No release mutation endpoint is enabled in P1-01
 
 ## Review and next gate
 
-The required FE/BE review must check G0-W1 workspace projections, W2 snapshot
+The FE/BE review covers G0-W1 workspace projections, W2 snapshot
 preview, W3 retry/status URLs, W4 DTO mapping and W5 session/replay semantics against
 the delivered UI. Review this candidate hash, strict fields/nullability/limits,
 typed errors and independent state machines; record actual reviewer/time/hash.
 Generated consumer checks and an independent coding-agent review do not replace
-the user-appointed frontend/backend owners' acceptance. Contract-dependent backend
-implementation starts after G0 closure; actual frontend HTTP integration, native
-parsing, model evaluation, live execution, PDF release and pilot gates remain open.
+the user-appointed frontend/backend owners' acceptance. Admin has approved both
+roles; final G0 verification, actual frontend HTTP integration, native parsing,
+model evaluation, live execution, PDF release and pilot gates remain open.
 
 Requirement review used the ten-page local `1.pdf`, SHA-256
 `cfc55fc52fdecd8b4c65c5eec9217d39335ac4ab92461e869092fde8a33816cc`.

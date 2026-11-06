@@ -1,15 +1,17 @@
 {
   "contract_version": "0.1.0",
-  "status": "candidate_pending_owner_review",
+  "status": "candidate_owner_approved_pending_gate_verification",
   "frontend_owner": {
-    "status": "pending",
-    "reviewer": null,
-    "reviewed_at": null
+    "status": "approved",
+    "reviewer": "admin",
+    "reviewed_at": "2026-11-06T08:51:45Z",
+    "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f"
   },
   "backend_owner": {
-    "status": "pending",
-    "reviewer": null,
-    "reviewed_at": null
+    "status": "approved",
+    "reviewer": "admin",
+    "reviewed_at": "2026-11-06T08:51:45Z",
+    "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f"
   },
   "generated_consumers": "candidate only; actual frontend integration not started",
   "runtime_implemented": false,
