@@ -1,0 +1,1786 @@
+{
+  "format": "reknyx-authority-json-v1",
+  "golden": [
+    {
+      "id": "scope",
+      "kind": "scope",
+      "payload": {
+        "assessment_id": "a0000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "a0000000-0000-4000-8000-000000000003",
+        "asset": {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "hostname": "lab.example",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "api.example",
+            "web.example"
+          ],
+          "authorization_ref_id": "a0000000-0000-4000-8000-000000000003"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [
+          22,
+          25
+        ],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T00:00:00Z",
+        "valid_until": "2026-11-07T00:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 3600,
+          "max_model_calls": 8,
+          "max_input_tokens": 1000000,
+          "max_output_tokens": 1000000
+        },
+        "origin_wide": true
+      },
+      "canonical_utf8": "{\"allowed_ports\":[80,443],\"allowed_profiles\":[\"nmap_discovery_v1\",\"zap_baseline_v1\"],\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"asset\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"},\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"budget\":{\"max_actions\":8,\"max_input_tokens\":1000000,\"max_model_calls\":8,\"max_output_tokens\":1000000,\"max_runtime_seconds\":3600},\"excluded_ports\":[22,25],\"origin_wide\":true,\"valid_from\":\"2026-11-06T00:00:00Z\",\"valid_until\":\"2026-11-07T00:00:00Z\",\"version\":1}",
+      "sha256": "5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb"
+    },
+    {
+      "id": "nmap-action",
+      "kind": "action",
+      "payload": {
+        "action_id": "a0000000-0000-4000-8000-000000000004",
+        "assessment_id": "a0000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "hostname": "lab.example",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "api.example",
+            "web.example"
+          ],
+          "authorization_ref_id": "a0000000-0000-4000-8000-000000000003"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "a0000000-0000-4000-8000-000000000005",
+          "a0000000-0000-4000-8000-000000000006"
+        ],
+        "expires_at": "2026-11-06T01:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "canonical_utf8": "{\"action_id\":\"a0000000-0000-4000-8000-000000000004\",\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"basis_observation_ids\":[\"a0000000-0000-4000-8000-000000000005\",\"a0000000-0000-4000-8000-000000000006\"],\"budget\":{\"actions\":1,\"runtime_seconds\":180},\"expires_at\":\"2026-11-06T01:00:00Z\",\"parameters\":{\"deadline_seconds\":120,\"ports\":[80,443]},\"profile\":\"nmap_discovery_v1\",\"profile_version\":\"1\",\"scope_hash\":\"5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb\",\"scope_version\":1,\"state_revision\":1,\"target\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"}}",
+      "sha256": "293462afa50d02e20447c5f63d6d0687cade6ed4314dd648128de3f42d6fd566"
+    },
+    {
+      "id": "zap-action",
+      "kind": "action",
+      "payload": {
+        "action_id": "a0000000-0000-4000-8000-000000000007",
+        "assessment_id": "a0000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "zap_baseline_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "a0000000-0000-4000-8000-000000000002",
+          "hostname": "lab.example",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "api.example",
+            "web.example"
+          ],
+          "authorization_ref_id": "a0000000-0000-4000-8000-000000000003"
+        },
+        "parameters": {
+          "scheme": "https",
+          "port": 443,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "scope_hash": "5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "a0000000-0000-4000-8000-000000000005",
+          "a0000000-0000-4000-8000-000000000006"
+        ],
+        "expires_at": "2026-11-06T01:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "canonical_utf8": "{\"action_id\":\"a0000000-0000-4000-8000-000000000007\",\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"basis_observation_ids\":[\"a0000000-0000-4000-8000-000000000005\",\"a0000000-0000-4000-8000-000000000006\"],\"budget\":{\"actions\":1,\"runtime_seconds\":180},\"expires_at\":\"2026-11-06T01:00:00Z\",\"parameters\":{\"deadline_seconds\":180,\"port\":443,\"root_path\":\"/\",\"scheme\":\"https\"},\"profile\":\"zap_baseline_v1\",\"profile_version\":\"1\",\"scope_hash\":\"5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb\",\"scope_version\":1,\"state_revision\":1,\"target\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"}}",
+      "sha256": "6f43d968459e9181bf317c8dbaf05daef4ccaad53be9778969712eef985f51b6"
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "scope-normalized",
+      "base": "scope",
+      "payload": {
+        "origin_wide": true,
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 3600,
+          "max_model_calls": 8,
+          "max_input_tokens": 1000000,
+          "max_output_tokens": 1000000
+        },
+        "valid_until": "2026-11-06T19:00:00-05:00",
+        "valid_from": "2026-11-06T07:00:00+07:00",
+        "allowed_profiles": [
+          "zap_baseline_v1",
+          "nmap_discovery_v1"
+        ],
+        "excluded_ports": [
+          25,
+          22
+        ],
+        "allowed_ports": [
+          443,
+          80
+        ],
+        "asset": {
+          "id": "A0000000-0000-4000-8000-000000000002",
+          "hostname": "LAB.EXAMPLE.",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "WEB.EXAMPLE.",
+            "API.EXAMPLE"
+          ],
+          "authorization_ref_id": "A0000000-0000-4000-8000-000000000003"
+        },
+        "authorization_ref_id": "A0000000-0000-4000-8000-000000000003",
+        "version": 1,
+        "assessment_id": "A0000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "nmap-action-normalized",
+      "base": "nmap-action",
+      "payload": {
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        },
+        "expires_at": "2026-11-06T08:00:00+07:00",
+        "basis_observation_ids": [
+          "A0000000-0000-4000-8000-000000000006",
+          "A0000000-0000-4000-8000-000000000005"
+        ],
+        "scope_version": 1,
+        "scope_hash": "5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb",
+        "parameters": {
+          "ports": [
+            443,
+            80
+          ],
+          "deadline_seconds": 120
+        },
+        "target": {
+          "id": "A0000000-0000-4000-8000-000000000002",
+          "hostname": "LAB.EXAMPLE.",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "WEB.EXAMPLE.",
+            "API.EXAMPLE"
+          ],
+          "authorization_ref_id": "A0000000-0000-4000-8000-000000000003"
+        },
+        "profile_version": "1",
+        "profile": "nmap_discovery_v1",
+        "state_revision": 1,
+        "assessment_id": "A0000000-0000-4000-8000-000000000001",
+        "action_id": "A0000000-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "id": "zap-action-normalized",
+      "base": "zap-action",
+      "payload": {
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        },
+        "expires_at": "2026-11-06T08:00:00+07:00",
+        "basis_observation_ids": [
+          "A0000000-0000-4000-8000-000000000006",
+          "A0000000-0000-4000-8000-000000000005"
+        ],
+        "scope_version": 1,
+        "scope_hash": "5cc77c0c14d98ce0f1106a43bec5ae94b8f3b42aeca5a6918472518d293848bb",
+        "parameters": {
+          "scheme": "https",
+          "port": 443,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "target": {
+          "id": "A0000000-0000-4000-8000-000000000002",
+          "hostname": "LAB.EXAMPLE.",
+          "ipv4": "192.0.2.10",
+          "aliases": [
+            "WEB.EXAMPLE.",
+            "API.EXAMPLE"
+          ],
+          "authorization_ref_id": "A0000000-0000-4000-8000-000000000003"
+        },
+        "profile_version": "1",
+        "profile": "zap_baseline_v1",
+        "state_revision": 1,
+        "assessment_id": "A0000000-0000-4000-8000-000000000001",
+        "action_id": "A0000000-0000-4000-8000-000000000007"
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "id": "scope:assessment_id",
+      "base": "scope",
+      "path": "assessment_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "scope:version",
+      "base": "scope",
+      "path": "version",
+      "value": 2
+    },
+    {
+      "id": "scope:authorization_ref_id",
+      "base": "scope",
+      "path": "authorization_ref_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "scope:asset.id",
+      "base": "scope",
+      "path": "asset.id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "scope:asset.hostname",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": null
+    },
+    {
+      "id": "scope:asset.ipv4",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2.11"
+    },
+    {
+      "id": "scope:asset.aliases",
+      "base": "scope",
+      "path": "asset.aliases",
+      "value": [
+        "other.example"
+      ]
+    },
+    {
+      "id": "scope:asset.authorization_ref_id",
+      "base": "scope",
+      "path": "asset.authorization_ref_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "scope:allowed_ports",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        80
+      ]
+    },
+    {
+      "id": "scope:excluded_ports",
+      "base": "scope",
+      "path": "excluded_ports",
+      "value": [
+        25
+      ]
+    },
+    {
+      "id": "scope:allowed_profiles",
+      "base": "scope",
+      "path": "allowed_profiles",
+      "value": [
+        "nmap_discovery_v1"
+      ]
+    },
+    {
+      "id": "scope:valid_from",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:01Z"
+    },
+    {
+      "id": "scope:valid_until",
+      "base": "scope",
+      "path": "valid_until",
+      "value": "2026-11-07T00:00:01Z"
+    },
+    {
+      "id": "scope:budget.max_actions",
+      "base": "scope",
+      "path": "budget.max_actions",
+      "value": 7
+    },
+    {
+      "id": "scope:budget.max_runtime_seconds",
+      "base": "scope",
+      "path": "budget.max_runtime_seconds",
+      "value": 3599
+    },
+    {
+      "id": "scope:budget.max_model_calls",
+      "base": "scope",
+      "path": "budget.max_model_calls",
+      "value": 7
+    },
+    {
+      "id": "scope:budget.max_input_tokens",
+      "base": "scope",
+      "path": "budget.max_input_tokens",
+      "value": 999999
+    },
+    {
+      "id": "scope:budget.max_output_tokens",
+      "base": "scope",
+      "path": "budget.max_output_tokens",
+      "value": 999999
+    },
+    {
+      "id": "scope:origin_wide",
+      "base": "scope",
+      "path": "origin_wide",
+      "value": false
+    },
+    {
+      "id": "nmap-action:action_id",
+      "base": "nmap-action",
+      "path": "action_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "nmap-action:assessment_id",
+      "base": "nmap-action",
+      "path": "assessment_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "nmap-action:state_revision",
+      "base": "nmap-action",
+      "path": "state_revision",
+      "value": 2
+    },
+    {
+      "id": "nmap-action:target.id",
+      "base": "nmap-action",
+      "path": "target.id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "nmap-action:target.hostname",
+      "base": "nmap-action",
+      "path": "target.hostname",
+      "value": null
+    },
+    {
+      "id": "nmap-action:target.ipv4",
+      "base": "nmap-action",
+      "path": "target.ipv4",
+      "value": "192.0.2.11"
+    },
+    {
+      "id": "nmap-action:target.aliases",
+      "base": "nmap-action",
+      "path": "target.aliases",
+      "value": []
+    },
+    {
+      "id": "nmap-action:target.authorization_ref_id",
+      "base": "nmap-action",
+      "path": "target.authorization_ref_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "nmap-action:scope_hash",
+      "base": "nmap-action",
+      "path": "scope_hash",
+      "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "id": "nmap-action:scope_version",
+      "base": "nmap-action",
+      "path": "scope_version",
+      "value": 2
+    },
+    {
+      "id": "nmap-action:basis_observation_ids",
+      "base": "nmap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000005"
+      ]
+    },
+    {
+      "id": "nmap-action:expires_at",
+      "base": "nmap-action",
+      "path": "expires_at",
+      "value": "2026-11-06T01:00:01Z"
+    },
+    {
+      "id": "nmap-action:budget.runtime_seconds",
+      "base": "nmap-action",
+      "path": "budget.runtime_seconds",
+      "value": 179
+    },
+    {
+      "id": "nmap-action:parameters.deadline_seconds",
+      "base": "nmap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 60
+    },
+    {
+      "id": "zap-action:action_id",
+      "base": "zap-action",
+      "path": "action_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "zap-action:assessment_id",
+      "base": "zap-action",
+      "path": "assessment_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "zap-action:state_revision",
+      "base": "zap-action",
+      "path": "state_revision",
+      "value": 2
+    },
+    {
+      "id": "zap-action:target.id",
+      "base": "zap-action",
+      "path": "target.id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "zap-action:target.hostname",
+      "base": "zap-action",
+      "path": "target.hostname",
+      "value": null
+    },
+    {
+      "id": "zap-action:target.ipv4",
+      "base": "zap-action",
+      "path": "target.ipv4",
+      "value": "192.0.2.11"
+    },
+    {
+      "id": "zap-action:target.aliases",
+      "base": "zap-action",
+      "path": "target.aliases",
+      "value": []
+    },
+    {
+      "id": "zap-action:target.authorization_ref_id",
+      "base": "zap-action",
+      "path": "target.authorization_ref_id",
+      "value": "a0000000-0000-4000-8000-000000000008"
+    },
+    {
+      "id": "zap-action:scope_hash",
+      "base": "zap-action",
+      "path": "scope_hash",
+      "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    {
+      "id": "zap-action:scope_version",
+      "base": "zap-action",
+      "path": "scope_version",
+      "value": 2
+    },
+    {
+      "id": "zap-action:basis_observation_ids",
+      "base": "zap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000005"
+      ]
+    },
+    {
+      "id": "zap-action:expires_at",
+      "base": "zap-action",
+      "path": "expires_at",
+      "value": "2026-11-06T01:00:01Z"
+    },
+    {
+      "id": "zap-action:budget.runtime_seconds",
+      "base": "zap-action",
+      "path": "budget.runtime_seconds",
+      "value": 179
+    },
+    {
+      "id": "zap-action:parameters.deadline_seconds",
+      "base": "zap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 60
+    },
+    {
+      "id": "nmap-action:parameters.ports",
+      "base": "nmap-action",
+      "path": "parameters.ports",
+      "value": [
+        443
+      ]
+    },
+    {
+      "id": "zap-action:parameters.scheme",
+      "base": "zap-action",
+      "path": "parameters.scheme",
+      "value": "http"
+    },
+    {
+      "id": "zap-action:parameters.port",
+      "base": "zap-action",
+      "path": "parameters.port",
+      "value": 80
+    }
+  ],
+  "invalid": [
+    {
+      "id": "scope:assessment_id:invalid:0",
+      "base": "scope",
+      "path": "assessment_id",
+      "remove": true
+    },
+    {
+      "id": "scope:version:invalid:1",
+      "base": "scope",
+      "path": "version",
+      "remove": true
+    },
+    {
+      "id": "scope:authorization_ref_id:invalid:2",
+      "base": "scope",
+      "path": "authorization_ref_id",
+      "remove": true
+    },
+    {
+      "id": "scope:asset:invalid:3",
+      "base": "scope",
+      "path": "asset",
+      "remove": true
+    },
+    {
+      "id": "scope:asset.unexpected:invalid:4",
+      "base": "scope",
+      "path": "asset.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "scope:asset.id:invalid:5",
+      "base": "scope",
+      "path": "asset.id",
+      "remove": true
+    },
+    {
+      "id": "scope:asset.hostname:invalid:6",
+      "base": "scope",
+      "path": "asset.hostname",
+      "remove": true
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:7",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "remove": true
+    },
+    {
+      "id": "scope:asset.aliases:invalid:8",
+      "base": "scope",
+      "path": "asset.aliases",
+      "remove": true
+    },
+    {
+      "id": "scope:asset.authorization_ref_id:invalid:9",
+      "base": "scope",
+      "path": "asset.authorization_ref_id",
+      "remove": true
+    },
+    {
+      "id": "scope:allowed_ports:invalid:10",
+      "base": "scope",
+      "path": "allowed_ports",
+      "remove": true
+    },
+    {
+      "id": "scope:excluded_ports:invalid:11",
+      "base": "scope",
+      "path": "excluded_ports",
+      "remove": true
+    },
+    {
+      "id": "scope:allowed_profiles:invalid:12",
+      "base": "scope",
+      "path": "allowed_profiles",
+      "remove": true
+    },
+    {
+      "id": "scope:valid_from:invalid:13",
+      "base": "scope",
+      "path": "valid_from",
+      "remove": true
+    },
+    {
+      "id": "scope:valid_until:invalid:14",
+      "base": "scope",
+      "path": "valid_until",
+      "remove": true
+    },
+    {
+      "id": "scope:budget:invalid:15",
+      "base": "scope",
+      "path": "budget",
+      "remove": true
+    },
+    {
+      "id": "scope:budget.unexpected:invalid:16",
+      "base": "scope",
+      "path": "budget.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "scope:budget.max_actions:invalid:17",
+      "base": "scope",
+      "path": "budget.max_actions",
+      "remove": true
+    },
+    {
+      "id": "scope:budget.max_runtime_seconds:invalid:18",
+      "base": "scope",
+      "path": "budget.max_runtime_seconds",
+      "remove": true
+    },
+    {
+      "id": "scope:budget.max_model_calls:invalid:19",
+      "base": "scope",
+      "path": "budget.max_model_calls",
+      "remove": true
+    },
+    {
+      "id": "scope:budget.max_input_tokens:invalid:20",
+      "base": "scope",
+      "path": "budget.max_input_tokens",
+      "remove": true
+    },
+    {
+      "id": "scope:budget.max_output_tokens:invalid:21",
+      "base": "scope",
+      "path": "budget.max_output_tokens",
+      "remove": true
+    },
+    {
+      "id": "scope:origin_wide:invalid:22",
+      "base": "scope",
+      "path": "origin_wide",
+      "remove": true
+    },
+    {
+      "id": "scope:unexpected:invalid:23",
+      "base": "scope",
+      "path": "unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "nmap-action:action_id:invalid:24",
+      "base": "nmap-action",
+      "path": "action_id",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:assessment_id:invalid:25",
+      "base": "nmap-action",
+      "path": "assessment_id",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:state_revision:invalid:26",
+      "base": "nmap-action",
+      "path": "state_revision",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:profile:invalid:27",
+      "base": "nmap-action",
+      "path": "profile",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:profile_version:invalid:28",
+      "base": "nmap-action",
+      "path": "profile_version",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target:invalid:29",
+      "base": "nmap-action",
+      "path": "target",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target.unexpected:invalid:30",
+      "base": "nmap-action",
+      "path": "target.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "nmap-action:target.id:invalid:31",
+      "base": "nmap-action",
+      "path": "target.id",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target.hostname:invalid:32",
+      "base": "nmap-action",
+      "path": "target.hostname",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target.ipv4:invalid:33",
+      "base": "nmap-action",
+      "path": "target.ipv4",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target.aliases:invalid:34",
+      "base": "nmap-action",
+      "path": "target.aliases",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:target.authorization_ref_id:invalid:35",
+      "base": "nmap-action",
+      "path": "target.authorization_ref_id",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:parameters:invalid:36",
+      "base": "nmap-action",
+      "path": "parameters",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:parameters.unexpected:invalid:37",
+      "base": "nmap-action",
+      "path": "parameters.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "nmap-action:parameters.ports:invalid:38",
+      "base": "nmap-action",
+      "path": "parameters.ports",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:parameters.deadline_seconds:invalid:39",
+      "base": "nmap-action",
+      "path": "parameters.deadline_seconds",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:scope_hash:invalid:40",
+      "base": "nmap-action",
+      "path": "scope_hash",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:scope_version:invalid:41",
+      "base": "nmap-action",
+      "path": "scope_version",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:basis_observation_ids:invalid:42",
+      "base": "nmap-action",
+      "path": "basis_observation_ids",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:expires_at:invalid:43",
+      "base": "nmap-action",
+      "path": "expires_at",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:budget:invalid:44",
+      "base": "nmap-action",
+      "path": "budget",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:budget.unexpected:invalid:45",
+      "base": "nmap-action",
+      "path": "budget.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "nmap-action:budget.actions:invalid:46",
+      "base": "nmap-action",
+      "path": "budget.actions",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:budget.runtime_seconds:invalid:47",
+      "base": "nmap-action",
+      "path": "budget.runtime_seconds",
+      "remove": true
+    },
+    {
+      "id": "nmap-action:unexpected:invalid:48",
+      "base": "nmap-action",
+      "path": "unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "zap-action:action_id:invalid:49",
+      "base": "zap-action",
+      "path": "action_id",
+      "remove": true
+    },
+    {
+      "id": "zap-action:assessment_id:invalid:50",
+      "base": "zap-action",
+      "path": "assessment_id",
+      "remove": true
+    },
+    {
+      "id": "zap-action:state_revision:invalid:51",
+      "base": "zap-action",
+      "path": "state_revision",
+      "remove": true
+    },
+    {
+      "id": "zap-action:profile:invalid:52",
+      "base": "zap-action",
+      "path": "profile",
+      "remove": true
+    },
+    {
+      "id": "zap-action:profile_version:invalid:53",
+      "base": "zap-action",
+      "path": "profile_version",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target:invalid:54",
+      "base": "zap-action",
+      "path": "target",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target.unexpected:invalid:55",
+      "base": "zap-action",
+      "path": "target.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "zap-action:target.id:invalid:56",
+      "base": "zap-action",
+      "path": "target.id",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target.hostname:invalid:57",
+      "base": "zap-action",
+      "path": "target.hostname",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target.ipv4:invalid:58",
+      "base": "zap-action",
+      "path": "target.ipv4",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target.aliases:invalid:59",
+      "base": "zap-action",
+      "path": "target.aliases",
+      "remove": true
+    },
+    {
+      "id": "zap-action:target.authorization_ref_id:invalid:60",
+      "base": "zap-action",
+      "path": "target.authorization_ref_id",
+      "remove": true
+    },
+    {
+      "id": "zap-action:parameters:invalid:61",
+      "base": "zap-action",
+      "path": "parameters",
+      "remove": true
+    },
+    {
+      "id": "zap-action:parameters.unexpected:invalid:62",
+      "base": "zap-action",
+      "path": "parameters.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "zap-action:parameters.scheme:invalid:63",
+      "base": "zap-action",
+      "path": "parameters.scheme",
+      "remove": true
+    },
+    {
+      "id": "zap-action:parameters.port:invalid:64",
+      "base": "zap-action",
+      "path": "parameters.port",
+      "remove": true
+    },
+    {
+      "id": "zap-action:parameters.root_path:invalid:65",
+      "base": "zap-action",
+      "path": "parameters.root_path",
+      "remove": true
+    },
+    {
+      "id": "zap-action:parameters.deadline_seconds:invalid:66",
+      "base": "zap-action",
+      "path": "parameters.deadline_seconds",
+      "remove": true
+    },
+    {
+      "id": "zap-action:scope_hash:invalid:67",
+      "base": "zap-action",
+      "path": "scope_hash",
+      "remove": true
+    },
+    {
+      "id": "zap-action:scope_version:invalid:68",
+      "base": "zap-action",
+      "path": "scope_version",
+      "remove": true
+    },
+    {
+      "id": "zap-action:basis_observation_ids:invalid:69",
+      "base": "zap-action",
+      "path": "basis_observation_ids",
+      "remove": true
+    },
+    {
+      "id": "zap-action:expires_at:invalid:70",
+      "base": "zap-action",
+      "path": "expires_at",
+      "remove": true
+    },
+    {
+      "id": "zap-action:budget:invalid:71",
+      "base": "zap-action",
+      "path": "budget",
+      "remove": true
+    },
+    {
+      "id": "zap-action:budget.unexpected:invalid:72",
+      "base": "zap-action",
+      "path": "budget.unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "zap-action:budget.actions:invalid:73",
+      "base": "zap-action",
+      "path": "budget.actions",
+      "remove": true
+    },
+    {
+      "id": "zap-action:budget.runtime_seconds:invalid:74",
+      "base": "zap-action",
+      "path": "budget.runtime_seconds",
+      "remove": true
+    },
+    {
+      "id": "zap-action:unexpected:invalid:75",
+      "base": "zap-action",
+      "path": "unexpected",
+      "value": "forbidden"
+    },
+    {
+      "id": "scope:version:invalid:76",
+      "base": "scope",
+      "path": "version",
+      "value": 0
+    },
+    {
+      "id": "scope:version:invalid:77",
+      "base": "scope",
+      "path": "version",
+      "value": true
+    },
+    {
+      "id": "scope:version:invalid:78",
+      "base": "scope",
+      "path": "version",
+      "value": "1"
+    },
+    {
+      "id": "scope:version:invalid:79",
+      "base": "scope",
+      "path": "version",
+      "value": null
+    },
+    {
+      "id": "scope:version:invalid:80",
+      "base": "scope",
+      "path": "version",
+      "value": 9007199254740992
+    },
+    {
+      "id": "scope:assessment_id:invalid:81",
+      "base": "scope",
+      "path": "assessment_id",
+      "value": "\u00e90000000-0000-4000-8000-000000000001"
+    },
+    {
+      "id": "scope:assessment_id:invalid:82",
+      "base": "scope",
+      "path": "assessment_id",
+      "value": "a0000000000040008000000000000001"
+    },
+    {
+      "id": "scope:assessment_id:invalid:83",
+      "base": "scope",
+      "path": "assessment_id",
+      "value": " a0000000-0000-4000-8000-000000000001"
+    },
+    {
+      "id": "scope:assessment_id:invalid:84",
+      "base": "scope",
+      "path": "assessment_id",
+      "value": "a0000000-0000-4000-8000-000000000001\n"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:85",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "l\u00e1b.example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:86",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": " lab.example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:87",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "a..example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:88",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "-lab.example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:89",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:90",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "lab.example.."
+    },
+    {
+      "id": "scope:asset.hostname:invalid:91",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "lab_example"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:92",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "lab.example\n"
+    },
+    {
+      "id": "scope:asset.hostname:invalid:93",
+      "base": "scope",
+      "path": "asset.hostname",
+      "value": "lab.example\t"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:94",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2.010"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:95",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2.10/32"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:96",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "::ffff:192.0.2.10"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:97",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "3221225994"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:98",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "0xc000020a"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:99",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:100",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2.256"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:101",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": " 192.0.2.10"
+    },
+    {
+      "id": "scope:asset.ipv4:invalid:102",
+      "base": "scope",
+      "path": "asset.ipv4",
+      "value": "192.0.2.10\n"
+    },
+    {
+      "id": "scope:asset.aliases:invalid:103",
+      "base": "scope",
+      "path": "asset.aliases",
+      "value": [
+        "lab.example",
+        "LAB.EXAMPLE."
+      ]
+    },
+    {
+      "id": "scope:asset.aliases:invalid:104",
+      "base": "scope",
+      "path": "asset.aliases",
+      "value": [
+        "\u00e9.example"
+      ]
+    },
+    {
+      "id": "scope:asset.aliases:invalid:105",
+      "base": "scope",
+      "path": "asset.aliases",
+      "value": "lab.example"
+    },
+    {
+      "id": "scope:excluded_ports:invalid:106",
+      "base": "scope",
+      "path": "excluded_ports",
+      "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "scope:allowed_ports:invalid:107",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": []
+    },
+    {
+      "id": "scope:allowed_ports:invalid:108",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        80,
+        80
+      ]
+    },
+    {
+      "id": "scope:allowed_ports:invalid:109",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        true
+      ]
+    },
+    {
+      "id": "scope:allowed_ports:invalid:110",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        0
+      ]
+    },
+    {
+      "id": "scope:allowed_ports:invalid:111",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        65536
+      ]
+    },
+    {
+      "id": "scope:allowed_ports:invalid:112",
+      "base": "scope",
+      "path": "allowed_ports",
+      "value": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "scope:allowed_profiles:invalid:113",
+      "base": "scope",
+      "path": "allowed_profiles",
+      "value": [
+        "nmap_discovery_v1",
+        "nmap_discovery_v1"
+      ]
+    },
+    {
+      "id": "scope:allowed_profiles:invalid:114",
+      "base": "scope",
+      "path": "allowed_profiles",
+      "value": [
+        "shell_v1"
+      ]
+    },
+    {
+      "id": "scope:origin_wide:invalid:115",
+      "base": "scope",
+      "path": "origin_wide",
+      "value": 1
+    },
+    {
+      "id": "scope:origin_wide:invalid:116",
+      "base": "scope",
+      "path": "origin_wide",
+      "value": "true"
+    },
+    {
+      "id": "scope:origin_wide:invalid:117",
+      "base": "scope",
+      "path": "origin_wide",
+      "value": null
+    },
+    {
+      "id": "scope:valid_from:invalid:118",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-02-30T00:00:00Z"
+    },
+    {
+      "id": "scope:valid_from:invalid:119",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:00.000Z"
+    },
+    {
+      "id": "scope:valid_from:invalid:120",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:60Z"
+    },
+    {
+      "id": "scope:valid_from:invalid:121",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T24:00:00Z"
+    },
+    {
+      "id": "scope:valid_from:invalid:122",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06"
+    },
+    {
+      "id": "scope:valid_from:invalid:123",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:00"
+    },
+    {
+      "id": "scope:valid_from:invalid:124",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:00-00:00"
+    },
+    {
+      "id": "scope:valid_from:invalid:125",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:00+24:00"
+    },
+    {
+      "id": "scope:valid_from:invalid:126",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "0000-01-01T00:00:00Z"
+    },
+    {
+      "id": "scope:valid_from:invalid:127",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "0001-01-01T00:00:00+01:00"
+    },
+    {
+      "id": "scope:valid_from:invalid:128",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "9999-12-31T23:59:59-01:00"
+    },
+    {
+      "id": "scope:valid_from:invalid:129",
+      "base": "scope",
+      "path": "valid_from",
+      "value": "2026-11-06T00:00:00+00:60"
+    },
+    {
+      "id": "scope:budget.max_actions:invalid:130",
+      "base": "scope",
+      "path": "budget.max_actions",
+      "value": -1
+    },
+    {
+      "id": "scope:budget.max_actions:invalid:131",
+      "base": "scope",
+      "path": "budget.max_actions",
+      "value": 9
+    },
+    {
+      "id": "scope:budget.max_runtime_seconds:invalid:132",
+      "base": "scope",
+      "path": "budget.max_runtime_seconds",
+      "value": 3601
+    },
+    {
+      "id": "scope:budget.max_model_calls:invalid:133",
+      "base": "scope",
+      "path": "budget.max_model_calls",
+      "value": 9
+    },
+    {
+      "id": "scope:budget.max_input_tokens:invalid:134",
+      "base": "scope",
+      "path": "budget.max_input_tokens",
+      "value": 1000001
+    },
+    {
+      "id": "scope:budget.max_output_tokens:invalid:135",
+      "base": "scope",
+      "path": "budget.max_output_tokens",
+      "value": 1000001
+    },
+    {
+      "id": "nmap-action:profile:invalid:136",
+      "base": "nmap-action",
+      "path": "profile",
+      "value": "unknown"
+    },
+    {
+      "id": "nmap-action:profile:invalid:137",
+      "base": "nmap-action",
+      "path": "profile",
+      "value": "zap_baseline_v1"
+    },
+    {
+      "id": "nmap-action:profile_version:invalid:138",
+      "base": "nmap-action",
+      "path": "profile_version",
+      "value": "2"
+    },
+    {
+      "id": "nmap-action:profile_version:invalid:139",
+      "base": "nmap-action",
+      "path": "profile_version",
+      "value": 1
+    },
+    {
+      "id": "nmap-action:budget.actions:invalid:140",
+      "base": "nmap-action",
+      "path": "budget.actions",
+      "value": 0
+    },
+    {
+      "id": "nmap-action:budget.actions:invalid:141",
+      "base": "nmap-action",
+      "path": "budget.actions",
+      "value": 2
+    },
+    {
+      "id": "nmap-action:budget.actions:invalid:142",
+      "base": "nmap-action",
+      "path": "budget.actions",
+      "value": true
+    },
+    {
+      "id": "nmap-action:budget.runtime_seconds:invalid:143",
+      "base": "nmap-action",
+      "path": "budget.runtime_seconds",
+      "value": 0
+    },
+    {
+      "id": "nmap-action:budget.runtime_seconds:invalid:144",
+      "base": "nmap-action",
+      "path": "budget.runtime_seconds",
+      "value": 181
+    },
+    {
+      "id": "nmap-action:scope_hash:invalid:145",
+      "base": "nmap-action",
+      "path": "scope_hash",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "nmap-action:scope_hash:invalid:146",
+      "base": "nmap-action",
+      "path": "scope_hash",
+      "value": "000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "nmap-action:scope_version:invalid:147",
+      "base": "nmap-action",
+      "path": "scope_version",
+      "value": 0
+    },
+    {
+      "id": "nmap-action:state_revision:invalid:148",
+      "base": "nmap-action",
+      "path": "state_revision",
+      "value": 0
+    },
+    {
+      "id": "nmap-action:basis_observation_ids:invalid:149",
+      "base": "nmap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000005",
+        "A0000000-0000-4000-8000-000000000005"
+      ]
+    },
+    {
+      "id": "nmap-action:basis_observation_ids:invalid:150",
+      "base": "nmap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000100",
+        "a0000000-0000-4000-8000-000000000101",
+        "a0000000-0000-4000-8000-000000000102",
+        "a0000000-0000-4000-8000-000000000103",
+        "a0000000-0000-4000-8000-000000000104",
+        "a0000000-0000-4000-8000-000000000105",
+        "a0000000-0000-4000-8000-000000000106",
+        "a0000000-0000-4000-8000-000000000107",
+        "a0000000-0000-4000-8000-000000000108",
+        "a0000000-0000-4000-8000-000000000109",
+        "a0000000-0000-4000-8000-000000000110",
+        "a0000000-0000-4000-8000-000000000111",
+        "a0000000-0000-4000-8000-000000000112",
+        "a0000000-0000-4000-8000-000000000113",
+        "a0000000-0000-4000-8000-000000000114",
+        "a0000000-0000-4000-8000-000000000115",
+        "a0000000-0000-4000-8000-000000000116",
+        "a0000000-0000-4000-8000-000000000117",
+        "a0000000-0000-4000-8000-000000000118",
+        "a0000000-0000-4000-8000-000000000119",
+        "a0000000-0000-4000-8000-000000000120",
+        "a0000000-0000-4000-8000-000000000121",
+        "a0000000-0000-4000-8000-000000000122",
+        "a0000000-0000-4000-8000-000000000123",
+        "a0000000-0000-4000-8000-000000000124",
+        "a0000000-0000-4000-8000-000000000125",
+        "a0000000-0000-4000-8000-000000000126",
+        "a0000000-0000-4000-8000-000000000127",
+        "a0000000-0000-4000-8000-000000000128",
+        "a0000000-0000-4000-8000-000000000129",
+        "a0000000-0000-4000-8000-000000000130",
+        "a0000000-0000-4000-8000-000000000131",
+        "a0000000-0000-4000-8000-000000000132"
+      ]
+    },
+    {
+      "id": "nmap-action:parameters.deadline_seconds:invalid:151",
+      "base": "nmap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 0
+    },
+    {
+      "id": "nmap-action:parameters.deadline_seconds:invalid:152",
+      "base": "nmap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 121
+    },
+    {
+      "id": "zap-action:profile:invalid:153",
+      "base": "zap-action",
+      "path": "profile",
+      "value": "unknown"
+    },
+    {
+      "id": "zap-action:profile:invalid:154",
+      "base": "zap-action",
+      "path": "profile",
+      "value": "nmap_discovery_v1"
+    },
+    {
+      "id": "zap-action:profile_version:invalid:155",
+      "base": "zap-action",
+      "path": "profile_version",
+      "value": "2"
+    },
+    {
+      "id": "zap-action:profile_version:invalid:156",
+      "base": "zap-action",
+      "path": "profile_version",
+      "value": 1
+    },
+    {
+      "id": "zap-action:budget.actions:invalid:157",
+      "base": "zap-action",
+      "path": "budget.actions",
+      "value": 0
+    },
+    {
+      "id": "zap-action:budget.actions:invalid:158",
+      "base": "zap-action",
+      "path": "budget.actions",
+      "value": 2
+    },
+    {
+      "id": "zap-action:budget.actions:invalid:159",
+      "base": "zap-action",
+      "path": "budget.actions",
+      "value": true
+    },
+    {
+      "id": "zap-action:budget.runtime_seconds:invalid:160",
+      "base": "zap-action",
+      "path": "budget.runtime_seconds",
+      "value": 0
+    },
+    {
+      "id": "zap-action:budget.runtime_seconds:invalid:161",
+      "base": "zap-action",
+      "path": "budget.runtime_seconds",
+      "value": 181
+    },
+    {
+      "id": "zap-action:scope_hash:invalid:162",
+      "base": "zap-action",
+      "path": "scope_hash",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "zap-action:scope_hash:invalid:163",
+      "base": "zap-action",
+      "path": "scope_hash",
+      "value": "000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "zap-action:scope_version:invalid:164",
+      "base": "zap-action",
+      "path": "scope_version",
+      "value": 0
+    },
+    {
+      "id": "zap-action:state_revision:invalid:165",
+      "base": "zap-action",
+      "path": "state_revision",
+      "value": 0
+    },
+    {
+      "id": "zap-action:basis_observation_ids:invalid:166",
+      "base": "zap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000005",
+        "A0000000-0000-4000-8000-000000000005"
+      ]
+    },
+    {
+      "id": "zap-action:basis_observation_ids:invalid:167",
+      "base": "zap-action",
+      "path": "basis_observation_ids",
+      "value": [
+        "a0000000-0000-4000-8000-000000000100",
+        "a0000000-0000-4000-8000-000000000101",
+        "a0000000-0000-4000-8000-000000000102",
+        "a0000000-0000-4000-8000-000000000103",
+        "a0000000-0000-4000-8000-000000000104",
+        "a0000000-0000-4000-8000-000000000105",
+        "a0000000-0000-4000-8000-000000000106",
+        "a0000000-0000-4000-8000-000000000107",
+        "a0000000-0000-4000-8000-000000000108",
+        "a0000000-0000-4000-8000-000000000109",
+        "a0000000-0000-4000-8000-000000000110",
+        "a0000000-0000-4000-8000-000000000111",
+        "a0000000-0000-4000-8000-000000000112",
+        "a0000000-0000-4000-8000-000000000113",
+        "a0000000-0000-4000-8000-000000000114",
+        "a0000000-0000-4000-8000-000000000115",
+        "a0000000-0000-4000-8000-000000000116",
+        "a0000000-0000-4000-8000-000000000117",
+        "a0000000-0000-4000-8000-000000000118",
+        "a0000000-0000-4000-8000-000000000119",
+        "a0000000-0000-4000-8000-000000000120",
+        "a0000000-0000-4000-8000-000000000121",
+        "a0000000-0000-4000-8000-000000000122",
+        "a0000000-0000-4000-8000-000000000123",
+        "a0000000-0000-4000-8000-000000000124",
+        "a0000000-0000-4000-8000-000000000125",
+        "a0000000-0000-4000-8000-000000000126",
+        "a0000000-0000-4000-8000-000000000127",
+        "a0000000-0000-4000-8000-000000000128",
+        "a0000000-0000-4000-8000-000000000129",
+        "a0000000-0000-4000-8000-000000000130",
+        "a0000000-0000-4000-8000-000000000131",
+        "a0000000-0000-4000-8000-000000000132"
+      ]
+    },
+    {
+      "id": "zap-action:parameters.deadline_seconds:invalid:168",
+      "base": "zap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 0
+    },
+    {
+      "id": "zap-action:parameters.deadline_seconds:invalid:169",
+      "base": "zap-action",
+      "path": "parameters.deadline_seconds",
+      "value": 181
+    },
+    {
+      "id": "zap-action:parameters.root_path:invalid:170",
+      "base": "zap-action",
+      "path": "parameters.root_path",
+      "value": "/admin"
+    },
+    {
+      "id": "scope:asset.aliases:invalid:171",
+      "base": "scope",
+      "path": "asset.aliases",
+      "value": [
+        "host0.example",
+        "host1.example",
+        "host2.example",
+        "host3.example",
+        "host4.example",
+        "host5.example",
+        "host6.example",
+        "host7.example",
+        "host8.example",
+        "host9.example",
+        "host10.example",
+        "host11.example",
+        "host12.example",
+        "host13.example",
+        "host14.example",
+        "host15.example",
+        "host16.example"
+      ]
+    },
+    {
+      "id": "zap-action:scope_hash:invalid:172",
+      "base": "zap-action",
+      "path": "scope_hash",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000\n"
+    },
+    {
+      "id": "zap-action:parameters.scheme:invalid:173",
+      "base": "zap-action",
+      "path": "parameters.scheme",
+      "value": "HTTPS"
+    },
+    {
+      "id": "zap-action:parameters.port:invalid:174",
+      "base": "zap-action",
+      "path": "parameters.port",
+      "value": 65536
+    }
+  ],
+  "invalid_json": [
+    {
+      "id": "numeric-token-1.0",
+      "kind": "scope",
+      "json": "{\"allowed_ports\":[80,443],\"allowed_profiles\":[\"nmap_discovery_v1\",\"zap_baseline_v1\"],\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"asset\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"},\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"budget\":{\"max_actions\":8,\"max_input_tokens\":1000000,\"max_model_calls\":8,\"max_output_tokens\":1000000,\"max_runtime_seconds\":3600},\"excluded_ports\":[22,25],\"origin_wide\":true,\"valid_from\":\"2026-11-06T00:00:00Z\",\"valid_until\":\"2026-11-07T00:00:00Z\",\"version\":1.0}"
+    },
+    {
+      "id": "numeric-token-1e0",
+      "kind": "scope",
+      "json": "{\"allowed_ports\":[80,443],\"allowed_profiles\":[\"nmap_discovery_v1\",\"zap_baseline_v1\"],\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"asset\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"},\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"budget\":{\"max_actions\":8,\"max_input_tokens\":1000000,\"max_model_calls\":8,\"max_output_tokens\":1000000,\"max_runtime_seconds\":3600},\"excluded_ports\":[22,25],\"origin_wide\":true,\"valid_from\":\"2026-11-06T00:00:00Z\",\"valid_until\":\"2026-11-07T00:00:00Z\",\"version\":1e0}"
+    },
+    {
+      "id": "numeric-token-NaN",
+      "kind": "scope",
+      "json": "{\"allowed_ports\":[80,443],\"allowed_profiles\":[\"nmap_discovery_v1\",\"zap_baseline_v1\"],\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"asset\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"},\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"budget\":{\"max_actions\":8,\"max_input_tokens\":1000000,\"max_model_calls\":8,\"max_output_tokens\":1000000,\"max_runtime_seconds\":3600},\"excluded_ports\":[22,25],\"origin_wide\":true,\"valid_from\":\"2026-11-06T00:00:00Z\",\"valid_until\":\"2026-11-07T00:00:00Z\",\"version\":NaN}"
+    },
+    {
+      "id": "numeric-token-Infinity",
+      "kind": "scope",
+      "json": "{\"allowed_ports\":[80,443],\"allowed_profiles\":[\"nmap_discovery_v1\",\"zap_baseline_v1\"],\"assessment_id\":\"a0000000-0000-4000-8000-000000000001\",\"asset\":{\"aliases\":[\"api.example\",\"web.example\"],\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"hostname\":\"lab.example\",\"id\":\"a0000000-0000-4000-8000-000000000002\",\"ipv4\":\"192.0.2.10\"},\"authorization_ref_id\":\"a0000000-0000-4000-8000-000000000003\",\"budget\":{\"max_actions\":8,\"max_input_tokens\":1000000,\"max_model_calls\":8,\"max_output_tokens\":1000000,\"max_runtime_seconds\":3600},\"excluded_ports\":[22,25],\"origin_wide\":true,\"valid_from\":\"2026-11-06T00:00:00Z\",\"valid_until\":\"2026-11-07T00:00:00Z\",\"version\":Infinity}"
+    }
+  ]
+}

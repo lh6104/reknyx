@@ -1,0 +1,17 @@
+{
+  "name": "reknyx-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.9.0" },
+  "scripts": {
+    "generate": "openapi-typescript openapi.yaml -o generated/api.d.ts",
+    "check:generated": "openapi-typescript openapi.yaml -o generated/api.d.ts --check",
+    "check:types": "tsc --noEmit -p tsconfig.json",
+    "check:hashes": "node ../scripts/check_contract_hashes.mjs"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.3"
+  }
+}

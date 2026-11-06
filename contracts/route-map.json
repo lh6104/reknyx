@@ -1,0 +1,405 @@
+{
+  "contract_version": "0.1.0",
+  "status": "candidate_pending_owner_review",
+  "operations": [
+    {
+      "operation_id": "getLiveness",
+      "method": "GET",
+      "path": "/health/live",
+      "browser_views": [
+        "service diagnostics"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "getReadiness",
+      "method": "GET",
+      "path": "/health/ready",
+      "browser_views": [
+        "service diagnostics"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "login",
+      "method": "POST",
+      "path": "/auth/login",
+      "browser_views": [
+        "session entry"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "browser_views": [
+        "session exit"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "getSession",
+      "method": "GET",
+      "path": "/auth/me",
+      "browser_views": [
+        "all protected pages"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "getCapabilities",
+      "method": "GET",
+      "path": "/capabilities",
+      "browser_views": [
+        "all protected pages",
+        "/settings"
+      ],
+      "capability": "foundation"
+    },
+    {
+      "operation_id": "getWorkspaceSummary",
+      "method": "GET",
+      "path": "/workspace/summary",
+      "browser_views": [
+        "/",
+        "/settings"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "listWorkspaceApprovals",
+      "method": "GET",
+      "path": "/workspace/approvals",
+      "browser_views": [
+        "/",
+        "/approvals"
+      ],
+      "capability": "policy.approvals"
+    },
+    {
+      "operation_id": "listWorkspaceFindings",
+      "method": "GET",
+      "path": "/workspace/findings",
+      "browser_views": [
+        "/",
+        "/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "listWorkspaceReports",
+      "method": "GET",
+      "path": "/workspace/reports",
+      "browser_views": [
+        "/",
+        "/reports"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "listWorkspaceTimeline",
+      "method": "GET",
+      "path": "/workspace/timeline",
+      "browser_views": [
+        "/"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "createAssessment",
+      "method": "POST",
+      "path": "/assessments",
+      "browser_views": [
+        "/assessments"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "listAssessments",
+      "method": "GET",
+      "path": "/assessments",
+      "browser_views": [
+        "/assessments",
+        "/"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "getAssessment",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}",
+      "browser_views": [
+        "/assessments/:id"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "replaceScope",
+      "method": "PUT",
+      "path": "/assessments/{assessment_id}/scope",
+      "browser_views": [
+        "/assessments/:id/scope"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "replaceRequest",
+      "method": "PATCH",
+      "path": "/assessments/{assessment_id}/request",
+      "browser_views": [
+        "/assessments/:id"
+      ],
+      "capability": "assessments.persistence"
+    },
+    {
+      "operation_id": "listMessages",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/messages",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "messages.persistence"
+    },
+    {
+      "operation_id": "appendMessage",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/messages",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "messages.persistence"
+    },
+    {
+      "operation_id": "createPlan",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/plans",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "planner"
+    },
+    {
+      "operation_id": "listDecisions",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/decisions",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "planner"
+    },
+    {
+      "operation_id": "listActions",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/actions",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "planner"
+    },
+    {
+      "operation_id": "listApprovals",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/approvals",
+      "browser_views": [
+        "/assessments/:id/plan",
+        "/approvals"
+      ],
+      "capability": "policy.approvals"
+    },
+    {
+      "operation_id": "decideApproval",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/approvals/{approval_id}/decision",
+      "browser_views": [
+        "/assessments/:id/plan",
+        "/approvals"
+      ],
+      "capability": "policy.approvals"
+    },
+    {
+      "operation_id": "createExecution",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/actions/{action_id}/executions",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "scanners"
+    },
+    {
+      "operation_id": "listExecutions",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/executions",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "scanners"
+    },
+    {
+      "operation_id": "getExecution",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/executions/{execution_id}",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "scanners"
+    },
+    {
+      "operation_id": "cancelExecution",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/executions/{execution_id}/cancel",
+      "browser_views": [
+        "/assessments/:id/plan"
+      ],
+      "capability": "scanners"
+    },
+    {
+      "operation_id": "createImport",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/imports",
+      "browser_views": [
+        "/assessments/:id/plan",
+        "/assessments/:id/findings"
+      ],
+      "capability": "imports"
+    },
+    {
+      "operation_id": "getImport",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/imports/{import_id}",
+      "browser_views": [
+        "/assessments/:id/plan",
+        "/assessments/:id/findings"
+      ],
+      "capability": "imports"
+    },
+    {
+      "operation_id": "listObservations",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/observations",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "listFindings",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/findings",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "getFinding",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/findings/{finding_id}",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "reviewFinding",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/findings/{finding_id}/review",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "reviewCorrelation",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/correlations/review",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "findings.review"
+    },
+    {
+      "operation_id": "listArtifacts",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/artifacts",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "evidence"
+    },
+    {
+      "operation_id": "getArtifact",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/artifacts/{artifact_id}",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "evidence"
+    },
+    {
+      "operation_id": "downloadArtifact",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/artifacts/{artifact_id}/download",
+      "browser_views": [
+        "/assessments/:id/findings"
+      ],
+      "capability": "evidence"
+    },
+    {
+      "operation_id": "createReport",
+      "method": "POST",
+      "path": "/assessments/{assessment_id}/reports",
+      "browser_views": [
+        "/assessments/:id/report"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "listReports",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/reports",
+      "browser_views": [
+        "/assessments/:id/report"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "getReport",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/reports/{report_id}",
+      "browser_views": [
+        "/assessments/:id/report"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "getReportSnapshot",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/reports/{report_id}/snapshot",
+      "browser_views": [
+        "/assessments/:id/report",
+        "/reports"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "downloadReport",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/reports/{report_id}/download",
+      "browser_views": [
+        "/assessments/:id/report",
+        "/reports"
+      ],
+      "capability": "reports.pdf"
+    },
+    {
+      "operation_id": "listTimeline",
+      "method": "GET",
+      "path": "/assessments/{assessment_id}/timeline",
+      "browser_views": [
+        "/assessments/:id/audit"
+      ],
+      "capability": "assessments.persistence"
+    }
+  ]
+}

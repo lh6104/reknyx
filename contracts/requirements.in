@@ -1,0 +1,5 @@
+# Offline contract tooling only; backend dependencies are a separate milestone.
+openapi-spec-validator==0.9.0
+jsonschema==4.26.0
+PyYAML==6.0.3
+pytest==8.4.2

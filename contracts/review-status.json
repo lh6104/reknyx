@@ -1,0 +1,17 @@
+{
+  "contract_version": "0.1.0",
+  "status": "candidate_pending_owner_review",
+  "frontend_owner": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null
+  },
+  "backend_owner": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null
+  },
+  "generated_consumers": "candidate only; actual frontend integration not started",
+  "runtime_implemented": false,
+  "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f"
+}

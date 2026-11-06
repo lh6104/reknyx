@@ -1,0 +1,1589 @@
+{
+  "provenance": "synthetic_fixture",
+  "notice": "HTTP message examples only; no server was run.",
+  "cases": [
+    {
+      "id": "http-getLiveness",
+      "operation_id": "getLiveness",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Health",
+      "binary": false,
+      "payload": {
+        "status": "ok",
+        "checks": []
+      }
+    },
+    {
+      "id": "http-getReadiness",
+      "operation_id": "getReadiness",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Health",
+      "binary": false,
+      "payload": {
+        "status": "ok",
+        "checks": []
+      }
+    },
+    {
+      "id": "http-login",
+      "operation_id": "login",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Session",
+      "binary": false,
+      "payload": {
+        "actor": {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "display_name": "Synthetic analyst"
+        },
+        "csrf_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "expires_at": "2026-11-07T09:00:00Z"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "username": "Synthetic fixture",
+          "password": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-logout",
+      "operation_id": "logout",
+      "status": 204,
+      "media_type": null,
+      "schema": null,
+      "binary": false,
+      "payload": null
+    },
+    {
+      "id": "http-getSession",
+      "operation_id": "getSession",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Session",
+      "binary": false,
+      "payload": {
+        "actor": {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "display_name": "Synthetic analyst"
+        },
+        "csrf_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "expires_at": "2026-11-07T09:00:00Z"
+      }
+    },
+    {
+      "id": "http-getCapabilities",
+      "operation_id": "getCapabilities",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Capabilities",
+      "binary": false,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "foundation",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "assessments.persistence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "messages.persistence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.nmap_xml",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.zap_json",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.greenbone_xml",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "findings.review",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "reports.pdf",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner.llm",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner.deterministic",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners.nmap",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners.zap",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "policy.approvals",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "evidence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "validation.active",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "http-getWorkspaceSummary",
+      "operation_id": "getWorkspaceSummary",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "WorkspaceSummary",
+      "binary": false,
+      "payload": {
+        "assessment_count": 0,
+        "finding_count": 0,
+        "pending_approval_count": 0,
+        "report_count": 0,
+        "failed_latest_execution_count": 0,
+        "as_of": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "http-listWorkspaceApprovals",
+      "operation_id": "listWorkspaceApprovals",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "WorkspaceApprovalPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listWorkspaceFindings",
+      "operation_id": "listWorkspaceFindings",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "WorkspaceFindingPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listWorkspaceReports",
+      "operation_id": "listWorkspaceReports",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "WorkspaceReportPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listWorkspaceTimeline",
+      "operation_id": "listWorkspaceTimeline",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "TimelineEventPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-createAssessment",
+      "operation_id": "createAssessment",
+      "status": 201,
+      "media_type": "application/json",
+      "schema": "AssessmentDetail",
+      "binary": false,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "name": "Synthetic fixture",
+          "request": "Synthetic fixture",
+          "scope": {
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+            "asset": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "allowed_ports": [
+              80,
+              443
+            ],
+            "excluded_ports": [],
+            "allowed_profiles": [
+              "nmap_discovery_v1",
+              "zap_baseline_v1"
+            ],
+            "valid_from": "2026-11-06T09:00:00Z",
+            "valid_until": "2026-11-07T09:00:00Z",
+            "budget": {
+              "max_actions": 8,
+              "max_runtime_seconds": 1200,
+              "max_model_calls": 8,
+              "max_input_tokens": 100000,
+              "max_output_tokens": 10000
+            },
+            "origin_wide": true
+          }
+        }
+      }
+    },
+    {
+      "id": "http-listAssessments",
+      "operation_id": "listAssessments",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "AssessmentPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-getAssessment",
+      "operation_id": "getAssessment",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "AssessmentDetail",
+      "binary": false,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    {
+      "id": "http-replaceScope",
+      "operation_id": "replaceScope",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Scope",
+      "binary": false,
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_version": 1,
+          "scope": {
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+            "asset": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "allowed_ports": [
+              80,
+              443
+            ],
+            "excluded_ports": [],
+            "allowed_profiles": [
+              "nmap_discovery_v1",
+              "zap_baseline_v1"
+            ],
+            "valid_from": "2026-11-06T09:00:00Z",
+            "valid_until": "2026-11-07T09:00:00Z",
+            "budget": {
+              "max_actions": 8,
+              "max_runtime_seconds": 1200,
+              "max_model_calls": 8,
+              "max_input_tokens": 100000,
+              "max_output_tokens": 10000
+            },
+            "origin_wide": true
+          }
+        }
+      }
+    },
+    {
+      "id": "http-replaceRequest",
+      "operation_id": "replaceRequest",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Assessment",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "name": "Synthetic assessment",
+        "request": "Review supplied synthetic evidence only. No live target permission.",
+        "scope_version": 1,
+        "state_revision": 1,
+        "status": "draft",
+        "created_at": "2026-11-06T09:00:00Z"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_revision": 1,
+          "request": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-listMessages",
+      "operation_id": "listMessages",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ConversationMessagePage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-appendMessage",
+      "operation_id": "appendMessage",
+      "status": 201,
+      "media_type": "application/json",
+      "schema": "ConversationMessage",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000018",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "role": "analyst",
+        "content": "Review supplied fixture evidence.",
+        "created_at": "2026-11-06T09:00:00Z",
+        "actor_id": "00000000-0000-4000-8000-000000000003",
+        "state_revision": 1,
+        "basis_observation_ids": [],
+        "proposal_ids": [],
+        "source": "analyst",
+        "limitations": []
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "content": "Synthetic fixture",
+          "expected_revision": 1
+        }
+      }
+    },
+    {
+      "id": "http-createPlan",
+      "operation_id": "createPlan",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "PlanResult",
+      "binary": false,
+      "payload": {
+        "decision": {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        },
+        "proposal": {
+          "id": "00000000-0000-4000-8000-000000000010",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "authority": {
+            "action_id": "00000000-0000-4000-8000-000000000010",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "state_revision": 1,
+            "profile": "nmap_discovery_v1",
+            "profile_version": "1",
+            "target": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "parameters": {
+              "ports": [
+                80,
+                443
+              ],
+              "deadline_seconds": 120
+            },
+            "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+            "scope_version": 1,
+            "basis_observation_ids": [],
+            "expires_at": "2026-11-06T11:00:00Z",
+            "budget": {
+              "actions": 1,
+              "runtime_seconds": 120
+            }
+          },
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "rationale": "Synthetic contract example only; execution is unavailable.",
+          "expected_evidence": [
+            "Source-linked service observations"
+          ],
+          "done_when": "Bounded profile finishes or reports a disclosed failure.",
+          "policy_result": "require_approval"
+        }
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_revision": 1,
+          "retry": null
+        }
+      }
+    },
+    {
+      "id": "http-listDecisions",
+      "operation_id": "listDecisions",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "DecisionRecordPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listActions",
+      "operation_id": "listActions",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ActionProposalPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listApprovals",
+      "operation_id": "listApprovals",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ApprovalPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-decideApproval",
+      "operation_id": "decideApproval",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Approval",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "pending",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "decision": "grant",
+          "action_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "expected_scope_version": 1,
+          "rationale": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-createExecution",
+      "operation_id": "createExecution",
+      "status": 202,
+      "media_type": "application/json",
+      "schema": "AsyncAccepted",
+      "binary": false,
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000011",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/executions/00000000-0000-4000-8000-000000000011"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_action_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    },
+    {
+      "id": "http-listExecutions",
+      "operation_id": "listExecutions",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ExecutionPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-getExecution",
+      "operation_id": "getExecution",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Execution",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "queued",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "http-cancelExecution",
+      "operation_id": "cancelExecution",
+      "status": 202,
+      "media_type": "application/json",
+      "schema": "CancelAccepted",
+      "binary": false,
+      "payload": {
+        "cancellation_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": "00000000-0000-4000-8000-000000000001",
+        "status": "requested"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "reason": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-createImport",
+      "operation_id": "createImport",
+      "status": 202,
+      "media_type": "application/json",
+      "schema": "AsyncAccepted",
+      "binary": false,
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000016",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/imports/00000000-0000-4000-8000-000000000016"
+      },
+      "request": {
+        "media_type": "multipart/form-data",
+        "payload": {
+          "file": "SYNTHETIC BYTES",
+          "kind": "nmap_xml",
+          "observed_at": null,
+          "provenance": "synthetic_fixture",
+          "source_label": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-getImport",
+      "operation_id": "getImport",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Import",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "queued",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "http-listObservations",
+      "operation_id": "listObservations",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ObservationPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-listFindings",
+      "operation_id": "listFindings",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "FindingPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-getFinding",
+      "operation_id": "getFinding",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Finding",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      }
+    },
+    {
+      "id": "http-reviewFinding",
+      "operation_id": "reviewFinding",
+      "status": 201,
+      "media_type": "application/json",
+      "schema": "ReviewRecord",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "finding_id": "00000000-0000-4000-8000-000000000001",
+        "actor_id": "00000000-0000-4000-8000-000000000001",
+        "rationale": "Synthetic fixture",
+        "evidence_ids": [],
+        "at": "2026-11-06T09:00:00Z",
+        "previous_revision": 1,
+        "resulting_revision": 2,
+        "disposition": "needs_review",
+        "correlation_decision": null
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_revision": 1,
+          "disposition": "needs_review",
+          "rationale": "Synthetic fixture",
+          "evidence_ids": []
+        }
+      }
+    },
+    {
+      "id": "http-reviewCorrelation",
+      "operation_id": "reviewCorrelation",
+      "status": 201,
+      "media_type": "application/json",
+      "schema": "ReviewRecord",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "finding_id": "00000000-0000-4000-8000-000000000001",
+        "actor_id": "00000000-0000-4000-8000-000000000001",
+        "rationale": "Synthetic fixture",
+        "evidence_ids": [],
+        "at": "2026-11-06T09:00:00Z",
+        "previous_revision": 1,
+        "resulting_revision": 2,
+        "disposition": "needs_review",
+        "correlation_decision": null
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "finding_id": "00000000-0000-4000-8000-000000000001",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000001"
+          ],
+          "decision": "link",
+          "expected_revision": 1,
+          "rationale": "Synthetic fixture"
+        }
+      }
+    },
+    {
+      "id": "http-listArtifacts",
+      "operation_id": "listArtifacts",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ArtifactPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-getArtifact",
+      "operation_id": "getArtifact",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Artifact",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000005",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "source": "import",
+        "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+        "size_bytes": 47,
+        "content_type": "application/json",
+        "observed_at": "2026-11-06T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z",
+        "parser_version": "fixture-only-not-implemented",
+        "historical": false,
+        "provenance": "synthetic_fixture",
+        "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+      }
+    },
+    {
+      "id": "http-downloadArtifact",
+      "operation_id": "downloadArtifact",
+      "status": 200,
+      "media_type": "application/octet-stream",
+      "schema": null,
+      "binary": true,
+      "payload": null
+    },
+    {
+      "id": "http-createReport",
+      "operation_id": "createReport",
+      "status": 202,
+      "media_type": "application/json",
+      "schema": "AsyncAccepted",
+      "binary": false,
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000007",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/reports/00000000-0000-4000-8000-000000000007"
+      },
+      "request": {
+        "media_type": "application/json",
+        "payload": {
+          "expected_revision": 1,
+          "include_suspected": false
+        }
+      }
+    },
+    {
+      "id": "http-listReports",
+      "operation_id": "listReports",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ReportPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-getReport",
+      "operation_id": "getReport",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "Report",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "pending",
+        "artifact_id": null,
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "http-getReportSnapshot",
+      "operation_id": "getReportSnapshot",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "ReportSnapshot",
+      "binary": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000013",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "created_by": "00000000-0000-4000-8000-000000000003",
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        },
+        "executive_summary": "Synthetic fixture",
+        "methodology": "Synthetic fixture",
+        "rules_of_engagement": "Synthetic fixture",
+        "tool_summary": [],
+        "severity_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "informational": 0,
+          "unknown": 0
+        },
+        "counts": {
+          "observations": 1,
+          "canonical_findings": 1,
+          "accepted_findings": 0,
+          "rejected_findings": 0,
+          "unresolved_findings": 1
+        },
+        "findings": [
+          {
+            "id": "00000000-0000-4000-8000-000000000006",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "revision": 1,
+            "title": "Synthetic missing security header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "severity": "medium",
+            "cvss": null,
+            "cvss_vector": null,
+            "cvss_version": null,
+            "cvss_source": null,
+            "cve_ids": [],
+            "cwe_ids": [],
+            "confidence_method": "ZAP source label (fixture)",
+            "confidence_value": "Low",
+            "validation_status": "suspected",
+            "validation_evidence": null,
+            "analyst_disposition": "needs_review",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+            "exposure": {
+              "value": "reachable",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null,
+              "observed_at": "2026-11-06T09:00:00Z"
+            },
+            "exploitability": {
+              "value": "unknown",
+              "observation_ids": [],
+              "analyst": null,
+              "observed_at": null
+            },
+            "asset_impact": {
+              "value": "unknown",
+              "observation_ids": [],
+              "analyst": null,
+              "observed_at": null
+            },
+            "risk_input_sources": [
+              {
+                "field": "severity",
+                "observation_ids": [
+                  "00000000-0000-4000-8000-000000000004"
+                ],
+                "analyst": null
+              },
+              {
+                "field": "exposure",
+                "observation_ids": [
+                  "00000000-0000-4000-8000-000000000004"
+                ],
+                "analyst": null
+              }
+            ],
+            "priority": "review_next",
+            "priority_reasons": [
+              "Asset impact and exploitability remain unknown."
+            ],
+            "risk_rule_version": "ordinal-v1",
+            "unknowns": [
+              "asset_impact",
+              "exploitability"
+            ],
+            "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+          }
+        ],
+        "observations": [
+          {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "execution_id": null,
+            "artifact_id": "00000000-0000-4000-8000-000000000005",
+            "raw_locator": "$.site[0].alerts[0]",
+            "kind": "vulnerability",
+            "source_tool": "zap",
+            "native_id": "fixture-header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "raw_severity": "Medium",
+            "raw_confidence": "Low",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z"
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "source": "import",
+            "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+            "size_bytes": 47,
+            "content_type": "application/json",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z",
+            "parser_version": "fixture-only-not-implemented",
+            "historical": false,
+            "provenance": "synthetic_fixture",
+            "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+          }
+        ],
+        "reviews": [],
+        "approvals": [],
+        "failures": [],
+        "limitations": [],
+        "assumptions": [],
+        "assessment_started_at": "2026-11-06T09:00:00Z",
+        "assessment_finished_at": null,
+        "provenance_notice": "Synthetic contract fixture; no scanner execution or real vulnerability confirmation.",
+        "release_status": "draft"
+      }
+    },
+    {
+      "id": "http-downloadReport",
+      "operation_id": "downloadReport",
+      "status": 200,
+      "media_type": "application/pdf",
+      "schema": null,
+      "binary": true,
+      "payload": null
+    },
+    {
+      "id": "http-listTimeline",
+      "operation_id": "listTimeline",
+      "status": 200,
+      "media_type": "application/json",
+      "schema": "TimelineEventPage",
+      "binary": false,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "http-error-401-unauthenticated",
+      "operation_id": "getSession",
+      "status": 401,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-403-forbidden",
+      "operation_id": "appendMessage",
+      "status": 403,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "forbidden",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-404-not_found",
+      "operation_id": "getArtifact",
+      "status": 404,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "not_found",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-409-stale_revision",
+      "operation_id": "reviewFinding",
+      "status": 409,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "stale_revision",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-409-operation_in_progress",
+      "operation_id": "createPlan",
+      "status": 409,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "operation_in_progress",
+          "message": "Synthetic error example.",
+          "details": [
+            {
+              "field": null,
+              "reason": "Existing bounded operation is still in progress.",
+              "resource_id": "00000000-0000-4000-8000-000000000014"
+            }
+          ],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {
+        "Retry-After": "2"
+      }
+    },
+    {
+      "id": "http-error-413-request_too_large",
+      "operation_id": "createImport",
+      "status": 413,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "request_too_large",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-415-unsupported_media_type",
+      "operation_id": "createImport",
+      "status": 415,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "unsupported_media_type",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-422-validation_error",
+      "operation_id": "createImport",
+      "status": 422,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "validation_error",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-501-capability_not_implemented",
+      "operation_id": "createExecution",
+      "status": 501,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "capability_not_implemented",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    },
+    {
+      "id": "http-error-503-dependency_unavailable",
+      "operation_id": "createPlan",
+      "status": 503,
+      "media_type": "application/json",
+      "schema": "Error",
+      "binary": false,
+      "payload": {
+        "error": {
+          "code": "dependency_unavailable",
+          "message": "Synthetic error example.",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000040"
+        }
+      },
+      "headers": {}
+    }
+  ]
+}

@@ -1,0 +1,3459 @@
+{
+  "provenance": "synthetic_fixture",
+  "notice": "Contract examples, not scanner/model/runtime evidence.",
+  "cases": [
+    {
+      "id": "valid-ScopeAuthority",
+      "schema": "ScopeAuthority",
+      "valid": true,
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true
+      }
+    },
+    {
+      "id": "valid-Scope",
+      "schema": "Scope",
+      "valid": true,
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      }
+    },
+    {
+      "id": "valid-ScopeInput",
+      "schema": "ScopeInput",
+      "valid": true,
+      "payload": {
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true
+      }
+    },
+    {
+      "id": "valid-Assessment",
+      "schema": "Assessment",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "name": "Synthetic assessment",
+        "request": "Review supplied synthetic evidence only. No live target permission.",
+        "scope_version": 1,
+        "state_revision": 1,
+        "status": "draft",
+        "created_at": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-AssessmentDetail",
+      "schema": "AssessmentDetail",
+      "valid": true,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    {
+      "id": "valid-ObservedAsset",
+      "schema": "ObservedAsset",
+      "valid": true,
+      "payload": {
+        "address_family": "ipv4",
+        "raw_identity": "192.0.2.10",
+        "canonical_identity": "192.0.2.10",
+        "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "id": "valid-ObservedService",
+      "schema": "ObservedService",
+      "valid": true,
+      "payload": {
+        "transport": "tcp",
+        "port": 80,
+        "scheme": "http",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ]
+      }
+    },
+    {
+      "id": "valid-WebLocation",
+      "schema": "WebLocation",
+      "valid": true,
+      "payload": {
+        "scheme": "http",
+        "host": "192.0.2.10",
+        "port": 80,
+        "path": "/",
+        "raw_url": "http://192.0.2.10/",
+        "method": "GET",
+        "parameter": null,
+        "redacted": false
+      }
+    },
+    {
+      "id": "valid-Artifact",
+      "schema": "Artifact",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000005",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "source": "import",
+        "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+        "size_bytes": 47,
+        "content_type": "application/json",
+        "observed_at": "2026-11-06T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z",
+        "parser_version": "fixture-only-not-implemented",
+        "historical": false,
+        "provenance": "synthetic_fixture",
+        "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+      }
+    },
+    {
+      "id": "valid-Observation",
+      "schema": "Observation",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": null,
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "raw_locator": "$.site[0].alerts[0]",
+        "kind": "vulnerability",
+        "source_tool": "zap",
+        "native_id": "fixture-header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "raw_severity": "Medium",
+        "raw_confidence": "Low",
+        "observed_at": "2026-11-06T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z"
+      }
+    },
+    {
+      "id": "valid-Exposure",
+      "schema": "Exposure",
+      "valid": true,
+      "payload": {
+        "value": "reachable",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "analyst": null,
+        "observed_at": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-Exploitability",
+      "schema": "Exploitability",
+      "valid": true,
+      "payload": {
+        "value": "unknown",
+        "observation_ids": [],
+        "analyst": null,
+        "observed_at": null
+      }
+    },
+    {
+      "id": "valid-AssetImpact",
+      "schema": "AssetImpact",
+      "valid": true,
+      "payload": {
+        "value": "unknown",
+        "observation_ids": [],
+        "analyst": null,
+        "observed_at": null
+      }
+    },
+    {
+      "id": "valid-RiskInputSource",
+      "schema": "RiskInputSource",
+      "valid": true,
+      "payload": {
+        "field": "severity",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "analyst": null
+      }
+    },
+    {
+      "id": "valid-Finding",
+      "schema": "Finding",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      }
+    },
+    {
+      "id": "valid-ActionAuthority",
+      "schema": "ActionAuthority",
+      "valid": true,
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      }
+    },
+    {
+      "id": "valid-ActionProposal",
+      "schema": "ActionProposal",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "authority": {
+          "action_id": "00000000-0000-4000-8000-000000000010",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "profile": "nmap_discovery_v1",
+          "profile_version": "1",
+          "target": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "parameters": {
+            "ports": [
+              80,
+              443
+            ],
+            "deadline_seconds": 120
+          },
+          "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+          "scope_version": 1,
+          "basis_observation_ids": [],
+          "expires_at": "2026-11-06T11:00:00Z",
+          "budget": {
+            "actions": 1,
+            "runtime_seconds": 120
+          }
+        },
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "rationale": "Synthetic contract example only; execution is unavailable.",
+        "expected_evidence": [
+          "Source-linked service observations"
+        ],
+        "done_when": "Bounded profile finishes or reports a disclosed failure.",
+        "policy_result": "require_approval"
+      }
+    },
+    {
+      "id": "valid-DecisionRecord",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": "nmap_discovery_v1",
+        "basis_observation_ids": [],
+        "proposal_id": "00000000-0000-4000-8000-000000000010",
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": "require_approval",
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "propose",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": null,
+        "retry_of": null
+      }
+    },
+    {
+      "id": "valid-PlanResult",
+      "schema": "PlanResult",
+      "valid": true,
+      "payload": {
+        "decision": {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        },
+        "proposal": {
+          "id": "00000000-0000-4000-8000-000000000010",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "authority": {
+            "action_id": "00000000-0000-4000-8000-000000000010",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "state_revision": 1,
+            "profile": "nmap_discovery_v1",
+            "profile_version": "1",
+            "target": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "parameters": {
+              "ports": [
+                80,
+                443
+              ],
+              "deadline_seconds": 120
+            },
+            "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+            "scope_version": 1,
+            "basis_observation_ids": [],
+            "expires_at": "2026-11-06T11:00:00Z",
+            "budget": {
+              "actions": 1,
+              "runtime_seconds": 120
+            }
+          },
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "rationale": "Synthetic contract example only; execution is unavailable.",
+          "expected_evidence": [
+            "Source-linked service observations"
+          ],
+          "done_when": "Bounded profile finishes or reports a disclosed failure.",
+          "policy_result": "require_approval"
+        }
+      }
+    },
+    {
+      "id": "valid-PlanCreate",
+      "schema": "PlanCreate",
+      "valid": true,
+      "payload": {
+        "expected_revision": 1,
+        "retry": null
+      }
+    },
+    {
+      "id": "valid-Approval",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "pending",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-Execution",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "queued",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-Job",
+      "schema": "Job",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000008",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "kind": "import",
+        "resource_id": "00000000-0000-4000-8000-000000000016",
+        "state": "queued",
+        "attempt_id": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "started_at": null,
+        "finished_at": null,
+        "failure_code": null
+      }
+    },
+    {
+      "id": "valid-Import",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "queued",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-AsyncAccepted",
+      "schema": "AsyncAccepted",
+      "valid": true,
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000016",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/imports/00000000-0000-4000-8000-000000000016"
+      }
+    },
+    {
+      "id": "valid-Report",
+      "schema": "Report",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "pending",
+        "artifact_id": null,
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "valid-Session",
+      "schema": "Session",
+      "valid": true,
+      "payload": {
+        "actor": {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "display_name": "Synthetic analyst"
+        },
+        "csrf_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "expires_at": "2026-11-07T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-ConversationMessage",
+      "schema": "ConversationMessage",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000018",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "role": "analyst",
+        "content": "Review supplied fixture evidence.",
+        "created_at": "2026-11-06T09:00:00Z",
+        "actor_id": "00000000-0000-4000-8000-000000000003",
+        "state_revision": 1,
+        "basis_observation_ids": [],
+        "proposal_ids": [],
+        "source": "analyst",
+        "limitations": []
+      }
+    },
+    {
+      "id": "valid-Capabilities",
+      "schema": "Capabilities",
+      "valid": true,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "foundation",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "assessments.persistence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "messages.persistence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.nmap_xml",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.zap_json",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "imports.greenbone_xml",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "findings.review",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "reports.pdf",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner.llm",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "planner.deterministic",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners.nmap",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "scanners.zap",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "policy.approvals",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "evidence",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          },
+          {
+            "id": "validation.active",
+            "availability": "planned",
+            "reason_code": "module_in_progress",
+            "message": "In development",
+            "mode": "none",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-Id",
+      "schema": "Id",
+      "valid": true,
+      "payload": "00000000-0000-4000-8000-000000000001"
+    },
+    {
+      "id": "valid-Timestamp",
+      "schema": "Timestamp",
+      "valid": true,
+      "payload": "2026-11-06T09:00:00Z"
+    },
+    {
+      "id": "valid-IPv4",
+      "schema": "IPv4",
+      "valid": true,
+      "payload": "192.0.2.10"
+    },
+    {
+      "id": "valid-Sha256",
+      "schema": "Sha256",
+      "valid": true,
+      "payload": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "valid-Hostname",
+      "schema": "Hostname",
+      "valid": true,
+      "payload": "lab.example"
+    },
+    {
+      "id": "valid-Profile",
+      "schema": "Profile",
+      "valid": true,
+      "payload": "nmap_discovery_v1"
+    },
+    {
+      "id": "valid-ImportKind",
+      "schema": "ImportKind",
+      "valid": true,
+      "payload": "nmap_xml"
+    },
+    {
+      "id": "valid-Severity",
+      "schema": "Severity",
+      "valid": true,
+      "payload": "critical"
+    },
+    {
+      "id": "valid-ValidationState",
+      "schema": "ValidationState",
+      "valid": true,
+      "payload": "observed"
+    },
+    {
+      "id": "valid-Disposition",
+      "schema": "Disposition",
+      "valid": true,
+      "payload": "needs_review"
+    },
+    {
+      "id": "valid-Priority",
+      "schema": "Priority",
+      "valid": true,
+      "payload": "review_first"
+    },
+    {
+      "id": "valid-ExecutionState",
+      "schema": "ExecutionState",
+      "valid": true,
+      "payload": "queued"
+    },
+    {
+      "id": "valid-ImportState",
+      "schema": "ImportState",
+      "valid": true,
+      "payload": "queued"
+    },
+    {
+      "id": "valid-ReportState",
+      "schema": "ReportState",
+      "valid": true,
+      "payload": "pending"
+    },
+    {
+      "id": "valid-JobState",
+      "schema": "JobState",
+      "valid": true,
+      "payload": "queued"
+    },
+    {
+      "id": "valid-ApprovalState",
+      "schema": "ApprovalState",
+      "valid": true,
+      "payload": "pending"
+    },
+    {
+      "id": "valid-PolicyResult",
+      "schema": "PolicyResult",
+      "valid": true,
+      "payload": "permit"
+    },
+    {
+      "id": "valid-Source",
+      "schema": "Source",
+      "valid": true,
+      "payload": "analyst"
+    },
+    {
+      "id": "valid-Budget",
+      "schema": "Budget",
+      "valid": true,
+      "payload": {
+        "max_actions": 0,
+        "max_runtime_seconds": 0,
+        "max_model_calls": 0,
+        "max_input_tokens": 0,
+        "max_output_tokens": 0
+      }
+    },
+    {
+      "id": "valid-ReservedBudget",
+      "schema": "ReservedBudget",
+      "valid": true,
+      "payload": {
+        "actions": 1,
+        "runtime_seconds": 1
+      }
+    },
+    {
+      "id": "valid-LiveAsset",
+      "schema": "LiveAsset",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "hostname": null,
+        "ipv4": "192.0.2.10",
+        "aliases": [],
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "valid-ScopeReplace",
+      "schema": "ScopeReplace",
+      "valid": true,
+      "payload": {
+        "expected_version": 1,
+        "scope": {
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true
+        }
+      }
+    },
+    {
+      "id": "valid-AssessmentCreate",
+      "schema": "AssessmentCreate",
+      "valid": true,
+      "payload": {
+        "name": "Synthetic fixture",
+        "request": "Synthetic fixture",
+        "scope": {
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true
+        }
+      }
+    },
+    {
+      "id": "valid-RequestReplace",
+      "schema": "RequestReplace",
+      "valid": true,
+      "payload": {
+        "expected_revision": 1,
+        "request": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-MessageCreate",
+      "schema": "MessageCreate",
+      "valid": true,
+      "payload": {
+        "content": "Synthetic fixture",
+        "expected_revision": 1
+      }
+    },
+    {
+      "id": "valid-NmapParameters",
+      "schema": "NmapParameters",
+      "valid": true,
+      "payload": {
+        "ports": [
+          1
+        ],
+        "deadline_seconds": 1
+      }
+    },
+    {
+      "id": "valid-ZapParameters",
+      "schema": "ZapParameters",
+      "valid": true,
+      "payload": {
+        "scheme": "http",
+        "port": 1,
+        "root_path": "/",
+        "deadline_seconds": 1
+      }
+    },
+    {
+      "id": "valid-ProfileParameters",
+      "schema": "ProfileParameters",
+      "valid": true,
+      "payload": {
+        "ports": [
+          1
+        ],
+        "deadline_seconds": 1
+      }
+    },
+    {
+      "id": "valid-RetryIntent",
+      "schema": "RetryIntent",
+      "valid": true,
+      "payload": {
+        "kind": "decision",
+        "prior_id": "00000000-0000-4000-8000-000000000001",
+        "reason": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ApprovalDecision",
+      "schema": "ApprovalDecision",
+      "valid": true,
+      "payload": {
+        "decision": "grant",
+        "action_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "expected_scope_version": 1,
+        "rationale": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ExecutionCreate",
+      "schema": "ExecutionCreate",
+      "valid": true,
+      "payload": {
+        "expected_action_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "id": "valid-CancelRequest",
+      "schema": "CancelRequest",
+      "valid": true,
+      "payload": {
+        "reason": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-CancelAccepted",
+      "schema": "CancelAccepted",
+      "valid": true,
+      "payload": {
+        "cancellation_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": "00000000-0000-4000-8000-000000000001",
+        "status": "requested"
+      }
+    },
+    {
+      "id": "valid-StatusUrl",
+      "schema": "StatusUrl",
+      "valid": true,
+      "payload": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/imports/00000000-0000-4000-8000-000000000016"
+    },
+    {
+      "id": "valid-ImportCreate",
+      "schema": "ImportCreate",
+      "valid": true,
+      "payload": {
+        "file": "SYNTHETIC BYTES",
+        "kind": "nmap_xml",
+        "observed_at": null,
+        "provenance": "synthetic_fixture",
+        "source_label": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ParseWarning",
+      "schema": "ParseWarning",
+      "valid": true,
+      "payload": {
+        "code": "Synthetic fixture",
+        "message": "Synthetic fixture",
+        "raw_locator": null
+      }
+    },
+    {
+      "id": "valid-AnalystBasis",
+      "schema": "AnalystBasis",
+      "valid": true,
+      "payload": {
+        "actor_id": "00000000-0000-4000-8000-000000000001",
+        "rationale": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ValidationEvidence",
+      "schema": "ValidationEvidence",
+      "valid": true,
+      "payload": {
+        "method": "Synthetic fixture",
+        "actor_id": "00000000-0000-4000-8000-000000000001",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000001"
+        ],
+        "at": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-FindingReview",
+      "schema": "FindingReview",
+      "valid": true,
+      "payload": {
+        "expected_revision": 1,
+        "disposition": "needs_review",
+        "rationale": "Synthetic fixture",
+        "evidence_ids": []
+      }
+    },
+    {
+      "id": "valid-CorrelationReview",
+      "schema": "CorrelationReview",
+      "valid": true,
+      "payload": {
+        "finding_id": "00000000-0000-4000-8000-000000000001",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000001"
+        ],
+        "decision": "link",
+        "expected_revision": 1,
+        "rationale": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ReviewRecord",
+      "schema": "ReviewRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "finding_id": "00000000-0000-4000-8000-000000000001",
+        "actor_id": "00000000-0000-4000-8000-000000000001",
+        "rationale": "Synthetic fixture",
+        "evidence_ids": [],
+        "at": "2026-11-06T09:00:00Z",
+        "previous_revision": 1,
+        "resulting_revision": 2,
+        "disposition": "needs_review",
+        "correlation_decision": null
+      }
+    },
+    {
+      "id": "valid-ReportCreate",
+      "schema": "ReportCreate",
+      "valid": true,
+      "payload": {
+        "expected_revision": 1,
+        "include_suspected": false
+      }
+    },
+    {
+      "id": "valid-TimelineEvent",
+      "schema": "TimelineEvent",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "at": "2026-11-06T09:00:00Z",
+        "actor_type": "analyst",
+        "actor_id": null,
+        "kind": "Synthetic fixture",
+        "resource_id": "00000000-0000-4000-8000-000000000001",
+        "reason": "Synthetic fixture",
+        "outcome": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-SnapshotCounts",
+      "schema": "SnapshotCounts",
+      "valid": true,
+      "payload": {
+        "observations": 0,
+        "canonical_findings": 0,
+        "accepted_findings": 0,
+        "rejected_findings": 0,
+        "unresolved_findings": 0
+      }
+    },
+    {
+      "id": "valid-ReportSnapshot",
+      "schema": "ReportSnapshot",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000013",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "created_by": "00000000-0000-4000-8000-000000000003",
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        },
+        "executive_summary": "Synthetic fixture",
+        "methodology": "Synthetic fixture",
+        "rules_of_engagement": "Synthetic fixture",
+        "tool_summary": [],
+        "severity_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "informational": 0,
+          "unknown": 0
+        },
+        "counts": {
+          "observations": 1,
+          "canonical_findings": 1,
+          "accepted_findings": 0,
+          "rejected_findings": 0,
+          "unresolved_findings": 1
+        },
+        "findings": [
+          {
+            "id": "00000000-0000-4000-8000-000000000006",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "revision": 1,
+            "title": "Synthetic missing security header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "severity": "medium",
+            "cvss": null,
+            "cvss_vector": null,
+            "cvss_version": null,
+            "cvss_source": null,
+            "cve_ids": [],
+            "cwe_ids": [],
+            "confidence_method": "ZAP source label (fixture)",
+            "confidence_value": "Low",
+            "validation_status": "suspected",
+            "validation_evidence": null,
+            "analyst_disposition": "needs_review",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+            "exposure": {
+              "value": "reachable",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null,
+              "observed_at": "2026-11-06T09:00:00Z"
+            },
+            "exploitability": {
+              "value": "unknown",
+              "observation_ids": [],
+              "analyst": null,
+              "observed_at": null
+            },
+            "asset_impact": {
+              "value": "unknown",
+              "observation_ids": [],
+              "analyst": null,
+              "observed_at": null
+            },
+            "risk_input_sources": [
+              {
+                "field": "severity",
+                "observation_ids": [
+                  "00000000-0000-4000-8000-000000000004"
+                ],
+                "analyst": null
+              },
+              {
+                "field": "exposure",
+                "observation_ids": [
+                  "00000000-0000-4000-8000-000000000004"
+                ],
+                "analyst": null
+              }
+            ],
+            "priority": "review_next",
+            "priority_reasons": [
+              "Asset impact and exploitability remain unknown."
+            ],
+            "risk_rule_version": "ordinal-v1",
+            "unknowns": [
+              "asset_impact",
+              "exploitability"
+            ],
+            "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+          }
+        ],
+        "observations": [
+          {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "execution_id": null,
+            "artifact_id": "00000000-0000-4000-8000-000000000005",
+            "raw_locator": "$.site[0].alerts[0]",
+            "kind": "vulnerability",
+            "source_tool": "zap",
+            "native_id": "fixture-header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "raw_severity": "Medium",
+            "raw_confidence": "Low",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z"
+          }
+        ],
+        "artifacts": [
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "source": "import",
+            "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+            "size_bytes": 47,
+            "content_type": "application/json",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z",
+            "parser_version": "fixture-only-not-implemented",
+            "historical": false,
+            "provenance": "synthetic_fixture",
+            "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+          }
+        ],
+        "reviews": [],
+        "approvals": [],
+        "failures": [],
+        "limitations": [],
+        "assumptions": [],
+        "assessment_started_at": "2026-11-06T09:00:00Z",
+        "assessment_finished_at": null,
+        "provenance_notice": "Synthetic contract fixture; no scanner execution or real vulnerability confirmation.",
+        "release_status": "draft"
+      }
+    },
+    {
+      "id": "valid-Actor",
+      "schema": "Actor",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "display_name": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-LoginRequest",
+      "schema": "LoginRequest",
+      "valid": true,
+      "payload": {
+        "username": "Synthetic fixture",
+        "password": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-Health",
+      "schema": "Health",
+      "valid": true,
+      "payload": {
+        "status": "ok",
+        "checks": []
+      }
+    },
+    {
+      "id": "valid-Capability",
+      "schema": "Capability",
+      "valid": true,
+      "payload": {
+        "id": "foundation",
+        "availability": "available",
+        "reason_code": "Synthetic fixture",
+        "message": "Synthetic fixture",
+        "mode": "none",
+        "evidence_level": "none",
+        "profile": null
+      }
+    },
+    {
+      "id": "valid-WorkspaceSummary",
+      "schema": "WorkspaceSummary",
+      "valid": true,
+      "payload": {
+        "assessment_count": 0,
+        "finding_count": 0,
+        "pending_approval_count": 0,
+        "report_count": 0,
+        "failed_latest_execution_count": 0,
+        "as_of": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-WorkspaceApproval",
+      "schema": "WorkspaceApproval",
+      "valid": true,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000009",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "action_id": "00000000-0000-4000-8000-000000000010",
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "scope_version": 1,
+          "status": "pending",
+          "actor_id": null,
+          "rationale": null,
+          "decided_at": null,
+          "expires_at": "2026-11-06T11:00:00Z"
+        },
+        "latest_execution": null
+      }
+    },
+    {
+      "id": "valid-WorkspaceFinding",
+      "schema": "WorkspaceFinding",
+      "valid": true,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "finding": {
+          "id": "00000000-0000-4000-8000-000000000006",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "revision": 1,
+          "title": "Synthetic missing security header",
+          "asset": {
+            "address_family": "ipv4",
+            "raw_identity": "192.0.2.10",
+            "canonical_identity": "192.0.2.10",
+            "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+          },
+          "service": {
+            "transport": "tcp",
+            "port": 80,
+            "scheme": "http",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ]
+          },
+          "location": {
+            "scheme": "http",
+            "host": "192.0.2.10",
+            "port": 80,
+            "path": "/",
+            "raw_url": "http://192.0.2.10/",
+            "method": "GET",
+            "parameter": null,
+            "redacted": false
+          },
+          "severity": "medium",
+          "cvss": null,
+          "cvss_vector": null,
+          "cvss_version": null,
+          "cvss_source": null,
+          "cve_ids": [],
+          "cwe_ids": [],
+          "confidence_method": "ZAP source label (fixture)",
+          "confidence_value": "Low",
+          "validation_status": "suspected",
+          "validation_evidence": null,
+          "analyst_disposition": "needs_review",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+          "exposure": {
+            "value": "reachable",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null,
+            "observed_at": "2026-11-06T09:00:00Z"
+          },
+          "exploitability": {
+            "value": "unknown",
+            "observation_ids": [],
+            "analyst": null,
+            "observed_at": null
+          },
+          "asset_impact": {
+            "value": "unknown",
+            "observation_ids": [],
+            "analyst": null,
+            "observed_at": null
+          },
+          "risk_input_sources": [
+            {
+              "field": "severity",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null
+            },
+            {
+              "field": "exposure",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null
+            }
+          ],
+          "priority": "review_next",
+          "priority_reasons": [
+            "Asset impact and exploitability remain unknown."
+          ],
+          "risk_rule_version": "ordinal-v1",
+          "unknowns": [
+            "asset_impact",
+            "exploitability"
+          ],
+          "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+        }
+      }
+    },
+    {
+      "id": "valid-WorkspaceReport",
+      "schema": "WorkspaceReport",
+      "valid": true,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "report": {
+          "id": "00000000-0000-4000-8000-000000000007",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "snapshot_id": "00000000-0000-4000-8000-000000000013",
+          "created_at": "2026-11-06T09:00:00Z",
+          "state": "pending",
+          "artifact_id": null,
+          "failure_code": null,
+          "release_status": "draft",
+          "release_review_id": null
+        }
+      }
+    },
+    {
+      "id": "valid-ErrorDetail",
+      "schema": "ErrorDetail",
+      "valid": true,
+      "payload": {
+        "field": null,
+        "reason": "Synthetic fixture",
+        "resource_id": null
+      }
+    },
+    {
+      "id": "valid-Error",
+      "schema": "Error",
+      "valid": true,
+      "payload": {
+        "error": {
+          "code": "unauthenticated",
+          "message": "Synthetic fixture",
+          "details": [],
+          "request_id": "00000000-0000-4000-8000-000000000001"
+        }
+      }
+    },
+    {
+      "id": "valid-AuditEventInput",
+      "schema": "AuditEventInput",
+      "valid": true,
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "kind": "Synthetic fixture",
+        "resource_id": "00000000-0000-4000-8000-000000000001",
+        "reason": "Synthetic fixture",
+        "outcome": "Synthetic fixture"
+      }
+    },
+    {
+      "id": "valid-ArtifactInput",
+      "schema": "ArtifactInput",
+      "valid": true,
+      "payload": {
+        "source": "import",
+        "content_type": "application/xml",
+        "observed_at": null,
+        "provenance": "synthetic_fixture",
+        "historical": false
+      }
+    },
+    {
+      "id": "valid-SourceMetadata",
+      "schema": "SourceMetadata",
+      "valid": true,
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "artifact_id": "00000000-0000-4000-8000-000000000001",
+        "kind": "nmap_xml",
+        "observed_at": null,
+        "ingested_at": "2026-11-06T09:00:00Z",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "provenance": "synthetic_fixture"
+      }
+    },
+    {
+      "id": "valid-ParsedObservation",
+      "schema": "ParsedObservation",
+      "valid": true,
+      "payload": {
+        "raw_locator": "Synthetic fixture",
+        "kind": "service",
+        "source_tool": "nmap",
+        "native_id": null,
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": null,
+        "location": null,
+        "raw_severity": null,
+        "raw_confidence": null,
+        "observed_at": null
+      }
+    },
+    {
+      "id": "valid-ParsedBatch",
+      "schema": "ParsedBatch",
+      "valid": true,
+      "payload": {
+        "source": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "artifact_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "nmap_xml",
+          "observed_at": null,
+          "ingested_at": "2026-11-06T09:00:00Z",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "provenance": "synthetic_fixture"
+        },
+        "parser_version": "Synthetic fixture",
+        "observations": [],
+        "warnings": [],
+        "outcome": "succeeded"
+      }
+    },
+    {
+      "id": "valid-AssessmentSnapshot",
+      "schema": "AssessmentSnapshot",
+      "valid": true,
+      "payload": {
+        "assessment": {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "name": "Synthetic assessment",
+          "request": "Review supplied synthetic evidence only. No live target permission.",
+          "scope_version": 1,
+          "state_revision": 1,
+          "status": "draft",
+          "created_at": "2026-11-06T09:00:00Z"
+        },
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        },
+        "findings": [],
+        "observations": [],
+        "artifacts": []
+      }
+    },
+    {
+      "id": "valid-DispatchPermit",
+      "schema": "DispatchPermit",
+      "valid": true,
+      "payload": {
+        "reservation_id": "00000000-0000-4000-8000-000000000001",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000001",
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "attempt_fence": 1,
+        "instance_generation": "00000000-0000-4000-8000-000000000001",
+        "descriptor_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "scope_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "scope_version": 1,
+        "action_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "grant_id": null,
+        "reserved_budget": {
+          "actions": 1,
+          "runtime_seconds": 1
+        },
+        "start_before": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-StartAuthorizationRequest",
+      "schema": "StartAuthorizationRequest",
+      "valid": true,
+      "payload": {
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "attempt_fence": 1,
+        "descriptor_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "prepared_receipt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "id": "valid-StartAuthorization",
+      "schema": "StartAuthorization",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "attempt_fence": 1,
+        "instance_generation": "00000000-0000-4000-8000-000000000001",
+        "descriptor_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "prepared_receipt_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "authorized_at": "2026-11-06T09:00:00Z",
+        "start_before": "2026-11-06T09:00:00Z",
+        "stop_at": "2026-11-06T09:00:00Z"
+      }
+    },
+    {
+      "id": "valid-LauncherSubmit",
+      "schema": "LauncherSubmit",
+      "valid": true,
+      "payload": {
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "reservation_id": "00000000-0000-4000-8000-000000000001",
+        "request_id": "00000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "valid-LauncherCancel",
+      "schema": "LauncherCancel",
+      "valid": true,
+      "payload": {
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "cancellation_id": "00000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "valid-LauncherStatus",
+      "schema": "LauncherStatus",
+      "valid": true,
+      "payload": {
+        "attempt_id": "00000000-0000-4000-8000-000000000001",
+        "status": "prepared",
+        "receipt_id": null,
+        "attempt_fence": 1,
+        "instance_generation": "00000000-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "id": "valid-AssessmentPage",
+      "schema": "AssessmentPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ConversationMessagePage",
+      "schema": "ConversationMessagePage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-DecisionRecordPage",
+      "schema": "DecisionRecordPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ActionProposalPage",
+      "schema": "ActionProposalPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ApprovalPage",
+      "schema": "ApprovalPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ExecutionPage",
+      "schema": "ExecutionPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ObservationPage",
+      "schema": "ObservationPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-FindingPage",
+      "schema": "FindingPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ArtifactPage",
+      "schema": "ArtifactPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-ReportPage",
+      "schema": "ReportPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-TimelineEventPage",
+      "schema": "TimelineEventPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-WorkspaceApprovalPage",
+      "schema": "WorkspaceApprovalPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-WorkspaceFindingPage",
+      "schema": "WorkspaceFindingPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "valid-WorkspaceReportPage",
+      "schema": "WorkspaceReportPage",
+      "valid": true,
+      "payload": {
+        "items": [],
+        "next_cursor": null
+      }
+    },
+    {
+      "id": "invalid-extra-actor",
+      "schema": "MessageCreate",
+      "valid": false,
+      "payload": {
+        "content": "hello",
+        "expected_revision": 1,
+        "actor_id": "00000000-0000-4000-8000-000000000003"
+      },
+      "error_keyword": "additionalProperties"
+    },
+    {
+      "id": "invalid-blank-message",
+      "schema": "MessageCreate",
+      "valid": false,
+      "payload": {
+        "content": "",
+        "expected_revision": 1
+      },
+      "error_keyword": "minLength"
+    },
+    {
+      "id": "invalid-message-bound",
+      "schema": "MessageCreate",
+      "valid": false,
+      "payload": {
+        "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "expected_revision": 1
+      },
+      "error_keyword": "maxLength"
+    },
+    {
+      "id": "invalid-duplicate-ports",
+      "schema": "NmapParameters",
+      "valid": false,
+      "payload": {
+        "ports": [
+          80,
+          80
+        ],
+        "deadline_seconds": 120
+      },
+      "error_keyword": "uniqueItems"
+    },
+    {
+      "id": "invalid-nmap-deadline",
+      "schema": "NmapParameters",
+      "valid": false,
+      "payload": {
+        "ports": [
+          80
+        ],
+        "deadline_seconds": 121
+      },
+      "error_keyword": "maximum"
+    },
+    {
+      "id": "invalid-port-zero",
+      "schema": "NmapParameters",
+      "valid": false,
+      "payload": {
+        "ports": [
+          0
+        ],
+        "deadline_seconds": 1
+      },
+      "error_keyword": "minimum"
+    },
+    {
+      "id": "invalid-raw-argv",
+      "schema": "NmapParameters",
+      "valid": false,
+      "payload": {
+        "ports": [
+          80
+        ],
+        "deadline_seconds": 1,
+        "argv": [
+          "-A"
+        ]
+      },
+      "error_keyword": "additionalProperties"
+    },
+    {
+      "id": "invalid-zap-path",
+      "schema": "ZapParameters",
+      "valid": false,
+      "payload": {
+        "scheme": "http",
+        "port": 80,
+        "root_path": "/only",
+        "deadline_seconds": 1
+      },
+      "error_keyword": "const"
+    },
+    {
+      "id": "invalid-live-ipv6",
+      "schema": "IPv4",
+      "valid": false,
+      "payload": "2001:db8::1",
+      "error_keyword": "format"
+    },
+    {
+      "id": "invalid-live-cidr",
+      "schema": "IPv4",
+      "valid": false,
+      "payload": "192.0.2.10/32",
+      "error_keyword": "format"
+    },
+    {
+      "id": "invalid-live-leading-zero",
+      "schema": "IPv4",
+      "valid": false,
+      "payload": "192.000.2.10",
+      "error_keyword": "format"
+    },
+    {
+      "id": "invalid-uuid",
+      "schema": "Id",
+      "valid": false,
+      "payload": "not-an-id",
+      "error_keyword": "format"
+    },
+    {
+      "id": "invalid-date",
+      "schema": "Timestamp",
+      "valid": false,
+      "payload": "2026-02-30T00:00:00Z",
+      "error_keyword": "format"
+    },
+    {
+      "id": "invalid-authority-fraction",
+      "schema": "Timestamp",
+      "valid": false,
+      "payload": "2026-11-06T09:00:00.1Z",
+      "error_keyword": "pattern"
+    },
+    {
+      "id": "invalid-status-external",
+      "schema": "StatusUrl",
+      "valid": false,
+      "payload": "https://outside.example/jobs/x",
+      "error_keyword": "pattern"
+    },
+    {
+      "id": "invalid-ready-without-artifact",
+      "schema": "Report",
+      "valid": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "ready",
+        "artifact_id": null,
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      },
+      "error_keyword": "type"
+    },
+    {
+      "id": "invalid-confirmed-without-method",
+      "schema": "Finding",
+      "valid": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "confirmed",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "error_keyword": "type"
+    },
+    {
+      "id": "invalid-cvss-without-source",
+      "schema": "Finding",
+      "valid": false,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": 8.0,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "error_keyword": "type"
+    },
+    {
+      "id": "valid-unknown-finding",
+      "schema": "Finding",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "unknown",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      }
+    },
+    {
+      "id": "valid-historical-ipv6-udp",
+      "schema": "Observation",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": null,
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "raw_locator": "$.site[0].alerts[0]",
+        "kind": "vulnerability",
+        "source_tool": "zap",
+        "native_id": "fixture-header",
+        "asset": {
+          "address_family": "ipv6",
+          "raw_identity": "2001:db8::1",
+          "canonical_identity": "2001:db8::1",
+          "authorized_asset_id": null
+        },
+        "service": {
+          "transport": "udp",
+          "port": 53,
+          "scheme": null,
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "raw_severity": "Medium",
+        "raw_confidence": "Low",
+        "observed_at": "2024-01-01T00:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z"
+      }
+    },
+    {
+      "id": "valid-informational-source",
+      "schema": "Finding",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "informational",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "routine",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      }
+    },
+    {
+      "id": "valid-execution-queued",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "queued",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-running",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "running",
+        "started_at": "2026-11-06T09:00:00Z",
+        "finished_at": null,
+        "receipt_id": "00000000-0000-4000-8000-000000000021",
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-succeeded",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "succeeded",
+        "started_at": "2026-11-06T09:00:00Z",
+        "finished_at": "2026-11-06T10:00:00Z",
+        "receipt_id": "00000000-0000-4000-8000-000000000021",
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-partial",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "partial",
+        "started_at": "2026-11-06T09:00:00Z",
+        "finished_at": "2026-11-06T10:00:00Z",
+        "receipt_id": "00000000-0000-4000-8000-000000000021",
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-failed",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "failed",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-timed_out",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "timed_out",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-cancelled",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "cancelled",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-execution-execution_unknown",
+      "schema": "Execution",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "attempt_id": "00000000-0000-4000-8000-000000000017",
+        "attempt_fence": 1,
+        "state": "execution_unknown",
+        "started_at": null,
+        "finished_at": null,
+        "receipt_id": null,
+        "artifact_ids": [],
+        "failure_code": null,
+        "cancellation_requested_at": null
+      }
+    },
+    {
+      "id": "valid-import-queued",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "queued",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-import-parsing",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "parsing",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-import-succeeded",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "succeeded",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-import-partial",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "partial",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [
+          {
+            "code": "fixture_partial",
+            "message": "Synthetic incomplete source.",
+            "raw_locator": null
+          }
+        ],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-import-failed",
+      "schema": "Import",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "failed",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      }
+    },
+    {
+      "id": "valid-report-pending",
+      "schema": "Report",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "pending",
+        "artifact_id": null,
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "valid-report-rendering",
+      "schema": "Report",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "rendering",
+        "artifact_id": null,
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "valid-report-ready",
+      "schema": "Report",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "ready",
+        "artifact_id": "00000000-0000-4000-8000-000000000020",
+        "failure_code": null,
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "valid-report-failed",
+      "schema": "Report",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "snapshot_id": "00000000-0000-4000-8000-000000000013",
+        "created_at": "2026-11-06T09:00:00Z",
+        "state": "failed",
+        "artifact_id": null,
+        "failure_code": "render_failed",
+        "release_status": "draft",
+        "release_review_id": null
+      }
+    },
+    {
+      "id": "valid-approval-pending",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "pending",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-approval-granted",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "granted",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-approval-rejected",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "rejected",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-approval-expired",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "expired",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-approval-consumed",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "consumed",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-approval-stale",
+      "schema": "Approval",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "stale",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      }
+    },
+    {
+      "id": "valid-capability-planned",
+      "schema": "Capabilities",
+      "valid": true,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "reports.pdf",
+            "availability": "planned",
+            "reason_code": "synthetic_state_case",
+            "message": "Synthetic capability-state example; no runtime claim.",
+            "mode": "server_pdf",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-capability-available",
+      "schema": "Capabilities",
+      "valid": true,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "reports.pdf",
+            "availability": "available",
+            "reason_code": "synthetic_state_case",
+            "message": "Synthetic capability-state example; no runtime claim.",
+            "mode": "server_pdf",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-capability-unavailable",
+      "schema": "Capabilities",
+      "valid": true,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "reports.pdf",
+            "availability": "unavailable",
+            "reason_code": "synthetic_state_case",
+            "message": "Synthetic capability-state example; no runtime claim.",
+            "mode": "server_pdf",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-capability-unsupported",
+      "schema": "Capabilities",
+      "valid": true,
+      "payload": {
+        "contract_version": "0.1.0",
+        "capabilities": [
+          {
+            "id": "reports.pdf",
+            "availability": "unsupported",
+            "reason_code": "synthetic_state_case",
+            "message": "Synthetic capability-state example; no runtime claim.",
+            "mode": "server_pdf",
+            "evidence_level": "none",
+            "profile": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "valid-decision-ask",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": null,
+        "basis_observation_ids": [],
+        "proposal_id": null,
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": null,
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "ask",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": null,
+        "retry_of": null
+      }
+    },
+    {
+      "id": "valid-decision-stop",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": null,
+        "basis_observation_ids": [],
+        "proposal_id": null,
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": null,
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "stop",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": null,
+        "retry_of": null
+      }
+    },
+    {
+      "id": "valid-decision-inconclusive",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": null,
+        "basis_observation_ids": [],
+        "proposal_id": null,
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": null,
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "inconclusive",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": null,
+        "retry_of": null
+      }
+    },
+    {
+      "id": "valid-decision-denied",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": null,
+        "basis_observation_ids": [],
+        "proposal_id": null,
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": null,
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "denied",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": null,
+        "retry_of": null
+      }
+    },
+    {
+      "id": "valid-decision-failed",
+      "schema": "DecisionRecord",
+      "valid": true,
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000014",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "scope_version": 1,
+        "created_at": "2026-11-06T09:00:00Z",
+        "source": "deterministic",
+        "candidate_profile": null,
+        "basis_observation_ids": [],
+        "proposal_id": null,
+        "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+        "policy_result": null,
+        "budget_remaining": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "outcome": "failed",
+        "unknowns": [],
+        "limitations": [
+          "Synthetic contract fixture; no runtime implementation."
+        ],
+        "failure_code": "provider_timeout",
+        "retry_of": null
+      }
+    }
+  ]
+}

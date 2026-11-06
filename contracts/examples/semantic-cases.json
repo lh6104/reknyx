@@ -1,0 +1,2602 @@
+{
+  "provenance": "synthetic_fixture",
+  "notice": "Pure contract acceptance rules; not runtime security enforcement. Contexts are synthetic canonical projections, not database rows.",
+  "contexts": {
+    "baseline": {
+      "actor_id": "00000000-0000-4000-8000-000000000003",
+      "assessment_id": "00000000-0000-4000-8000-000000000001",
+      "state_revision": 1,
+      "now": "2026-11-06T10:00:00Z",
+      "scope": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "remaining_actions": 8,
+      "remaining_runtime_seconds": 1200,
+      "observations": [
+        {
+          "id": "00000000-0000-4000-8000-000000000004",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "execution_id": null,
+          "artifact_id": "00000000-0000-4000-8000-000000000005",
+          "raw_locator": "$.site[0].alerts[0]",
+          "kind": "vulnerability",
+          "source_tool": "zap",
+          "native_id": "fixture-header",
+          "asset": {
+            "address_family": "ipv4",
+            "raw_identity": "192.0.2.10",
+            "canonical_identity": "192.0.2.10",
+            "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+          },
+          "service": {
+            "transport": "tcp",
+            "port": 80,
+            "scheme": "http",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ]
+          },
+          "location": {
+            "scheme": "http",
+            "host": "192.0.2.10",
+            "port": 80,
+            "path": "/",
+            "raw_url": "http://192.0.2.10/",
+            "method": "GET",
+            "parameter": null,
+            "redacted": false
+          },
+          "raw_severity": "Medium",
+          "raw_confidence": "Low",
+          "observed_at": "2026-11-06T09:00:00Z",
+          "ingested_at": "2026-11-06T10:00:00Z"
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000030",
+          "assessment_id": "00000000-0000-4000-8000-000000000015",
+          "execution_id": null,
+          "artifact_id": "00000000-0000-4000-8000-000000000005",
+          "raw_locator": "$.site[0].alerts[0]",
+          "kind": "vulnerability",
+          "source_tool": "zap",
+          "native_id": "fixture-header",
+          "asset": {
+            "address_family": "ipv4",
+            "raw_identity": "192.0.2.10",
+            "canonical_identity": "192.0.2.10",
+            "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+          },
+          "service": {
+            "transport": "tcp",
+            "port": 80,
+            "scheme": "http",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ]
+          },
+          "location": {
+            "scheme": "http",
+            "host": "192.0.2.10",
+            "port": 80,
+            "path": "/",
+            "raw_url": "http://192.0.2.10/",
+            "method": "GET",
+            "parameter": null,
+            "redacted": false
+          },
+          "raw_severity": "Medium",
+          "raw_confidence": "Low",
+          "observed_at": "2026-11-06T09:00:00Z",
+          "ingested_at": "2026-11-06T10:00:00Z"
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "00000000-0000-4000-8000-000000000005",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "source": "import",
+          "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+          "size_bytes": 47,
+          "content_type": "application/json",
+          "observed_at": "2026-11-06T09:00:00Z",
+          "ingested_at": "2026-11-06T10:00:00Z",
+          "parser_version": "fixture-only-not-implemented",
+          "historical": false,
+          "provenance": "synthetic_fixture",
+          "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+        }
+      ],
+      "findings": [
+        {
+          "id": "00000000-0000-4000-8000-000000000006",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "revision": 1,
+          "title": "Synthetic missing security header",
+          "asset": {
+            "address_family": "ipv4",
+            "raw_identity": "192.0.2.10",
+            "canonical_identity": "192.0.2.10",
+            "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+          },
+          "service": {
+            "transport": "tcp",
+            "port": 80,
+            "scheme": "http",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ]
+          },
+          "location": {
+            "scheme": "http",
+            "host": "192.0.2.10",
+            "port": 80,
+            "path": "/",
+            "raw_url": "http://192.0.2.10/",
+            "method": "GET",
+            "parameter": null,
+            "redacted": false
+          },
+          "severity": "medium",
+          "cvss": null,
+          "cvss_vector": null,
+          "cvss_version": null,
+          "cvss_source": null,
+          "cve_ids": [],
+          "cwe_ids": [],
+          "confidence_method": "ZAP source label (fixture)",
+          "confidence_value": "Low",
+          "validation_status": "suspected",
+          "validation_evidence": null,
+          "analyst_disposition": "needs_review",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+          "exposure": {
+            "value": "reachable",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null,
+            "observed_at": "2026-11-06T09:00:00Z"
+          },
+          "exploitability": {
+            "value": "unknown",
+            "observation_ids": [],
+            "analyst": null,
+            "observed_at": null
+          },
+          "asset_impact": {
+            "value": "unknown",
+            "observation_ids": [],
+            "analyst": null,
+            "observed_at": null
+          },
+          "risk_input_sources": [
+            {
+              "field": "severity",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null
+            },
+            {
+              "field": "exposure",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ],
+              "analyst": null
+            }
+          ],
+          "priority": "review_next",
+          "priority_reasons": [
+            "Asset impact and exploitability remain unknown."
+          ],
+          "risk_rule_version": "ordinal-v1",
+          "unknowns": [
+            "asset_impact",
+            "exploitability"
+          ],
+          "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+        }
+      ],
+      "finding_id": "00000000-0000-4000-8000-000000000006",
+      "compatible_observation_ids": [
+        "00000000-0000-4000-8000-000000000004"
+      ],
+      "supported_cve_ids": [],
+      "decisions": [
+        {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        }
+      ],
+      "executions": [
+        {
+          "id": "00000000-0000-4000-8000-000000000011",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "action_id": "00000000-0000-4000-8000-000000000010",
+          "attempt_id": "00000000-0000-4000-8000-000000000017",
+          "attempt_fence": 1,
+          "state": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "receipt_id": null,
+          "artifact_ids": [],
+          "failure_code": null,
+          "cancellation_requested_at": null
+        }
+      ],
+      "approval": {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "scope_version": 1,
+        "status": "pending",
+        "actor_id": null,
+        "rationale": null,
+        "decided_at": null,
+        "expires_at": "2026-11-06T11:00:00Z"
+      },
+      "policy_result": "require_approval"
+    },
+    "action-profile-context": {
+      "extends": "baseline",
+      "overrides": {
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    "action-budget-context": {
+      "extends": "baseline",
+      "overrides": {
+        "remaining_actions": 0
+      }
+    },
+    "action-expired-scope-context": {
+      "extends": "baseline",
+      "overrides": {
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-06T10:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    "action-future-scope-context": {
+      "extends": "baseline",
+      "overrides": {
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T10:30:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": true,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    "zap-path-scope-context": {
+      "extends": "baseline",
+      "overrides": {
+        "scope": {
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "version": 1,
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+          "asset": {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "hostname": null,
+            "ipv4": "192.0.2.10",
+            "aliases": [],
+            "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+          },
+          "allowed_ports": [
+            80,
+            443
+          ],
+          "excluded_ports": [],
+          "allowed_profiles": [
+            "nmap_discovery_v1",
+            "zap_baseline_v1"
+          ],
+          "valid_from": "2026-11-06T09:00:00Z",
+          "valid_until": "2026-11-07T09:00:00Z",
+          "budget": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "origin_wide": false,
+          "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+        }
+      }
+    },
+    "observation-foreign-artifact-context": {
+      "extends": "baseline",
+      "overrides": {
+        "artifacts": [
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "assessment_id": "00000000-0000-4000-8000-000000000015",
+            "source": "import",
+            "sha256": "23a32ae9cfefac45980d37f6cd208f86d833b86249f1b1ba4f319139ac0f22ba",
+            "size_bytes": 47,
+            "content_type": "application/json",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z",
+            "parser_version": "fixture-only-not-implemented",
+            "historical": false,
+            "provenance": "synthetic_fixture",
+            "download_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/artifacts/00000000-0000-4000-8000-000000000005/download"
+          }
+        ]
+      }
+    },
+    "correlation-rule-mismatch-context": {
+      "extends": "baseline",
+      "overrides": {
+        "compatible_observation_ids": []
+      }
+    },
+    "service-is-not-vulnerability-context": {
+      "extends": "baseline",
+      "overrides": {
+        "observations": [
+          {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "execution_id": null,
+            "artifact_id": "00000000-0000-4000-8000-000000000005",
+            "raw_locator": "$.site[0].alerts[0]",
+            "kind": "service",
+            "source_tool": "zap",
+            "native_id": "fixture-header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "raw_severity": "Medium",
+            "raw_confidence": "Low",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z"
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000030",
+            "assessment_id": "00000000-0000-4000-8000-000000000015",
+            "execution_id": null,
+            "artifact_id": "00000000-0000-4000-8000-000000000005",
+            "raw_locator": "$.site[0].alerts[0]",
+            "kind": "vulnerability",
+            "source_tool": "zap",
+            "native_id": "fixture-header",
+            "asset": {
+              "address_family": "ipv4",
+              "raw_identity": "192.0.2.10",
+              "canonical_identity": "192.0.2.10",
+              "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+            },
+            "service": {
+              "transport": "tcp",
+              "port": 80,
+              "scheme": "http",
+              "observation_ids": [
+                "00000000-0000-4000-8000-000000000004"
+              ]
+            },
+            "location": {
+              "scheme": "http",
+              "host": "192.0.2.10",
+              "port": 80,
+              "path": "/",
+              "raw_url": "http://192.0.2.10/",
+              "method": "GET",
+              "parameter": null,
+              "redacted": false
+            },
+            "raw_severity": "Medium",
+            "raw_confidence": "Low",
+            "observed_at": "2026-11-06T09:00:00Z",
+            "ingested_at": "2026-11-06T10:00:00Z"
+          }
+        ]
+      }
+    },
+    "no-blind-unknown-retry-context": {
+      "extends": "baseline",
+      "overrides": {
+        "executions": [
+          {
+            "id": "00000000-0000-4000-8000-000000000011",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "action_id": "00000000-0000-4000-8000-000000000010",
+            "attempt_id": "00000000-0000-4000-8000-000000000017",
+            "attempt_fence": 1,
+            "state": "execution_unknown",
+            "started_at": null,
+            "finished_at": null,
+            "receipt_id": null,
+            "artifact_ids": [],
+            "failure_code": null,
+            "cancellation_requested_at": null
+          }
+        ]
+      }
+    },
+    "async-valid-context": {
+      "extends": "baseline",
+      "overrides": {
+        "resource_kind": "imports"
+      }
+    },
+    "async-foreign-url-context": {
+      "extends": "baseline",
+      "overrides": {
+        "resource_kind": "imports"
+      }
+    },
+    "approval-cannot-override-deny-context": {
+      "extends": "baseline",
+      "overrides": {
+        "policy_result": "deny"
+      }
+    },
+    "approval-already-decided-context": {
+      "extends": "baseline",
+      "overrides": {
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000009",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "action_id": "00000000-0000-4000-8000-000000000010",
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "scope_version": 1,
+          "status": "granted",
+          "actor_id": null,
+          "rationale": null,
+          "decided_at": null,
+          "expires_at": "2026-11-06T11:00:00Z"
+        }
+      }
+    },
+    "message-stale-context": {
+      "extends": "baseline",
+      "overrides": {
+        "state_revision": 2
+      }
+    },
+    "replay-before-revision-context": {
+      "extends": "baseline",
+      "overrides": {
+        "previous_operation": {
+          "digest": "05adf9406ef8874b9eba3a2803f16487436763e66a0dca4e111e02a4000f1507",
+          "state": "completed"
+        }
+      }
+    },
+    "replay-changed-body-context": {
+      "extends": "baseline",
+      "overrides": {
+        "previous_operation": {
+          "digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "state": "completed"
+        }
+      }
+    },
+    "replay-in-progress-context": {
+      "extends": "baseline",
+      "overrides": {
+        "previous_operation": {
+          "digest": "05adf9406ef8874b9eba3a2803f16487436763e66a0dca4e111e02a4000f1507",
+          "state": "in_progress"
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "scope-valid",
+      "kind": "scope",
+      "schema": "Scope",
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "scope-window",
+      "kind": "scope",
+      "schema": "Scope",
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-06T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "invalid_scope_window"
+      ]
+    },
+    {
+      "id": "scope-excluded",
+      "kind": "scope",
+      "schema": "Scope",
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [
+          80,
+          443
+        ],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "empty_effective_scope"
+      ]
+    },
+    {
+      "id": "scope-zap-origin",
+      "kind": "scope",
+      "schema": "Scope",
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": false,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "origin_wide_required"
+      ]
+    },
+    {
+      "id": "scope-auth-reference",
+      "kind": "scope",
+      "schema": "Scope",
+      "payload": {
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "version": 1,
+        "authorization_ref_id": "00000000-0000-4000-8000-000000000012",
+        "asset": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000015"
+        },
+        "allowed_ports": [
+          80,
+          443
+        ],
+        "excluded_ports": [],
+        "allowed_profiles": [
+          "nmap_discovery_v1",
+          "zap_baseline_v1"
+        ],
+        "valid_from": "2026-11-06T09:00:00Z",
+        "valid_until": "2026-11-07T09:00:00Z",
+        "budget": {
+          "max_actions": 8,
+          "max_runtime_seconds": 1200,
+          "max_model_calls": 8,
+          "max_input_tokens": 100000,
+          "max_output_tokens": 10000
+        },
+        "origin_wide": true,
+        "hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "authorization_reference_mismatch"
+      ]
+    },
+    {
+      "id": "nmap-valid",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "action-revision",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 2,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "stale_revision"
+      ]
+    },
+    {
+      "id": "action-scope",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 2,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "stale_scope"
+      ]
+    },
+    {
+      "id": "action-expiry",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T09:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "action_expired_or_outside_scope"
+      ]
+    },
+    {
+      "id": "action-foreign-evidence",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "00000000-0000-4000-8000-000000000030"
+        ],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "foreign_evidence"
+      ]
+    },
+    {
+      "id": "action-missing-evidence",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "00000000-0000-4000-8000-000000000031"
+        ],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "missing_evidence"
+      ]
+    },
+    {
+      "id": "action-target",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.11",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "out_of_scope_target"
+      ]
+    },
+    {
+      "id": "action-port",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            22
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "out_of_scope_port"
+      ]
+    },
+    {
+      "id": "action-profile",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "action-profile-context",
+      "expected_errors": [
+        "unsupported_profile"
+      ]
+    },
+    {
+      "id": "action-budget",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "action-budget-context",
+      "expected_errors": [
+        "budget_exhausted"
+      ]
+    },
+    {
+      "id": "action-expired-scope",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "action-expired-scope-context",
+      "expected_errors": [
+        "scope_expired",
+        "action_expired_or_outside_scope"
+      ]
+    },
+    {
+      "id": "action-future-scope",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "nmap_discovery_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "ports": [
+            80,
+            443
+          ],
+          "deadline_seconds": 120
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 120
+        }
+      },
+      "context": "action-future-scope-context",
+      "expected_errors": [
+        "scope_not_started"
+      ]
+    },
+    {
+      "id": "zap-valid-http",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "zap_baseline_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "scheme": "http",
+          "port": 80,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "zap-missing-http",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "zap_baseline_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "scheme": "http",
+          "port": 80,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "http_basis_required"
+      ]
+    },
+    {
+      "id": "zap-scheme-mismatch",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "zap_baseline_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "scheme": "https",
+          "port": 80,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "http_basis_required"
+      ]
+    },
+    {
+      "id": "zap-path-scope",
+      "kind": "action",
+      "schema": "ActionAuthority",
+      "payload": {
+        "action_id": "00000000-0000-4000-8000-000000000010",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "state_revision": 1,
+        "profile": "zap_baseline_v1",
+        "profile_version": "1",
+        "target": {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "hostname": null,
+          "ipv4": "192.0.2.10",
+          "aliases": [],
+          "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+        },
+        "parameters": {
+          "scheme": "http",
+          "port": 80,
+          "root_path": "/",
+          "deadline_seconds": 180
+        },
+        "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+        "scope_version": 1,
+        "basis_observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "expires_at": "2026-11-06T11:00:00Z",
+        "budget": {
+          "actions": 1,
+          "runtime_seconds": 180
+        }
+      },
+      "context": "zap-path-scope-context",
+      "expected_errors": [
+        "origin_wide_required"
+      ]
+    },
+    {
+      "id": "observation-missing-artifact",
+      "kind": "observation",
+      "schema": "Observation",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": null,
+        "artifact_id": "00000000-0000-4000-8000-000000000015",
+        "raw_locator": "$.site[0].alerts[0]",
+        "kind": "vulnerability",
+        "source_tool": "zap",
+        "native_id": "fixture-header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "raw_severity": "Medium",
+        "raw_confidence": "Low",
+        "observed_at": "2026-11-06T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "missing_artifact"
+      ]
+    },
+    {
+      "id": "observation-foreign-artifact",
+      "kind": "observation",
+      "schema": "Observation",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": null,
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "raw_locator": "$.site[0].alerts[0]",
+        "kind": "vulnerability",
+        "source_tool": "zap",
+        "native_id": "fixture-header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "raw_severity": "Medium",
+        "raw_confidence": "Low",
+        "observed_at": "2026-11-06T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z"
+      },
+      "context": "observation-foreign-artifact-context",
+      "expected_errors": [
+        "foreign_artifact"
+      ]
+    },
+    {
+      "id": "observation-future",
+      "kind": "observation",
+      "schema": "Observation",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "execution_id": null,
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "raw_locator": "$.site[0].alerts[0]",
+        "kind": "vulnerability",
+        "source_tool": "zap",
+        "native_id": "fixture-header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "raw_severity": "Medium",
+        "raw_confidence": "Low",
+        "observed_at": "2026-11-07T09:00:00Z",
+        "ingested_at": "2026-11-06T10:00:00Z"
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "future_observation"
+      ]
+    },
+    {
+      "id": "review-valid",
+      "kind": "review",
+      "schema": "FindingReview",
+      "payload": {
+        "expected_revision": 1,
+        "disposition": "accepted",
+        "rationale": "Synthetic analyst review.",
+        "evidence_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ]
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "review-stale",
+      "kind": "review",
+      "schema": "FindingReview",
+      "payload": {
+        "expected_revision": 2,
+        "disposition": "accepted",
+        "rationale": "Synthetic analyst review.",
+        "evidence_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ]
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "stale_revision"
+      ]
+    },
+    {
+      "id": "review-foreign",
+      "kind": "review",
+      "schema": "FindingReview",
+      "payload": {
+        "expected_revision": 1,
+        "disposition": "accepted",
+        "rationale": "Synthetic analyst review.",
+        "evidence_ids": [
+          "00000000-0000-4000-8000-000000000030"
+        ]
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "foreign_evidence"
+      ]
+    },
+    {
+      "id": "correlation-valid",
+      "kind": "correlation",
+      "schema": "CorrelationReview",
+      "payload": {
+        "finding_id": "00000000-0000-4000-8000-000000000006",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "decision": "link",
+        "expected_revision": 1,
+        "rationale": "Synthetic compatible context."
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "correlation-rule-mismatch",
+      "kind": "correlation",
+      "schema": "CorrelationReview",
+      "payload": {
+        "finding_id": "00000000-0000-4000-8000-000000000006",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "decision": "link",
+        "expected_revision": 1,
+        "rationale": "Synthetic compatible context."
+      },
+      "context": "correlation-rule-mismatch-context",
+      "expected_errors": [
+        "incompatible_correlation"
+      ]
+    },
+    {
+      "id": "finding-valid",
+      "kind": "finding",
+      "schema": "Finding",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "service-is-not-vulnerability",
+      "kind": "finding",
+      "schema": "Finding",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "context": "service-is-not-vulnerability-context",
+      "expected_errors": [
+        "vulnerability_basis_required"
+      ]
+    },
+    {
+      "id": "finding-fabricated-cve",
+      "kind": "finding",
+      "schema": "Finding",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [
+          "CVE-2026-12345"
+        ],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "unsupported_cve"
+      ]
+    },
+    {
+      "id": "finding-risk-source",
+      "kind": "finding",
+      "schema": "Finding",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "missing_risk_provenance"
+      ]
+    },
+    {
+      "id": "finding-unknown-priority",
+      "kind": "finding",
+      "schema": "Finding",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "unknown",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "routine",
+        "priority_reasons": [
+          "Asset impact and exploitability remain unknown."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "asset_impact",
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "unknown_priority_floor"
+      ]
+    },
+    {
+      "id": "no-blind-unknown-retry",
+      "kind": "plan",
+      "schema": "PlanCreate",
+      "payload": {
+        "expected_revision": 1,
+        "retry": {
+          "kind": "execution",
+          "prior_id": "00000000-0000-4000-8000-000000000011",
+          "reason": "Explicit retry request."
+        }
+      },
+      "context": "no-blind-unknown-retry-context",
+      "expected_errors": [
+        "execution_unknown"
+      ]
+    },
+    {
+      "id": "plan-missing-prior",
+      "kind": "plan",
+      "schema": "PlanCreate",
+      "payload": {
+        "expected_revision": 1,
+        "retry": {
+          "kind": "execution",
+          "prior_id": "00000000-0000-4000-8000-000000000099",
+          "reason": "Explicit retry request."
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "missing_retry_reference"
+      ]
+    },
+    {
+      "id": "async-valid",
+      "kind": "async",
+      "schema": "AsyncAccepted",
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000016",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000001/imports/00000000-0000-4000-8000-000000000016"
+      },
+      "context": "async-valid-context",
+      "expected_errors": []
+    },
+    {
+      "id": "async-foreign-url",
+      "kind": "async",
+      "schema": "AsyncAccepted",
+      "payload": {
+        "job_id": "00000000-0000-4000-8000-000000000008",
+        "resource_id": "00000000-0000-4000-8000-000000000016",
+        "status_url": "/api/v1/assessments/00000000-0000-4000-8000-000000000015/imports/00000000-0000-4000-8000-000000000016"
+      },
+      "context": "async-foreign-url-context",
+      "expected_errors": [
+        "status_url_mismatch"
+      ]
+    },
+    {
+      "id": "approval-valid",
+      "kind": "approval",
+      "schema": "ApprovalDecision",
+      "payload": {
+        "decision": "grant",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "expected_scope_version": 1,
+        "rationale": "Synthetic grant; no execution."
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "approval-cannot-override-deny",
+      "kind": "approval",
+      "schema": "ApprovalDecision",
+      "payload": {
+        "decision": "grant",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "expected_scope_version": 1,
+        "rationale": "Synthetic grant; no execution."
+      },
+      "context": "approval-cannot-override-deny-context",
+      "expected_errors": [
+        "policy_denied"
+      ]
+    },
+    {
+      "id": "approval-already-decided",
+      "kind": "approval",
+      "schema": "ApprovalDecision",
+      "payload": {
+        "decision": "grant",
+        "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+        "expected_scope_version": 1,
+        "rationale": "Synthetic grant; no execution."
+      },
+      "context": "approval-already-decided-context",
+      "expected_errors": [
+        "approval_already_decided"
+      ]
+    },
+    {
+      "id": "message-valid",
+      "kind": "message",
+      "schema": "MessageCreate",
+      "payload": {
+        "content": "Synthetic message.",
+        "expected_revision": 1
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "message-stale",
+      "kind": "message",
+      "schema": "MessageCreate",
+      "payload": {
+        "content": "Synthetic message.",
+        "expected_revision": 1
+      },
+      "context": "message-stale-context",
+      "expected_errors": [
+        "stale_revision"
+      ]
+    },
+    {
+      "id": "replay-before-revision",
+      "kind": "replay",
+      "schema": "MessageCreate",
+      "payload": {
+        "content": "Synthetic message.",
+        "expected_revision": 1
+      },
+      "context": "replay-before-revision-context",
+      "expected_errors": []
+    },
+    {
+      "id": "replay-changed-body",
+      "kind": "replay",
+      "schema": "MessageCreate",
+      "payload": {
+        "content": "Synthetic message.",
+        "expected_revision": 1
+      },
+      "context": "replay-changed-body-context",
+      "expected_errors": [
+        "idempotency_conflict"
+      ]
+    },
+    {
+      "id": "replay-in-progress",
+      "kind": "replay",
+      "schema": "MessageCreate",
+      "payload": {
+        "content": "Synthetic message.",
+        "expected_revision": 1
+      },
+      "context": "replay-in-progress-context",
+      "expected_errors": [
+        "operation_in_progress"
+      ]
+    },
+    {
+      "id": "plan-result-valid",
+      "kind": "plan_result",
+      "schema": "PlanResult",
+      "payload": {
+        "decision": {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        },
+        "proposal": {
+          "id": "00000000-0000-4000-8000-000000000010",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "authority": {
+            "action_id": "00000000-0000-4000-8000-000000000010",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "state_revision": 1,
+            "profile": "nmap_discovery_v1",
+            "profile_version": "1",
+            "target": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "parameters": {
+              "ports": [
+                80,
+                443
+              ],
+              "deadline_seconds": 120
+            },
+            "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+            "scope_version": 1,
+            "basis_observation_ids": [],
+            "expires_at": "2026-11-06T11:00:00Z",
+            "budget": {
+              "actions": 1,
+              "runtime_seconds": 120
+            }
+          },
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "rationale": "Synthetic contract example only; execution is unavailable.",
+          "expected_evidence": [
+            "Source-linked service observations"
+          ],
+          "done_when": "Bounded profile finishes or reports a disclosed failure.",
+          "policy_result": "require_approval"
+        }
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "plan-result-needs-proposal",
+      "kind": "plan_result",
+      "schema": "PlanResult",
+      "payload": {
+        "decision": {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        },
+        "proposal": null
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "proposal_required"
+      ]
+    },
+    {
+      "id": "plan-result-identity",
+      "kind": "plan_result",
+      "schema": "PlanResult",
+      "payload": {
+        "decision": {
+          "id": "00000000-0000-4000-8000-000000000014",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "state_revision": 1,
+          "scope_version": 1,
+          "created_at": "2026-11-06T09:00:00Z",
+          "source": "deterministic",
+          "candidate_profile": "nmap_discovery_v1",
+          "basis_observation_ids": [],
+          "proposal_id": "00000000-0000-4000-8000-000000000010",
+          "rationale": "Synthetic deterministic proposal; no inference or scan occurred.",
+          "policy_result": "require_approval",
+          "budget_remaining": {
+            "max_actions": 8,
+            "max_runtime_seconds": 1200,
+            "max_model_calls": 8,
+            "max_input_tokens": 100000,
+            "max_output_tokens": 10000
+          },
+          "outcome": "propose",
+          "unknowns": [],
+          "limitations": [
+            "Synthetic contract fixture; no runtime implementation."
+          ],
+          "failure_code": null,
+          "retry_of": null
+        },
+        "proposal": {
+          "id": "00000000-0000-4000-8000-000000000015",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "authority": {
+            "action_id": "00000000-0000-4000-8000-000000000010",
+            "assessment_id": "00000000-0000-4000-8000-000000000001",
+            "state_revision": 1,
+            "profile": "nmap_discovery_v1",
+            "profile_version": "1",
+            "target": {
+              "id": "00000000-0000-4000-8000-000000000002",
+              "hostname": null,
+              "ipv4": "192.0.2.10",
+              "aliases": [],
+              "authorization_ref_id": "00000000-0000-4000-8000-000000000012"
+            },
+            "parameters": {
+              "ports": [
+                80,
+                443
+              ],
+              "deadline_seconds": 120
+            },
+            "scope_hash": "c3a7d68332ce3e5a452b7a6dff1b948fb8bce1646fbbb6bb46a4cbec95a1cdb3",
+            "scope_version": 1,
+            "basis_observation_ids": [],
+            "expires_at": "2026-11-06T11:00:00Z",
+            "budget": {
+              "actions": 1,
+              "runtime_seconds": 120
+            }
+          },
+          "action_hash": "7f4a0a952cf0f86a0f7324554031a57d15487b0f6f39b89076ca5fcddea13ffa",
+          "rationale": "Synthetic contract example only; execution is unavailable.",
+          "expected_evidence": [
+            "Source-linked service observations"
+          ],
+          "done_when": "Bounded profile finishes or reports a disclosed failure.",
+          "policy_result": "require_approval"
+        }
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "proposal_reference_mismatch"
+      ]
+    },
+    {
+      "id": "import-job-valid",
+      "kind": "import",
+      "schema": "Import",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "import",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "queued",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      },
+      "context": "baseline",
+      "expected_errors": []
+    },
+    {
+      "id": "import-job-cannot-scan",
+      "kind": "import",
+      "schema": "Import",
+      "payload": {
+        "id": "00000000-0000-4000-8000-000000000016",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "job": {
+          "id": "00000000-0000-4000-8000-000000000008",
+          "assessment_id": "00000000-0000-4000-8000-000000000001",
+          "kind": "scan",
+          "resource_id": "00000000-0000-4000-8000-000000000016",
+          "state": "queued",
+          "attempt_id": null,
+          "created_at": "2026-11-06T09:00:00Z",
+          "started_at": null,
+          "finished_at": null,
+          "failure_code": null
+        },
+        "kind": "zap_json",
+        "state": "queued",
+        "artifact_id": "00000000-0000-4000-8000-000000000005",
+        "observation_ids": [],
+        "parser_version": null,
+        "warnings": [],
+        "failure_code": null,
+        "created_at": "2026-11-06T09:00:00Z",
+        "finished_at": null
+      },
+      "context": "baseline",
+      "expected_errors": [
+        "job_resource_mismatch"
+      ]
+    }
+  ]
+}

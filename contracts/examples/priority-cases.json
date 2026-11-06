@@ -1,0 +1,1280 @@
+{
+  "provenance": "synthetic_fixture",
+  "rule_version": "ordinal-v1",
+  "notice": "Twelve design acceptance comparisons, not calibrated risk or model evaluation.",
+  "cases": [
+    {
+      "id": "critical-unknown-context",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "critical",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": null,
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_first",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "exposure",
+          "exploitability",
+          "asset_impact"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_first"
+    },
+    {
+      "id": "high-low-confidence",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "high",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "restricted",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "reported",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "medium",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_first",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_first"
+    },
+    {
+      "id": "low-demonstrated-exploit",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "low",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_first",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_first"
+    },
+    {
+      "id": "medium-reachable-high-impact",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "High",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "reported",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "high",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_first",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_first"
+    },
+    {
+      "id": "medium-unknown-impact",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "Low",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "reachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "exploitability",
+          "asset_impact"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_next"
+    },
+    {
+      "id": "unknown-severity-known-context",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "unknown",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": null,
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "restricted",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_next"
+    },
+    {
+      "id": "low-unknown-exposure",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "low",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "High",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "exposure"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_next"
+    },
+    {
+      "id": "informational-unknown-exploitability",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "informational",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "High",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unreachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "unknown",
+          "observation_ids": [],
+          "analyst": null,
+          "observed_at": null
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [
+          "exploitability"
+        ],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_next"
+    },
+    {
+      "id": "low-known-context",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "low",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "High",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "restricted",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "routine",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "routine"
+    },
+    {
+      "id": "informational-known-context",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "informational",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": null,
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unreachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "routine",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "routine"
+    },
+    {
+      "id": "medium-restricted-low-impact",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "medium",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": "High",
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "restricted",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_next",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_next"
+    },
+    {
+      "id": "high-unreachable-low-impact",
+      "finding": {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "assessment_id": "00000000-0000-4000-8000-000000000001",
+        "revision": 1,
+        "title": "Synthetic missing security header",
+        "asset": {
+          "address_family": "ipv4",
+          "raw_identity": "192.0.2.10",
+          "canonical_identity": "192.0.2.10",
+          "authorized_asset_id": "00000000-0000-4000-8000-000000000002"
+        },
+        "service": {
+          "transport": "tcp",
+          "port": 80,
+          "scheme": "http",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ]
+        },
+        "location": {
+          "scheme": "http",
+          "host": "192.0.2.10",
+          "port": 80,
+          "path": "/",
+          "raw_url": "http://192.0.2.10/",
+          "method": "GET",
+          "parameter": null,
+          "redacted": false
+        },
+        "severity": "high",
+        "cvss": null,
+        "cvss_vector": null,
+        "cvss_version": null,
+        "cvss_source": null,
+        "cve_ids": [],
+        "cwe_ids": [],
+        "confidence_method": "ZAP source label (fixture)",
+        "confidence_value": null,
+        "validation_status": "suspected",
+        "validation_evidence": null,
+        "analyst_disposition": "needs_review",
+        "observation_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "correlation_reason": "One synthetic source observation; no cross-source merge asserted.",
+        "exposure": {
+          "value": "unreachable",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "exploitability": {
+          "value": "not_demonstrated",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "asset_impact": {
+          "value": "low",
+          "observation_ids": [
+            "00000000-0000-4000-8000-000000000004"
+          ],
+          "analyst": null,
+          "observed_at": "2026-11-06T09:00:00Z"
+        },
+        "risk_input_sources": [
+          {
+            "field": "severity",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exposure",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "exploitability",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          },
+          {
+            "field": "asset_impact",
+            "observation_ids": [
+              "00000000-0000-4000-8000-000000000004"
+            ],
+            "analyst": null
+          }
+        ],
+        "priority": "review_first",
+        "priority_reasons": [
+          "Synthetic labelled ordinal-v1 comparison; source confidence is not a probability."
+        ],
+        "risk_rule_version": "ordinal-v1",
+        "unknowns": [],
+        "remediation": "Review the applicable header and verify its effect within an authorized assessment."
+      },
+      "expected_priority": "review_first"
+    }
+  ]
+}

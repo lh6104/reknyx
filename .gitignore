@@ -35,3 +35,11 @@ volumes/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local prototypes, source documents and agent skills
+/*.html
+/1.pdf
+/CoreVAPT*.pdf
+/context.md
+/.agents/skills/
+/.codex/skills/
