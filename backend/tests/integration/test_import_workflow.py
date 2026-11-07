@@ -18,7 +18,7 @@ URL = os.getenv('REKNYX_TEST_DATABASE_URL')
 pytestmark = pytest.mark.skipif(not URL, reason='isolated PostgreSQL URL not supplied')
 
 
-@pytest.mark.parametrize('kind', ['zap_json', 'nmap_xml', 'malformed'])
+@pytest.mark.parametrize('kind', ['zap_json', 'nmap_xml', 'greenbone_xml', 'malformed'])
 def test_real_import_review_and_raw_trace(tmp_path, kind):
     from reknyx.infrastructure.models import ObservationRecord, FindingRecord
     password = uuid4().hex
@@ -45,10 +45,12 @@ def test_real_import_review_and_raw_trace(tmp_path, kind):
                 'instances': [{'uri': 'https://lab.example/login', 'method': 'GET'}]}]}]}).encode()
         if kind == 'nmap_xml':
             raw = b'<nmaprun scanner="nmap" version="synthetic"><host><address addrtype="ipv4" addr="192.0.2.1"/><ports><port protocol="tcp" portid="80"><state state="open"/></port></ports></host><runstats><finished exit="success"/></runstats></nmaprun>'
+        elif kind == 'greenbone_xml':
+            raw = (Path(__file__).parents[1] / 'fixtures/greenbone/synthetic-report.xml').read_bytes()
         elif kind == 'malformed':
             raw = b'{"invalid":true}'
-        content_type = 'application/xml' if kind == 'nmap_xml' else 'application/json'
-        metadata = {'kind': 'nmap_xml' if kind == 'nmap_xml' else 'zap_json', 'observed_at': 'null', 'provenance': 'synthetic_fixture', 'source_label': 'Synthetic source shape'}
+        content_type = 'application/xml' if kind in ('nmap_xml','greenbone_xml') else 'application/json'
+        metadata = {'kind': kind if kind in ('nmap_xml','greenbone_xml') else 'zap_json', 'observed_at': 'null', 'provenance': 'synthetic_fixture', 'source_label': 'Synthetic source shape'}
         headers['Idempotency-Key'] = uuid4().hex
         result = client.post(path + '/imports', headers=headers, data=metadata,
                              files={'file': ('fixture', raw, content_type)})
@@ -75,6 +77,9 @@ def test_real_import_review_and_raw_trace(tmp_path, kind):
                 return
             assert len(observations) == len(findings) == 1
             observation, finding = observations[0].data, findings[0].data
+        if kind == 'greenbone_xml':
+            assert observation['source_tool'] == 'greenbone'
+            assert finding['cvss'] == 7.5
         assert finding['validation_status'] == 'suspected'
         assert finding['priority'] == 'review_first'
         assert finding['observation_ids'] == [observation['id']]

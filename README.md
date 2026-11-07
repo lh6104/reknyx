@@ -2,7 +2,7 @@
 
 Reknyx is an analyst-controlled AI assistant for authorized vulnerability assessment and penetration testing. It is designed to interpret scanner evidence, explain the next investigation, correlate findings, support human review, and produce a traceable report.
 
-**Current status:** the frontend supports explicit synthetic preview and authenticated API modes. The Phase 1 import/review/PDF workflow has passed a real HTTP browser test with synthetic evidence. The backend supports authenticated assessment/message persistence, private artifacts, durable Nmap/ZAP import, attributed finding review and immutable draft PDF reports. G0 executable contract verification is recorded. Real AI analysis, Greenbone import and scanner execution remain **In development**. See the [backend setup](backend/README.md) for worker commands and recovery limits.
+**Current status:** the frontend supports explicit synthetic preview and authenticated API modes. The Phase 1 import/review/PDF workflow has passed a real HTTP browser test with synthetic evidence. The backend supports authenticated assessment/message persistence, private artifacts, durable Nmap/ZAP/Greenbone import, attributed finding review and immutable draft PDF reports. G0 executable contract verification is recorded. Real AI analysis and scanner execution remain **In development**. See the [backend setup](backend/README.md) for worker commands and recovery limits.
 
 ## Run the current application
 

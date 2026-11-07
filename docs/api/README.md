@@ -1,6 +1,6 @@
 # Reknyx API Overview
 
-**Status:** [contract candidate 0.1.0](../../contracts/README.md) and an initial authenticated backend foundation are implemented. Admin approved both owner reviews; G0 executable verification is recorded against that approved hash. The backend supports sessions, assessments, messages, audit, private artifacts, Nmap/ZAP import, finding review, frozen report snapshots and draft PDF downloads. Planner and scanner execution remain planned. See [backend setup](../../backend/README.md).
+**Status:** [contract candidate 0.1.0](../../contracts/README.md) and an initial authenticated backend foundation are implemented. Admin approved both owner reviews; G0 executable verification is recorded against that approved hash. The backend supports sessions, assessments, messages, audit, private artifacts, Nmap/ZAP/Greenbone import, finding review, frozen report snapshots and draft PDF downloads. Planner and scanner execution remain planned. See [backend setup](../../backend/README.md).
 
 ## Contract authority
 

@@ -113,7 +113,7 @@ def _login(request, body, db, settings):
 
 
 def _capabilities():
-    implemented = {"foundation", "assessments.persistence", "messages.persistence", "evidence", "imports", "imports.nmap_xml", "imports.zap_json", "findings.review", "reports.pdf"}
+    implemented = {"foundation", "assessments.persistence", "messages.persistence", "evidence", "imports", "imports.nmap_xml", "imports.zap_json", "imports.greenbone_xml", "findings.review", "reports.pdf"}
     ids = SCHEMAS["Capability"]["properties"]["id"]["enum"]
     return {"contract_version": "0.1.0", "capabilities": [{"id": item, "availability": "available" if item in implemented else "planned", "reason_code": "phase_one_implemented" if item in implemented else "not_implemented", "message": "Verified with synthetic fixtures and isolated local PostgreSQL; live execution unavailable" if item in implemented else "In development", "mode": "http" if item in implemented else "none", "evidence_level": "local_integration_verified" if item in implemented else "none", "profile": None} for item in ids]}
 

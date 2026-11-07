@@ -29,7 +29,7 @@ def test_zap_observation_and_finding_keep_source_identity():
 
 def test_unsupported_kind_is_explicit():
     with pytest.raises(ValueError, match='unsupported_format'):
-        normalize('greenbone_xml', b'<x/>', {})
+        normalize('unsupported_kind', b'<x/>', {})
 
 
 def test_isolated_parser_returns_rejection_without_network_or_storage():

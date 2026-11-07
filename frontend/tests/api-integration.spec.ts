@@ -1,7 +1,8 @@
 import {test, expect} from '@playwright/test';
 import fs from 'node:fs/promises';
 
-test('actual HTTP import, review and immutable PDF workflow', async ({page}, testInfo) => {
+for (const kind of ['zap_json','greenbone_xml']) {
+test(`actual HTTP ${kind} import, review and immutable PDF workflow`, async ({page}, testInfo) => {
   const password = process.env.REKNYX_BROWSER_PASSWORD;
   test.skip(!password, 'Dedicated disposable backend account required');
   const name = `Synthetic browser ${Date.now()}`;
@@ -14,9 +15,22 @@ test('actual HTTP import, review and immutable PDF workflow', async ({page}, tes
   await expect(page.getByRole('dialog')).toContainText('This feature is now implementing');
   await page.getByRole('button',{name:'Close dialog'}).click();
   await page.getByRole('link',{name:'Settings',exact:true}).click();
-  await expect(page.getByText('This feature is now implementing')).toHaveCount(4);
+  await expect(page.getByRole('checkbox',{name:'OpenVAS / Greenbone import available',exact:true})).toBeChecked();
+  await expect(page.getByRole('checkbox',{name:'OpenVAS / Greenbone import available',exact:true})).toBeDisabled();
+  await expect(page.getByRole('checkbox',{name:'Metasploit import available',exact:true})).not.toBeChecked();
+  await page.getByLabel('Default allowed TCP ports',{exact:true}).fill('0');
+  await page.getByRole('button',{name:'Save preferences',exact:true}).first().click();
+  await expect(page.getByRole('alert').filter({hasText:'Enter 1–16'})).toBeVisible();
+  await page.getByLabel('Default allowed TCP ports',{exact:true}).fill('8443');
+  await page.getByRole('checkbox',{name:'Include suspected findings by default',exact:true}).uncheck();
+  await page.getByRole('button',{name:'Save preferences',exact:true}).first().click();
+  await expect(page.getByText('Preferences saved in this browser.',{exact:true})).toBeVisible();
+  await page.reload();
+  await expect(page.getByLabel('Default allowed TCP ports',{exact:true})).toHaveValue('8443');
+  await expect(page.getByRole('checkbox',{name:'Include suspected findings by default',exact:true})).not.toBeChecked();
   await page.getByRole('link',{name:'Assessments',exact:true}).click();
   await page.getByRole('button',{name:'New assessment',exact:true}).click();
+  await expect(page.getByLabel('Explicit TCP ports')).toHaveValue('8443');
   await page.getByLabel('Assessment name').fill(name);
   await page.getByLabel('Dedicated IPv4 asset').fill('192.0.2.10');
   await page.getByLabel('Explicit TCP ports').fill('80,443');
@@ -29,23 +43,28 @@ test('actual HTTP import, review and immutable PDF workflow', async ({page}, tes
   await page.getByLabel('Message', {exact:true}).fill('Review the synthetic imported evidence.');
   await page.getByRole('button',{name:'Append message'}).click();
   await expect(page.getByText('Review the synthetic imported evidence.', {exact:true})).toBeVisible();
-  const raw = Buffer.from(JSON.stringify({'@programName':'ZAP','@version':'synthetic-browser-fixture',site:[{'@name':'http://192.0.2.10',alerts:[{pluginid:'10020',alert:'Synthetic browser missing header',riskcode:'2',confidence:'2',count:'1',solution:'Review the source header configuration.',instances:[{uri:'http://192.0.2.10/',method:'GET',evidence:'<script>untrusted evidence</script>'}]}]}]}));
+  let raw = Buffer.from(JSON.stringify({'@programName':'ZAP','@version':'synthetic-browser-fixture',site:[{'@name':'http://192.0.2.10',alerts:[{pluginid:'10020',alert:'Synthetic browser missing header',riskcode:'2',confidence:'2',count:'1',solution:'Review the source header configuration.',instances:[{uri:'http://192.0.2.10/',method:'GET',evidence:'<script>untrusted evidence</script>'}]}]}]}));
+  if(kind==='greenbone_xml') raw=await fs.readFile('../backend/tests/fixtures/greenbone/synthetic-report.xml');
+  const title=kind==='greenbone_xml'?'Synthetic outdated service':'Synthetic browser missing header';
+  await page.getByRole('combobox',{name:'Native format'}).selectOption(kind);
   await page.getByLabel('Source label',{exact:true}).fill('Synthetic browser fixture');
-  await page.getByLabel('Source file',{exact:true}).setInputFiles({name:'synthetic.json',mimeType:'application/json',buffer:raw});
+  await page.getByLabel('Source file',{exact:true}).setInputFiles({name:'synthetic.json',mimeType:kind==='greenbone_xml'?'application/xml':'application/json',buffer:raw});
   await page.getByRole('button',{name:'Upload evidence'}).click();
   await expect(page.getByText('succeeded',{exact:true}).first()).toBeVisible({timeout:30000});
   await page.getByRole('link',{name:'Findings',exact:true}).last().click();
-  await expect(page.getByRole('link',{name:'Synthetic browser missing header',exact:true})).toBeVisible();
+  await expect(page.getByRole('link',{name:title,exact:true})).toBeVisible();
   await page.getByText('Source references and uncertainty',{exact:true}).click();
-  await expect(page.getByText('/site/0/alerts/0/instances/0',{exact:true})).toBeVisible();
+  await expect(page.getByText(kind==='greenbone_xml'?'/report/results/result[1]':'/site/0/alerts/0/instances/0',{exact:true})).toBeVisible();
   const [sourceDownload] = await Promise.all([page.waitForEvent('download'),page.getByRole('link',{name:'Download original source bytes'}).click()]);
   expect(await fs.readFile((await sourceDownload.path())!)).toEqual(raw);
   await page.getByText('Source references and uncertainty',{exact:true}).click();
   await page.getByRole('combobox',{name:'Disposition',exact:true}).selectOption('accepted');
   await page.getByLabel('Review rationale',{exact:true}).fill('Accepted for synthetic fixture review; technical validation remains suspected.');
   await page.getByRole('button',{name:'Save review'}).click();
-  await expect(page.getByText('medium · review_next · suspected · accepted')).toBeVisible();
+  await expect(page.getByText(kind==='greenbone_xml'?'high · review_first · suspected · accepted':'medium · review_next · suspected · accepted')).toBeVisible();
   await page.getByRole('link',{name:'Report',exact:true}).click();
+  await expect(page.getByRole('checkbox',{name:'Include suspected findings',exact:true})).not.toBeChecked();
+  await page.getByRole('checkbox',{name:'Include suspected findings',exact:true}).check();
   await page.getByRole('button',{name:'Create report',exact:true}).click();
   await expect(page.getByRole('link',{name:'Download stored PDF'})).toBeVisible({timeout:45000});
   const [download] = await Promise.all([page.waitForEvent('download'),page.getByRole('link',{name:'Download stored PDF'}).click()]);
@@ -61,6 +80,18 @@ test('actual HTTP import, review and immutable PDF workflow', async ({page}, tes
   await expect(page.getByRole('link',{name:'Download stored PDF'})).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({path:testInfo.outputPath('api-mobile-report.png'),fullPage:true});
+  await page.getByRole('link',{name:'Settings',exact:true}).click();
+  await page.getByRole('combobox',{name:'Theme',exact:true}).selectOption('dark');
+  await page.getByRole('button',{name:'Save preferences',exact:true}).first().click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+  await page.getByRole('button',{name:'Reset preferences',exact:true}).click();
+  await expect(page.getByLabel('Default allowed TCP ports',{exact:true})).toHaveValue('80, 443');
+  await expect(page.getByRole('checkbox',{name:'Include suspected findings by default',exact:true})).toBeChecked();
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('api-mobile-settings.png'),fullPage:true});
   await page.getByRole('button',{name:'Sign out'}).click();
   await expect(page.getByRole('button',{name:'Sign in',exact:true})).toBeVisible();
 });
+
+}

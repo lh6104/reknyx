@@ -1,0 +1,7 @@
+{
+  "provenance": "synthetic_fixture",
+  "source": "Project-authored shape fixture; no scanner was run.",
+  "format_reference": "https://docs.greenbone.net/GSM-Manual/gos-22.04/en/API/GMP/gmp-22.04.html",
+  "sha256": "db5e9d63725d3a9bbfd6c48859187de864372881325e08fc929c40958cce5542",
+  "limitations": "Synthetic identifiers and evidence; does not establish native capture acceptance."
+}

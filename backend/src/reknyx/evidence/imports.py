@@ -25,6 +25,8 @@ def normalize(kind, raw, source):
     """Return validated canonical projections, retaining native fields separately."""
     if kind == 'zap_json':
         from reknyx.scanner_integrations.zap import parse
+    elif kind == 'greenbone_xml':
+        from reknyx.scanner_integrations.greenbone import parse
     elif kind == 'nmap_xml':
         from reknyx.scanner_integrations.nmap import parse
     else:
@@ -43,6 +45,12 @@ def normalize(kind, raw, source):
                         'parameter': item.parameter, 'redacted': False}
             observed_kind, native_id = 'vulnerability', item.native_id
             severity, confidence = item.raw_risk, item.raw_confidence
+        elif kind == 'greenbone_xml':
+            observed_asset = asset(item.address)
+            service = {'transport': item.protocol if item.protocol in ('tcp','udp') else 'unknown',
+                       'port': item.port, 'scheme': None, 'observation_ids': [identifier]}
+            location, observed_kind, native_id = None, item.kind, item.native_id
+            severity, confidence = item.raw_severity, item.raw_confidence
         else:
             observed_asset = asset(item.address)
             service = {'transport': item.protocol if item.protocol in ('tcp', 'udp') else 'unknown',
@@ -50,7 +58,7 @@ def normalize(kind, raw, source):
             location, observed_kind, native_id, severity, confidence = None, 'service', None, None, None
         observation = {**source, 'id': identifier, 'execution_id': None,
                        'raw_locator': item.raw_locator, 'kind': observed_kind,
-                       'source_tool': 'zap' if kind == 'zap_json' else 'nmap',
+                       'source_tool': {'zap_json':'zap','nmap_xml':'nmap','greenbone_xml':'greenbone'}[kind],
                        'native_id': native_id, 'asset': observed_asset, 'service': service,
                        'location': location, 'raw_severity': severity, 'raw_confidence': confidence}
         validate('Observation', observation)
@@ -73,6 +81,14 @@ def normalize(kind, raw, source):
                    'priority_reasons': ['Source severity requires review.' if item.severity in ('high', 'critical') else 'Context remains unknown.'],
                    'risk_rule_version': 'ordinal-v1', 'unknowns': ['Exposure, exploitability and asset impact are unknown.', 'CVSS is not supplied by this parser.'],
                    'remediation': item.solution or 'Review the source evidence and determine appropriate remediation.'}
+        if kind == 'greenbone_xml':
+            finding.update(cvss=item.cvss, cvss_vector=item.cvss_vector,
+                           cvss_version=item.cvss_version, cvss_source=item.cvss_source,
+                           cve_ids=list(item.cve_ids),
+                           confidence_method='Greenbone native QoD (uncalibrated detection quality, not probability)')
+            finding['unknowns'] = ['Exposure, exploitability and asset impact are unknown.']
+            if item.cvss is None:
+                finding['unknowns'].append('No supported explicit CVSS score/vector/version pair supplied; native NVT fields retained.')
         validate('Finding', finding)
         findings.append(finding)
     warnings = [{'code': w.code, 'message': 'Native parser warning: ' + w.code, 'raw_locator': w.raw_locator}
@@ -91,7 +107,7 @@ class ImportService:
         from reknyx.infrastructure.models import ImportRecord
         assessment = require_membership(self.session, self.actor_id, assessment_id, lock=True)
         validate('ImportCreate', {**metadata, 'file': 'original bytes'})
-        if metadata['kind'] not in ('zap_json', 'nmap_xml'):
+        if metadata['kind'] not in ('zap_json', 'nmap_xml', 'greenbone_xml'):
             raise DomainError(501, 'capability_not_implemented', 'This native format is in development')
         artifact = ArtifactService(self.session, self.store, self.actor_id).put_bytes(assessment_id, raw, {
             'source': 'import', 'content_type': 'application/json' if metadata['kind'] == 'zap_json' else 'application/xml',

@@ -50,7 +50,7 @@ All paths below are relative to `/api/v1`. The schema and exact fields are in th
 | Assessments | `POST /assessments`, `GET /assessments`, `GET /assessments/{id}` | Create and retrieve persisted assessment records. |
 | Scope and request | `PUT /assessments/{id}/scope`, `PUT /assessments/{id}/request` | Update using the expected version/revision. |
 | Conversation | `GET` and `POST /assessments/{id}/messages` | Read or append messages. Appending does not invoke a model. |
-| Imports | `POST /assessments/{id}/imports`, `GET /assessments/{id}/imports/{import_id}` | Upload original Nmap XML or traditional ZAP JSON and poll the worker. |
+| Imports | `POST /assessments/{id}/imports`, `GET /assessments/{id}/imports/{import_id}` | Upload original Nmap XML, traditional ZAP JSON or Greenbone XML and poll the worker. |
 | Evidence | `GET /assessments/{id}/observations`, `/artifacts`, `/artifacts/{artifact_id}`, `/artifacts/{artifact_id}/download` | Inspect observations, metadata, hashes and original bytes. |
 | Findings | `GET /assessments/{id}/findings`, `/findings/{finding_id}`; `POST /findings/{finding_id}/review` | Read and review findings; disposition is separate from technical validation. |
 | Reports | `POST` and `GET /assessments/{id}/reports`; `GET /reports/{report_id}`, `/reports/{report_id}/snapshot`, `/reports/{report_id}/download` | Freeze a snapshot, poll rendering, inspect it and download the ready PDF. |
@@ -58,7 +58,7 @@ All paths below are relative to `/api/v1`. The schema and exact fields are in th
 
 For the shortened evidence, finding, and report paths in the table, retain the `/assessments/{id}` prefix. Lists return `items` and `next_cursor`; use `limit` and `cursor` to read subsequent pages. Reads and downloads enforce assessment ownership.
 
-Planning, real model analysis, Greenbone import, scanner execution, and approval decisions remain in development. Planned calls may return HTTP 501. A draft PDF is not automatically a client-ready assessment.
+Planning, real model analysis, scanner execution, and approval decisions remain in development. Planned calls may return HTTP 501. A draft PDF is not automatically a client-ready assessment.
 
 ## Try the full synthetic workflow
 
@@ -109,3 +109,28 @@ The cookie and session response in `$REKNYX_TEST_DIR` are sensitive; delete that
 - **501**: the requested capability is still in development.
 - **Import/report stays queued**: verify the worker is running against the same database and artifact root; do not blindly replay work whose outcome is uncertain.
 - **503 readiness**: inspect the local PostgreSQL connection and migration state; do not reset the database or its volume.
+
+## Test Greenbone import
+
+Use `backend/tests/fixtures/greenbone/synthetic-report.xml` in the import form,
+select **Greenbone XML**, and declare `synthetic_fixture` provenance. This file is
+project-authored synthetic evidence, not a scanner capture. Follow the same
+import → review → report steps above. The synthetic result retains its OID,
+QoD and source CVSS fields, and stays suspected after analyst acceptance.
+Only one completed report is supported per upload. Live Greenbone scanning is
+not implemented; this operation imports previously recorded bytes only.
+
+## Settings in API mode
+
+Settings follows the prototype's Analyst and report, Assessment defaults, Safety,
+and Tool integrations sections. Nmap, OWASP ZAP and Greenbone show **Import-only**
+when the server reports their import capabilities available. Disabled checkboxes
+are status indicators; they do not enable scans or grant authorization. Refresh
+Settings to fetch current server capabilities.
+
+You can save the default TCP ports, whether to include suspected findings in new
+report forms, and the display theme. These non-sensitive preferences are saved in
+this browser under `reknyx.api.preferences.v1`. Existing scope and report snapshots
+are unaffected. Analyst identity is supplied by the authenticated server session.
+Rate limits, execution deadlines, audit customization and approval configuration
+remain in development. Reset preferences restores browser defaults only.

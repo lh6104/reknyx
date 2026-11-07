@@ -20,8 +20,8 @@ URL = os.getenv('REKNYX_TEST_DATABASE_URL')
 pytestmark = pytest.mark.skipif(not URL, reason='isolated PostgreSQL URL not supplied')
 
 
-@pytest.mark.parametrize('unsupported_glyph,publication_failure', [(False, False), (True, False), (False, True)])
-def test_frozen_report_survives_review_changes_and_restart(tmp_path, monkeypatch, unsupported_glyph, publication_failure):
+@pytest.mark.parametrize('kind,unsupported_glyph,publication_failure', [('zap_json',False,False),('zap_json',True,False),('zap_json',False,True),('greenbone_xml',False,False)])
+def test_frozen_report_survives_review_changes_and_restart(tmp_path, monkeypatch, kind, unsupported_glyph, publication_failure):
     password = uuid4().hex
     settings = Settings(database_url=URL, artifact_root=tmp_path, username='report_' + uuid4().hex,
                         password_hash=hash_password(password), actor_id=str(uuid4()),
@@ -43,9 +43,12 @@ def test_frozen_report_survives_review_changes_and_restart(tmp_path, monkeypatch
             {'@name': 'https://lab.example', 'alerts': [{'pluginid': '1', 'alert': '<b>Synthetic alert</b>' + ('\U0001f680' if unsupported_glyph else ''),
                 'riskcode': '3', 'confidence': '2', 'count': '1', 'solution': 'Review configuration',
                 'instances': [{'uri': 'https://lab.example/login', 'method': 'GET'}]}]}]}).encode()
+        if kind == 'greenbone_xml':
+            raw = (Path(__file__).parents[1] / 'fixtures/greenbone/synthetic-report.xml').read_bytes()
+        parser_version = 'greenbone_xml_results_v1.0' if kind == 'greenbone_xml' else 'zap_traditional_json_v1.0'
         imported = client.post(path + '/imports', headers={**headers, 'Idempotency-Key': uuid4().hex},
-                               data={'kind': 'zap_json', 'observed_at': 'null', 'provenance': 'synthetic_fixture', 'source_label': 'Synthetic report fixture'},
-                               files={'file': ('fixture.json', raw, 'application/json')})
+                               data={'kind': kind, 'observed_at': 'null', 'provenance': 'synthetic_fixture', 'source_label': 'Synthetic report fixture'},
+                               files={'file': ('fixture.json', raw, 'application/xml' if kind == 'greenbone_xml' else 'application/json')})
         assert imported.status_code == 202, imported.text
         assert import_one(app.state.session_factory, app.state.artifact_store)
         finding = client.get(path + '/findings').json()['items'][0]
@@ -63,7 +66,7 @@ def test_frozen_report_survives_review_changes_and_restart(tmp_path, monkeypatch
         assert frozen.status_code == 200, frozen.text
         validate('ReportSnapshot', frozen.json())
         assert frozen.json()['counts']['accepted_findings'] == 1
-        assert 'zap_traditional_json_v1.0' in frozen.json()['tool_summary'][0]
+        assert parser_version in frozen.json()['tool_summary'][0]
         assert 'synthetic_fixture' in frozen.json()['tool_summary'][0]
         if publication_failure:
             def disk_full(_content):
@@ -90,7 +93,7 @@ def test_frozen_report_survives_review_changes_and_restart(tmp_path, monkeypatch
         pdf = client.get(report_path + '/download')
         assert pdf.status_code == 200 and pdf.content.startswith(b'%PDF-'), pdf.text[:200]
         report_text = subprocess.check_output(['pdftotext', '-', '-'], input=pdf.content).decode()
-        assert 'zap_traditional_json_v1.0' in report_text
+        assert parser_version in report_text
         assert 'Synthetic report fixture' in report_text
         assert 'synthetic_fixture' in report_text
         digest = hashlib.sha256(pdf.content).hexdigest()

@@ -1,7 +1,7 @@
 # Reknyx backend foundation
 
 This backend provides the initial session, assessment, message, audit and private
-artifact services, durable Nmap/ZAP imports, finding review and immutable draft PDF reports.
+artifact services, durable Nmap/ZAP/Greenbone imports, finding review and immutable draft PDF reports.
 Scanner execution and planning remain in development. G0 verification is recorded in
 `contracts/review-status.json`; full browser acceptance is reported separately.
 
@@ -76,8 +76,8 @@ uv run python -m reknyx.orchestration.worker
 ```
 
 `--once` processes at most one queued import and one pending report. Imports accept
-`nmap_xml` and traditional `zap_json` original bytes with declared provenance.
-Greenbone and live scanners remain unavailable. The worker claims durable rows,
+`nmap_xml`, traditional `zap_json` and `greenbone_xml` original bytes with declared provenance.
+Live scanners remain unavailable. The worker claims durable rows,
 parses in a separate process (10 seconds/512 MiB), and renders frozen snapshots in
 a separate process (30 seconds/512 MiB). Nmap open services stay observations;
 ZAP candidates retain suspected technical validation after analyst acceptance.
@@ -97,3 +97,14 @@ The DB init script grants the application runtime role; initialization applies o
 to a fresh database volume. Never replace existing volumes to apply credential
 changes. API and frontend ports bind to loopback. The Compose configuration is not
 production deployment acceptance.
+
+Greenbone import supports one completed (`scan_run_status=Done`) XML report,
+either standalone or inside a successful GMP `get_reports_response`/report wrapper.
+It rejects document types/entities, multi-report exports, malformed hosts/ports and
+resource limits. Non-XML/base64 and incomplete scans are unsupported. Result-count
+truncation is labelled partial. Findings retain source severity and uncalibrated QoD;
+log/error records remain informational observations. Original bytes and native NVT
+fields remain traceable. Only an explicit supported CVSS 3.0/3.1 score/vector pair
+populates canonical CVSS; missing/other native CVSS fields remain in source evidence.
+Verification uses the labelled synthetic fixture under `tests/fixtures/greenbone/`;
+a permitted native capture and broader format acceptance remain separate gates.
