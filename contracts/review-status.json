@@ -1,6 +1,6 @@
 {
   "contract_version": "0.1.0",
-  "status": "candidate_owner_approved_pending_gate_verification",
+  "status": "g0_verified",
   "frontend_owner": {
     "status": "approved",
     "reviewer": "admin",
@@ -13,7 +13,15 @@
     "reviewed_at": "2026-11-06T08:51:45Z",
     "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f"
   },
-  "generated_consumers": "candidate only; actual frontend integration not started",
+  "generated_consumers": "Frontend API mode consumes generated declarations and response schemas; Phase 1 actual HTTP browser workflow verified with synthetic evidence. Remaining candidate operations stay unimplemented.",
   "runtime_implemented": false,
-  "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f"
+  "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f",
+  "gate_verification": {
+    "status": "passed",
+    "verified_at": "2026-11-07T15:31:14.888769+00:00",
+    "openapi_sha256": "9bd9fdb3883f9b7b3533d722a6242de4a4b1da012207a58f55ba8bb52cdcb65f",
+    "evidence_level": "offline_contract",
+    "input_sha256": "5545488004093801ba7fb24e0c68a403490908606b74587a5c46da3a52e0cdd3",
+    "local_evidence_path": "docs/implementation/evidence/g0/2026-11-07T15-31-14.888769+00-00.json"
+  }
 }

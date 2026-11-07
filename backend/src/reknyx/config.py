@@ -17,6 +17,7 @@ class Settings:
     actor_id: str = field(default_factory=lambda: str(uuid5(NAMESPACE_URL, "reknyx:local-admin")))
     cookie_secure: bool | None = None
     max_artifact_bytes: int = 20 * 1024 * 1024
+    enable_api_docs: bool = False
 
     def __post_init__(self):
         if not self.database_url.startswith("postgresql+psycopg://"):
@@ -40,4 +41,4 @@ class Settings:
 
     @classmethod
     def from_env(cls):
-        return cls(database_url=os.environ["REKNYX_DATABASE_URL"], artifact_root=Path(os.environ["REKNYX_ARTIFACT_ROOT"]), password_hash=os.environ["REKNYX_PASSWORD_HASH"], username=os.getenv("REKNYX_USERNAME", "admin"), display_name=os.getenv("REKNYX_DISPLAY_NAME", "Local administrator"), actor_id=os.getenv("REKNYX_ACTOR_ID", str(uuid5(NAMESPACE_URL, "reknyx:local-admin"))), allowed_origins=tuple(os.getenv("REKNYX_ALLOWED_ORIGINS", "http://localhost:3000").split(",")))
+        return cls(database_url=os.environ["REKNYX_DATABASE_URL"], artifact_root=Path(os.environ["REKNYX_ARTIFACT_ROOT"]), password_hash=os.environ["REKNYX_PASSWORD_HASH"], username=os.getenv("REKNYX_USERNAME", "admin"), display_name=os.getenv("REKNYX_DISPLAY_NAME", "Local administrator"), actor_id=os.getenv("REKNYX_ACTOR_ID", str(uuid5(NAMESPACE_URL, "reknyx:local-admin"))), allowed_origins=tuple(os.getenv("REKNYX_ALLOWED_ORIGINS", "http://localhost:3000").split(",")), enable_api_docs=os.getenv("REKNYX_ENABLE_API_DOCS", "false").lower() == "true")

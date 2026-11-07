@@ -3,8 +3,15 @@ name = "reknyx"
 version = "0.1.0"
 requires-python = ">=3.13,<3.14"
 dependencies = [
-  "fastapi>=0.121,<1", "uvicorn>=0.38,<1", "sqlalchemy>=2.0.44,<2.1",
-  "psycopg[binary]>=3.2,<4", "alembic>=1.17,<2", "jsonschema>=4.25,<5", "pyyaml>=6,<7",
+  "fastapi>=0.121,<1",
+  "uvicorn>=0.38,<1",
+  "sqlalchemy>=2.0.44,<2.1",
+  "psycopg[binary]>=3.2,<4",
+  "alembic>=1.17,<2",
+  "jsonschema>=4.25,<5",
+  "pyyaml>=6,<7",
+  "reportlab>=4.4,<5",
+  "python-multipart>=0.0.20,<1",
 ]
 
 [dependency-groups]

@@ -1,0 +1,66 @@
+name: reknyx
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: reknyx
+      POSTGRES_PASSWORD: ${REKNYX_POSTGRES_PASSWORD:?Set migration-owner password}
+      REKNYX_RUNTIME_PASSWORD: ${REKNYX_RUNTIME_PASSWORD:?Set runtime password}
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./deploy/postgres/10-runtime-role.sh:/docker-entrypoint-initdb.d/10-runtime-role.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U postgres -d reknyx]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  migrate:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      REKNYX_DATABASE_URL: ${REKNYX_MIGRATION_DATABASE_URL:?Set owner PostgreSQL URL using db hostname}
+    command: [alembic, upgrade, head]
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment: &runtime
+      REKNYX_DATABASE_URL: ${REKNYX_RUNTIME_DATABASE_URL:?Set non-owner PostgreSQL URL using db hostname}
+      REKNYX_PASSWORD_HASH: ${REKNYX_PASSWORD_HASH:?Set scrypt password hash}
+      REKNYX_ALLOWED_ORIGINS: http://localhost:3000
+      REKNYX_ARTIFACT_ROOT: /var/lib/reknyx/artifacts
+    volumes:
+      - artifacts:/var/lib/reknyx
+    ports: [127.0.0.1:8000:8000]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment: *runtime
+    command: [python, -m, reknyx.orchestration.worker]
+    volumes:
+      - artifacts:/var/lib/reknyx
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_REKNYX_MODE: api
+    environment:
+      REKNYX_BACKEND_ORIGIN: http://api:8000
+    ports: [127.0.0.1:3000:3000]
+    depends_on: [api]
+volumes:
+  database:
+  artifacts:

@@ -1,10 +1,12 @@
-# Reknyx — evidence-led assessment workspace
+# Reknyx
 
-Reknyx is an analyst-controlled, conversational VAPT assistant project, formerly named CoreVAPT. The current checkout contains research, proposed platform specifications, the supplied HTML prototype, and a **Next.js + Tailwind CSS frontend with synthetic mock data**.
+Reknyx is an analyst-controlled AI assistant for authorized vulnerability assessment and penetration testing. It is designed to interpret scanner evidence, explain the next investigation, correlate findings, support human review, and produce a traceable report.
 
-The frontend is a working local preview. Backend persistence, model inference, scanner execution, native import parsing, and final PDF generation are **In development**. Historical research retains its original CoreVAPT titles and verification dates.
+**Current status:** the frontend supports explicit synthetic preview and authenticated API modes. The Phase 1 import/review/PDF workflow has passed a real HTTP browser test with synthetic evidence. The backend supports authenticated assessment/message persistence, private artifacts, durable Nmap/ZAP import, attributed finding review and immutable draft PDF reports. G0 executable contract verification is recorded. Real AI analysis, Greenbone import and scanner execution remain **In development**. See the [backend setup](backend/README.md) for worker commands and recovery limits.
 
-## Run the frontend
+## Run the current application
+
+Requires Node.js 20.9 or later and npm. Versions are pinned in the frontend lockfile.
 
 ```bash
 cd frontend
@@ -12,36 +14,30 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:3000**. Requires Node.js 20.9 or later. See [frontend setup and behavior](frontend/README.md) for pinned versions, production commands, routes, testing, and preview limitations.
+Open `http://localhost:3000`. See the [frontend guide](frontend/README.md) for production and verification commands. Assessment data resets on reload; only non-sensitive preferences persist. Use synthetic data in this preview.
 
-The frontend converts [Reknyx V7.4 HTML](reknyx_frontend_v7_4.html) into typed React components while retaining its visual direction and workflows. The original HTML is preserved unchanged and can still be opened directly in a browser.
+## Understand the project
 
-Implemented preview flows include the dashboard, assessment creation and scope, deterministic assistant, plan and approval review, failure/retry history, finding evidence and disposition, local file attachments, frozen sample reports, browser printing, and preferences. Every route labels synthetic data. Approval never executes a scan, and attachments never claim native parsing.
+| Read | Purpose |
+| --- | --- |
+| [Architecture and AI workflow](docs/architecture/README.md) | How evidence, AI analysis, policy, execution and review fit together |
+| [Project structure](docs/architecture/STRUCTURE.md) | Existing code, target modules, engineering ownership and Git policy |
+| [API overview](docs/api/README.md) | Interface authority, lifecycle and frontend integration |
+| [Security overview](docs/security/README.md) | Scope, approvals, evidence and model trust |
+| [Decision overview](docs/decisions/README.md) | Current architectural direction and pending gates |
+| [Contributor guide](CONTRIBUTING.md) | How to develop, verify and describe a change |
+| [Agent instructions](AGENTS.md) | Repository rules for coding assistants |
 
-New assessment data and reports reset on reload; only non-sensitive preferences persist. Do not use the preview for production evidence or authorization.
+The intended workflow is authorized request/scope → evidence-led planning → permitted import/execution → normalization/correlation → AI analysis and risk review → human decision → immutable report. Models propose interpretations/actions; server policy and explicit grants control execution.
 
-## Verification
+## Implementation direction
 
-```bash
-npm --prefix frontend test
-npm --prefix frontend run typecheck
-npm --prefix frontend run build
-npm --prefix frontend run test:e2e
-```
+Keep the existing frontend and add a FastAPI modular monolith, PostgreSQL canonical state, a separate worker from the same backend package, and private immutable evidence storage. Organize the backend by cybersecurity responsibility: `assessments/`, `security_analysis/`, `scope_control/`, `scanner_integrations/`, `evidence/`, `findings/`, and `reporting/`, supported by `infrastructure/` and `orchestration/`. Use `main.py` and `api/` for assembly/request wiring, `shared/` for minimal pure shared types, `backend/migrations/` for Alembic, and `deploy/` with root `docker-compose.yml` for deployment setup when implemented. The security analysis module proposes evidence-grounded interpretations and next actions; scope control, scanner parsing, canonical findings and reporting enforce their own responsibilities.
 
-The browser suite needs compatible Playwright Chromium and uses loopback port 3100. It writes screenshots, traces, and a synthetic sample PDF. See the [current verification record](docs/implementation/reknyx-frontend-verification.md) for actual results and evidence. Preview checks do not establish live scanner, model, backend, or platform readiness.
+The first implementation milestone is implemented: durable import → finding review → evidence-linked draft PDF, including real frontend/API wiring. Executable OpenAPI schemas and validated examples define the interface. Real provider evaluation and authorized live execution have separate prerequisites and evidence gates.
 
-## Project context
+## What belongs in Git
 
-- [Mandatory requirements: 1.pdf](1.pdf) and [source provenance](docs/research/sources/requirements-1-provenance.json).
-- [Project context](context.md), [readiness decisions](docs/research/READINESS_DECISION_REPORT.md), and [research index](docs/research/README.md).
-- [Reknyx frontend design](docs/superpowers/specs/2026-11-05-reknyx-frontend-design.md) and [implementation plan](docs/superpowers/plans/2026-11-05-reknyx-frontend.md).
-- [Platform design](docs/superpowers/specs/2026-11-02-corevapt-platform-design.md), [draft contracts](docs/superpowers/specs/2026-11-02-corevapt-contracts.md), and [G0 decisions](docs/research/G0_CONTRACT_DECISIONS.md).
-- [Master plan](docs/superpowers/plans/2026-11-02-00-master-plan.md), [frontend handoff](docs/superpowers/plans/2026-11-02-01-frontend-handoff.md), [parallel ownership](docs/superpowers/plans/2026-11-02-06-parallel-dispatch.md), and [testing plan](docs/superpowers/plans/2026-11-02-05-testing-acceptance.md).
-- [Scanner readiness](docs/research/SCANNER_READINESS_DECISIONS.md), [provider decisions](docs/research/MODEL_PROVIDER_DECISIONS.md), [safety/recovery](docs/research/SAFETY_RECOVERY_PILOT_DECISIONS.md), and [competition/real-world evaluation](docs/research/COMPETITION_METRICS_AND_REAL_WORLD.md).
+Version application code, dependencies, executable contracts, runtime prompts, permitted test fixtures, tests, CI/runbooks when implemented, and the overview docs above. Detailed research, implementation plans, Superpowers documents, standalone prototypes, source PDFs, local skill packs, screenshots and evaluation/run outputs are ignored and retained locally.
 
-The proposed backend remains a FastAPI modular monolith with PostgreSQL canonical state, a separate worker, and private immutable artifacts. G0 executable schemas and backend integration remain pending. The preview introduces no backend endpoint or live execution capability.
-
-Historical V6.2–V6.4 verification records and screenshots remain research evidence for their dated prototype runs. Their HTML files are absent from this checkout; the current user-selected source is V7.4. The current frontend navigation follows that source while preserving the six assessment lifecycle meanings.
-
-Project documentation and UI copy are English. Development [skills](.agents/skills) guide implementation; they are not runtime product features. Competition requirements, proposed architecture, synthetic UI behavior, and verified operational capabilities remain distinct.
+Tracked docs are self-contained and do not require local planning files. Ignoring a path does not erase older Git history; this cleanup changes the next repository snapshot only. No backend or AI runtime is implemented by the repository cleanup.

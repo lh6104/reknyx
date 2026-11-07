@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PreviewProvider } from "@/lib/preview-context";
 import { AppShell } from "@/components/app-shell";
+import { ApiWorkspace } from "@/components/api-workspace";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en" suppressHydrationWarning><body><PreviewProvider><AppShell>{children}</AppShell></PreviewProvider></body></html>;
+  return <html lang="en" suppressHydrationWarning><body>{process.env.NEXT_PUBLIC_REKNYX_MODE === 'api' ? <ApiWorkspace/> : <PreviewProvider><AppShell>{children}</AppShell></PreviewProvider>}</body></html>;
 }

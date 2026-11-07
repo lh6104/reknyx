@@ -1,4 +1,4 @@
-# Dependencies and generated frontend output
+# Dependencies and generated application output
 node_modules/
 .next/
 out/
@@ -6,6 +6,9 @@ dist/
 build/
 test-results/
 playwright-report/
+coverage/
+htmlcov/
+.coverage
 *.tsbuildinfo
 
 # Local configuration and credentials
@@ -18,7 +21,7 @@ playwright-report/
 *.p12
 *.pfx
 
-# Local runtime state and caches
+# Private runtime state, artifacts and evaluation outputs
 .venv/
 venv/
 __pycache__/
@@ -28,18 +31,46 @@ __pycache__/
 .cache/
 artifacts/
 volumes/
+eval-results/
 *.sqlite
 *.sqlite3
 *.db
+.local/
+
+# Only reader-facing overview files belong under tracked docs/.
+# Detailed research, implementation, Superpowers, archives and evidence stay local.
+/docs/*
+!/docs/architecture/
+/docs/architecture/*
+!/docs/architecture/README.md
+!/docs/architecture/STRUCTURE.md
+!/docs/api/
+/docs/api/*
+!/docs/api/README.md
+!/docs/security/
+/docs/security/*
+!/docs/security/README.md
+!/docs/decisions/
+/docs/decisions/*
+!/docs/decisions/README.md
+
+# Standalone prototypes and supplied local source documents
+/*.html
+/*.pdf
+/prototypes/
+**/prototypes/
+/tests/prototype-*
+/context.md
+
+# Local coding-agent skill packs and generated editor instructions.
+# Keep the hand-maintained root AGENTS.md tracked.
+/.agents/
+/.codex/
+/skills-lock.json
+/frontend/AGENTS.md
+
+# OS and package-manager logs
 .DS_Store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Local prototypes, source documents and agent skills
-/*.html
-/1.pdf
-/CoreVAPT*.pdf
-/context.md
-/.agents/skills/
-/.codex/skills/

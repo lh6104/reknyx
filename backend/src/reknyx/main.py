@@ -25,7 +25,7 @@ def create_app(settings: Settings | None = None):
         yield
         engine.dispose()
 
-    app = FastAPI(title="Reknyx", version="0.1.0", lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
+    app = FastAPI(title="Reknyx", version="0.1.0", lifespan=lifespan, docs_url="/docs" if settings.enable_api_docs else None, redoc_url=None, openapi_url="/openapi.json" if settings.enable_api_docs else None)
     app.state.settings = settings
     app.state.engine = engine
     app.state.session_factory = factory

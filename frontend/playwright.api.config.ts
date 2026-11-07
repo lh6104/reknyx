@@ -1,0 +1,2 @@
+import {defineConfig, devices} from '@playwright/test';
+export default defineConfig({testDir:'./tests', testMatch:'api-integration.spec.ts', workers:1, retries:0, timeout:90000, reporter:'list', use:{baseURL:process.env.REKNYX_BROWSER_ORIGIN || 'http://localhost:3100', trace:'retain-on-failure', screenshot:'only-on-failure', ...devices['Desktop Chrome'], launchOptions:process.env.CHROMIUM_EXECUTABLE ? {executablePath:process.env.CHROMIUM_EXECUTABLE} : {}}});

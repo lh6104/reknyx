@@ -14,15 +14,15 @@ class ArtifactService:
     def __init__(self, session, store, actor_id):
         self.session, self.store, self.actor_id = session, store, actor_id
 
-    def put_bytes(self, assessment_id, content, metadata):
-        require_membership(self.session, self.actor_id, assessment_id)
+    def put_bytes(self, assessment_id, content, metadata, *, actor_type="analyst"):
+        require_membership(self.session, self.actor_id, assessment_id, lock=True)
         validate("ArtifactInput", metadata)
         blob = self.store.put(content)
         identifier, instant = str(uuid4()), now()
         data = {"id": identifier, "assessment_id": assessment_id, **metadata, "sha256": blob.sha256, "size_bytes": blob.size, "ingested_at": timestamp(instant), "parser_version": None, "download_url": f"/api/v1/assessments/{assessment_id}/artifacts/{identifier}/download"}
         validate("Artifact", data)
         self.session.add(Artifact(id=identifier, assessment_id=assessment_id, created_at=instant, storage_key=blob.storage_key, data=data))
-        append_event(self.session, self.actor_id, assessment_id, "artifact.stored", identifier, "Original immutable bytes stored with SHA-256 and source metadata")
+        append_event(self.session, self.actor_id, assessment_id, "artifact.stored", identifier, "Original immutable bytes stored with SHA-256 and source metadata", actor_type=actor_type)
         return data
 
     def manifest(self, assessment_id, artifact_id):

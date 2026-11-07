@@ -1,8 +1,9 @@
 # Reknyx contract candidate 0.1.0
 
-P1-01 delivers an executable **candidate**, not a passed G0 gate. Frontend/backend
+P1-01 delivers an executable contract with offline G0 verification. Frontend/backend
 owner approvals are recorded under `admin` in [review-status.json](review-status.json)
-against the exact OpenAPI SHA-256. Foundation services are being implemented;
+against the exact OpenAPI SHA-256, alongside an exact-input gate attestation and
+local evidence path. Foundation services are being implemented;
 scanner execution, providers and PDF generation remain in development.
 
 ## Authority and files
@@ -67,6 +68,17 @@ npm --prefix contracts run check:generated
 npm --prefix contracts run check:types
 npm --prefix contracts run check:hashes
 ```
+
+To verify the complete offline G0 gate, including recorded owner approvals and all
+five commands above, run `.venv/bin/python scripts/verify_g0.py`. Add `--record` to
+atomically refresh the successful evidence in `review-status.json`. Any command
+failure or changed input prevents recording success. Recorded results describe the
+hashed inputs at the recorded time; rerun after changing those inputs. This command
+keeps detailed command output under ignored `docs/implementation/evidence/g0/` and
+retains only the portable gate attestation in the review ledger. It
+does not certify actual HTTP integration or platform readiness. The standalone
+validator deliberately reports pending final gate verification because it does not
+run the complete gate.
 
 Installation needs package-registry access. After installation, these checks use
 local files/processes only, with no service startup, scanner or provider traffic.
@@ -230,7 +242,7 @@ the delivered UI. Review this candidate hash, strict fields/nullability/limits,
 typed errors and independent state machines; record actual reviewer/time/hash.
 Generated consumer checks and an independent coding-agent review do not replace
 the user-appointed frontend/backend owners' acceptance. Admin has approved both
-roles; final G0 verification, actual frontend HTTP integration, native parsing,
+roles; the complete offline G0 verification is recorded separately from actual frontend HTTP integration, native parsing,
 model evaluation, live execution, PDF release and pilot gates remain open.
 
 Requirement review used the ten-page local `1.pdf`, SHA-256
