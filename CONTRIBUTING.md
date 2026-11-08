@@ -35,6 +35,13 @@ Backend tests must use isolated PostgreSQL databases/volumes where database sema
 
 Evaluate model grounding, valid evidence references, scope/action applicability, unknown handling, malicious-evidence resistance and graceful provider failure separately from parser fidelity and authorized live scanner execution. A synthetic fixture is not a native capture; a valid schema is not a grounded conclusion; a generated report is not a verified assessment.
 
+The [CI workflow](.github/workflows/ci.yml) runs the offline contract gate, frontend
+checks and a disposable Compose/browser integration lane. See [backend setup](backend/README.md#ci-and-disposable-container-verification)
+for local prerequisites and the exact runner. The [staging setup](backend/README.md#vultr-staging-preparation)
+uses a separate image-only configuration and read-only preflight. CI does not publish,
+deploy, run scanners or call model providers. Hosted CI, container execution, remote
+TLS and operational recovery each require their own actual results.
+
 ## Reporting a change
 
 State the problem and resulting behavior, affected paths/interfaces, exact checks actually run, outcomes and evidence level, and remaining dependencies. Distinguish planned/implemented/locally verified/integrated behavior from runtime availability. Do not claim judge scores, production readiness, calibrated confidence or efficiency without corresponding evidence.

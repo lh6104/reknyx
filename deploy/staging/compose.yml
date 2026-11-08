@@ -1,0 +1,118 @@
+# Image-only, deterministic import/review/PDF staging. Not a live scanner sandbox.
+services:
+  db:
+    image: ${REKNYX_POSTGRES_IMAGE:?Set PostgreSQL 17 image by digest}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: reknyx
+      POSTGRES_PASSWORD: ${REKNYX_POSTGRES_PASSWORD:?Set unique owner password}
+      REKNYX_RUNTIME_PASSWORD: ${REKNYX_RUNTIME_PASSWORD:?Set unique runtime password}
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ../postgres/10-runtime-role.sh:/docker-entrypoint-initdb.d/10-runtime-role.sh:ro
+    networks: [data]
+    mem_limit: 768m
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U postgres -d reknyx]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    logging: &logging
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
+  migrate:
+    image: ${REKNYX_BACKEND_IMAGE:?Set backend image by digest}
+    environment:
+      REKNYX_DATABASE_URL: ${REKNYX_MIGRATION_DATABASE_URL:?Set owner database URL}
+    command: [alembic, upgrade, head]
+    networks: [data]
+    depends_on:
+      db: {condition: service_healthy}
+    logging: *logging
+  api:
+    image: ${REKNYX_BACKEND_IMAGE:?Set backend image by digest}
+    restart: unless-stopped
+    user: 10001:10001
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp:size=128m,mode=1777]
+    environment: &runtime
+      REKNYX_DATABASE_URL: ${REKNYX_RUNTIME_DATABASE_URL:?Set non-owner runtime database URL}
+      REKNYX_PASSWORD_HASH: ${REKNYX_PASSWORD_HASH:?Set scrypt password hash}
+      REKNYX_ALLOWED_ORIGINS: https://${REKNYX_STAGING_HOST:?Set public staging DNS hostname}
+      REKNYX_ARTIFACT_ROOT: /var/lib/reknyx/artifacts
+      REKNYX_ANALYSIS_PROVIDER: deterministic
+      REKNYX_ENABLE_API_DOCS: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    volumes: [artifacts:/var/lib/reknyx]
+    networks: [app, data]
+    mem_limit: 768m
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/ready', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    logging: *logging
+  worker:
+    image: ${REKNYX_BACKEND_IMAGE:?Set backend image by digest}
+    restart: unless-stopped
+    user: 10001:10001
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp:size=128m,mode=1777]
+    environment: *runtime
+    command: [python, -m, reknyx.orchestration.worker]
+    volumes: [artifacts:/var/lib/reknyx]
+    networks: [data]
+    mem_limit: 1536m
+    stop_grace_period: 60s
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    logging: *logging
+  frontend:
+    image: ${REKNYX_FRONTEND_IMAGE:?Set API-mode frontend image by digest}
+    restart: unless-stopped
+    user: node
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+      - /app/frontend/.next/cache:size=64m,uid=1000,gid=1000,mode=0700
+    environment:
+      REKNYX_BACKEND_ORIGIN: http://api:8000
+      NEXT_PUBLIC_REKNYX_MODE: api
+      NEXT_TELEMETRY_DISABLED: '1'
+    networks: [edge, app]
+    mem_limit: 768m
+    depends_on:
+      api: {condition: service_healthy}
+    logging: *logging
+  proxy:
+    image: ${REKNYX_PROXY_IMAGE:?Set Caddy image by digest}
+    restart: unless-stopped
+    environment:
+      REKNYX_STAGING_HOST: ${REKNYX_STAGING_HOST:?Set public staging DNS hostname}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [edge]
+    mem_limit: 256m
+    depends_on: [frontend]
+    logging: *logging
+networks:
+  edge:
+  app: {internal: true}
+  data: {internal: true}
+volumes:
+  database:
+  artifacts:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,5 @@
+# Used only with root docker-compose.yml and a unique disposable project.
+services:
+  db:
+    ports:
+      - "127.0.0.1:${REKNYX_CI_DB_PORT:?Set disposable database port}:5432"

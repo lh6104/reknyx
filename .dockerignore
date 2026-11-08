@@ -16,3 +16,15 @@ docs/research
 docs/superpowers
 *.pdf
 *.html
+**/artifacts
+**/volumes
+**/eval-results
+**/.local
+**/.cache
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+prototypes
+skills-lock.json
+.github

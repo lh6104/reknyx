@@ -347,3 +347,117 @@ cases. Comparison exit code 0 means a valid comparison file was written, not tha
 the candidate passed a quality gate. It does not authenticate how input runs were
 executed or infer significance from a small synthetic sample. No provider calls,
 retries, report overwrites or changes to the frozen labels are performed.
+
+## CI and disposable container verification
+
+[CI](../.github/workflows/ci.yml) runs contract verification, frontend unit/type/build
+and preview browser checks, then a disposable container integration lane. Actions
+are pinned by SHA, repository permission is read-only, and dependencies are locked.
+The workflow does not publish images, deploy, call providers or execute scanners.
+Hosted CI results require an actual GitHub workflow run.
+
+For the same container lane locally, start Docker Engine/Compose and install
+`pdftotext` (the `poppler-utils` package on Debian/Ubuntu). From the repository root:
+
+```bash
+uv sync --project backend --frozen
+npm --prefix frontend ci
+cd frontend
+npx playwright install chromium
+cd ..
+bash scripts/ci/compose-check.sh
+```
+
+The runner generates a unique project, private temporary credentials and loopback
+ports. It builds real images, migrates a fresh PostgreSQL volume, runs backend tests
+with the non-owner login, then starts API/worker/frontend. The browser imports
+synthetic ZAP/Greenbone evidence, reviews findings and downloads PDFs. A final check
+compares downloaded report/source hashes before and after a clean database and
+application restart. This does not prove crash recovery, backup/restore, native
+captures, real-provider quality or live-scanner acceptance.
+
+Cleanup removes only that invocation's containers/networks/volumes. Generated images
+and build cache remain; do not prune unrelated resources. If Docker becomes
+unavailable, the private temporary configuration is retained; reconcile the printed
+`reknyx-ci-...` project with that env-file after Docker returns, then remove the
+temporary directory only after its resources are gone. Browser
+traces can contain generated credentials and are not uploaded by the workflow.
+Never target an existing user database or persistent staging account with this lane.
+
+## Vultr staging preparation
+
+[`deploy/staging/compose.yml`](../deploy/staging/compose.yml) is an independent,
+image-only deployment for the current single-account import/review/draft-PDF flow.
+It is separate from the future scanner sandbox. API/worker use deterministic review
+on internal networks without provider keys. Only Caddy publishes TCP 80/443; DB/API
+have no host ports. Application processes use non-root read-only filesystems, bounded
+tmpfs and memory limits. These are initial limits, not measured capacity or proof of
+scanner containment.
+
+Prepare a dedicated staging VM with Docker/Compose, a DNS name pointing to it and
+private operator access. Firewall/access configuration is an explicit operator task.
+Caddy needs working DNS and ACME connectivity to obtain certificates. Build backend
+with `backend/Dockerfile` and frontend with `frontend/Dockerfile`, API mode and fixed
+backend origin `http://api:8000` at build and startup. Publishing images is a separate
+release action: the current CI has no registry write credentials. Promote the tested
+images by digest; also pin reviewed PostgreSQL **17** and Caddy **2** images by digest.
+Do not change the database major version as an incidental deployment update.
+
+From the repository root on the staging host:
+
+```bash
+umask 077
+cp deploy/staging/.env.example deploy/staging/.env
+chmod 600 deploy/staging/.env
+```
+
+Fill every required field privately. DB passwords must be distinct random values
+of at least 24 characters and URL-encoded in connection URLs. The initial DB creates
+`reknyx_app`; API/worker use that login. Generate the scrypt hash through
+`reknyx.infrastructure.auth.hash_password` in a private setup process; single-quote
+the whole hash in `.env` to preserve dollar signs. Do not print resolved Compose
+configuration or put secrets in shell history. Local `backend/.env` is not staging
+configuration. Before starting anything:
+
+```bash
+python3 scripts/check_staging.py --env-file deploy/staging/.env
+```
+
+The read-only preflight checks resolved digest references, HTTPS origin, credentials,
+network/volume boundaries and disabled inference. It prints no resolved secrets and
+makes no provider, registry or cloud request. It does not inspect image contents or
+verify registry access, image versions, DNS/TLS, host egress, DB privileges or runtime
+readiness. Exported shell variables override `.env`; remove stale local overrides
+before checking and deploying.
+
+After operator review, use the same project name and env-file for every operation:
+
+```bash
+stage() {
+  docker compose --project-name reknyx-staging --env-file deploy/staging/.env \
+    -f deploy/staging/compose.yml "$@"
+}
+stage pull
+stage up --detach
+stage ps --all
+```
+
+Confirm migration exit zero, healthy API and working TLS. Sign in and manually import
+an explicitly labelled synthetic fixture, review it, download the stored draft PDF,
+then compare evidence/PDF hashes after a controlled restart. A health endpoint alone
+does not establish workflow acceptance. Do not automatically run the disposable
+browser suite against persistent staging data.
+
+For updates, stop admission through proxy/frontend/API, then stop the worker with its
+grace period. Inspect durable jobs and publication receipts before changing unresolved
+`parsing`/`rendering` state. No automatic drain/recovery endpoint exists; a graceful
+stop allowance does not prove completion. Serialize migrations under the owner login
+and restart from reviewed digests. Do not blindly rerun uncertain work. Application
+rollback requires DB compatibility; do not automatically downgrade Alembic.
+
+DB, evidence and Caddy state persist in named volumes. Never use `down --volumes` on
+staging. Initial provisioning applies only to fresh DB volumes; env edits do not
+rotate existing DB credentials. Consistent DB/artifact backups, tested restore,
+retention/access review, diagnostics and measured load remain separate pilot gates.
+Vultr deployment, TLS and registry promotion need actual run evidence; these files
+and preflight establish configuration preparation only.

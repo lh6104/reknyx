@@ -32,7 +32,7 @@ services:
     environment: &runtime
       REKNYX_DATABASE_URL: ${REKNYX_RUNTIME_DATABASE_URL:?Set non-owner PostgreSQL URL using db hostname}
       REKNYX_PASSWORD_HASH: ${REKNYX_PASSWORD_HASH:?Set scrypt password hash}
-      REKNYX_ALLOWED_ORIGINS: http://localhost:3000
+      REKNYX_ALLOWED_ORIGINS: ${REKNYX_ALLOWED_ORIGINS:-http://localhost:3000}
       REKNYX_ARTIFACT_ROOT: /var/lib/reknyx/artifacts
       REKNYX_ANALYSIS_PROVIDER: ${REKNYX_ANALYSIS_PROVIDER:-deterministic}
       REKNYX_GROQ_MODEL: ${REKNYX_GROQ_MODEL:-openai/gpt-oss-120b}
@@ -44,7 +44,7 @@ services:
       REKNYX_GROQ_SYNTHETIC_ENABLED: ${REKNYX_GROQ_SYNTHETIC_ENABLED:-false}
     volumes:
       - artifacts:/var/lib/reknyx
-    ports: [127.0.0.1:8000:8000]
+    ports: ["127.0.0.1:${REKNYX_API_PORT:-8000}:8000"]
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -67,7 +67,7 @@ services:
         NEXT_PUBLIC_REKNYX_MODE: api
     environment:
       REKNYX_BACKEND_ORIGIN: http://api:8000
-    ports: [127.0.0.1:3000:3000]
+    ports: ["127.0.0.1:${REKNYX_FRONTEND_PORT:-3000}:3000"]
     depends_on: [api]
 volumes:
   database:
