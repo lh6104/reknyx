@@ -1,6 +1,6 @@
 # Reknyx Frontend
 
-The application has explicit **preview** and **api** modes with React, TypeScript and Tailwind CSS. Preview uses synthetic in-memory state. API mode connects authenticated assessments, messages, source imports, finding review and immutable backend PDF reports. AI providers and scanner execution remain in development. Dependencies are pinned in `package.json` and `package-lock.json`; fonts are served locally.
+The application has explicit **preview** and **api** modes with React, TypeScript and Tailwind CSS. Preview uses synthetic in-memory state. API mode connects authenticated assessments, messages, source imports, finding review and immutable backend PDF reports. Explicit evidence review supports labelled local rules and an optional Groq adapter; live Groq evaluation and scanner execution remain pending. Dependencies are pinned in `package.json` and `package-lock.json`; fonts are served locally.
 
 ## Run
 
@@ -24,7 +24,7 @@ For API mode, start the backend and worker as described in [backend setup](../ba
 NEXT_PUBLIC_REKNYX_MODE=api REKNYX_BACKEND_ORIGIN=http://127.0.0.1:8000 npm run dev
 ```
 
-Production builds require those same mode/origin values during both build and startup. Missing or invalid configuration fails; connection failures remain errors. The backend receives same-origin `/api/v1` requests through a fixed server rewrite. Session cookies are HttpOnly; CSRF and pending replay keys remain in memory, with no credential/evidence browser storage. Messages do not invoke inference. The API screens display server capabilities and keep provider/scanner actions disabled.
+Production builds require those same mode/origin values during both build and startup. Missing or invalid configuration fails; connection failures remain errors. The backend receives same-origin `/api/v1` requests through a fixed server rewrite. Session cookies are HttpOnly; CSRF and pending replay keys remain in memory, with no credential/evidence browser storage. Messages do not invoke inference. The API screens display server capabilities. Ask Agents and Review evidence explicitly request bounded review; scanner actions remain disabled. Model budgets default to zero on new assessments.
 
 ## What is available
 

@@ -2,7 +2,7 @@
 
 This backend provides the initial session, assessment, message, audit and private
 artifact services, durable Nmap/ZAP/Greenbone imports, finding review and immutable draft PDF reports.
-Scanner execution and planning remain in development. G0 verification is recorded in
+Scanner execution remains in development. Explicit evidence review is implemented; real Groq evaluation remains pending. G0 verification is recorded in
 `contracts/review-status.json`; full browser acceptance is reported separately.
 
 Use Python 3.13 and `uv`; dependencies are locked in `uv.lock`.
@@ -31,8 +31,8 @@ Create `REKNYX_PASSWORD_HASH` with `reknyx.infrastructure.auth.hash_password` in
 private setup process; never put plaintext passwords in source or shell history.
 The application accepts one configured account, default username `admin`, and an
 eight-hour absolute session. For this local checkout an ignored `backend/.env`
-holds the requested local admin password hash with mode 0600. It has no database
-credentials and must not be used as a production credential. An operator may load
+holds the local backend connection, admin password hash and optional Groq settings
+with mode 0600. It must not be committed or used as production configuration. An operator may load
 it with `set -a; . ./.env; set +a` from this directory.
 
 ```bash
@@ -108,3 +108,118 @@ fields remain traceable. Only an explicit supported CVSS 3.0/3.1 score/vector pa
 populates canonical CVSS; missing/other native CVSS fields remain in source evidence.
 Verification uses the labelled synthetic fixture under `tests/fixtures/greenbone/`;
 a permitted native capture and broader format acceptance remain separate gates.
+
+## Explicit evidence review and Groq setup
+
+`POST /api/v1/assessments/{id}/plans` performs bounded evidence review;
+`GET /api/v1/assessments/{id}/decisions` lists immutable decisions. Message append
+never invokes review. The default `REKNYX_ANALYSIS_PROVIDER=deterministic` uses
+local rules and labels the source accordingly. It performs no model call.
+
+Groq is the first optional provider. Use a Groq free-plan account and configure
+`REKNYX_ANALYSIS_PROVIDER=groq`, `REKNYX_GROQ_API_KEY` privately,
+`REKNYX_GROQ_FREE_PLAN_CONFIRMED=true` after verifying the account is on the free plan, and
+`REKNYX_GROQ_SYNTHETIC_ENABLED=true` only when the synthetic projection is covered
+for transmission. The default model is `openai/gpt-oss-120b`, at Groq's fixed chat
+completions endpoint. Free-plan limits and account billing remain controlled by
+Groq; the app neither upgrades plans nor falls back to another provider.
+
+The initial adapter sends only generated observation IDs, kinds and source tools
+from at most 32 observations. It excludes request/message text, target addresses,
+raw evidence and artifact download links. Only synthetic-fixture observations are
+eligible. The model selects fixed review topics and valid observation IDs; server
+templates render the explanation. This is not general natural-language answering,
+scanner planning or vulnerability confirmation. Missing evidence/data-use/key or
+budget produces a recorded error; no silent local fallback occurs in Groq mode.
+
+Choose a nonzero model allowance when creating a new assessment (optional model
+budget section); existing scopes require an explicit scope revision via the API.
+Each Groq attempt reserves one call, a conservative input byte bound and the configured output-token cap (default 1024). Calls have a 12-second outer deadline, no retries and no tools. Unknown
+usage retains its reservation; monetary cost remains unknown. The API holds no
+transaction across inference and rejects stale output after state/scope changes.
+
+Same-key requests replay the stored success or failure. A crash may leave a durable
+pending reservation: do not blindly replay/reclaim it. A new explicit retry can
+reference an owned completed decision, never an uncertain scanner execution.
+Tests use synthetic data and fake transport; no real Groq quality, quota, latency
+or billing claim is established without a separately configured provider run.
+
+Groq format and current model/plan references: [Structured outputs](https://console.groq.com/docs/structured-outputs), [rate limits](https://console.groq.com/docs/rate-limits). Account-specific access is not established by these documents.
+
+Use only `backend/.env` for this local checkout. Set `REKNYX_GROQ_API_KEY` there;
+the application does not automatically load dotenv files. From `backend/`, load it
+with `set -a; source .env; set +a` before starting the API.
+
+Check setup without contacting Groq after loading the backend environment:
+
+```bash
+python -m reknyx.security_analysis.check_setup
+```
+
+Exit code 0 means local mode or Groq configuration is present, 1 means Groq setup
+is incomplete, and 2 means backend configuration is invalid. This does not validate
+the key, quota, account billing state or provider output. Settings → Evidence analysis
+shows the same sanitized status; use Refresh after server configuration changes.
+
+Configure the model request in `backend/.env`:
+
+```bash
+export REKNYX_GROQ_MODEL=openai/gpt-oss-120b
+export REKNYX_GROQ_TEMPERATURE=0.1
+export REKNYX_GROQ_REASONING_EFFORT=low
+export REKNYX_GROQ_MAX_OUTPUT_TOKENS=1024
+```
+
+For an explicit light-model run, change `REKNYX_GROQ_MODEL` to
+`openai/gpt-oss-20b`. Both choices use strict JSON Schema; no automatic model
+fallback is performed. Temperature is bounded to 0–2, reasoning effort to
+low/medium/high, and output tokens to 128–4096. Restart the API after editing.
+Output limits must also fit the assessment's remaining model budget.
+Evidence-reference checks and disabled direct execution are enforced invariants,
+not optional flags. Automatic retries remain disabled; explicit new-intent retry
+preserves attempt identity and budget accounting.
+
+The prepared disposable setup now uses app and PostgreSQL runtime login
+`admin`/`admin`; maintenance migrations use `postgres`/`admin`. Its existing database
+names and artifacts are preserved. These credentials belong only to local testing.
+
+## Review selection benchmark
+
+From the repository root, run the frozen synthetic dataset offline:
+
+```bash
+backend/.venv/bin/python -m reknyx.security_analysis.evaluation --provider deterministic --split all --output eval-results/review-local-001.json
+```
+
+Choose a new output filename for each run. The CLI claims it before evaluation and
+never overwrites an existing run. Reports include dataset/source/prompt/schema
+hashes, provider/model options, case results, exact pass and coverage denominators,
+validation rejection results, usage where known, and errors. A partial run reports
+`complete=false`; attempted-case pass rate alone does not establish full coverage.
+Exit codes are 0 for complete passing runs, 1 for failed/partial results, 2 for
+setup/run failure, and 3 for result-publication failure. A reserved file left after
+interruption requires reconciliation before repeating any provider calls.
+
+For an explicitly authorized Groq comparison, load `backend/.env` and use the same
+split and dataset with a bounded call allowance:
+
+```bash
+backend/.venv/bin/python -m reknyx.security_analysis.evaluation --provider groq --split development --allow-live --max-calls 8 --output eval-results/review-groq-001.json
+```
+
+This command sends up to eight synthetic cases; it is not part of default tests.
+The key, confirmed free-plan flag and synthetic data-use flag must be configured.
+There is no retry or automatic switch to the light model. Budget-limited cases
+remain visibly not-run. Unknown usage and cost stay unknown. Run local review on
+`--split development` for a comparison with the same eight cases; compare hashes
+and case IDs before comparing results.
+
+Dataset `review-selection-synthetic-v1.1` has 16 project-authored cases (8 development,
+8 holdout) and 8 rejected-output cases under `tests/evals/`. Labels and partitions
+are not independently adjudicated or a real-world generalization study. It scores
+review-topic/reference selection, not vulnerability detection, calibrated risk,
+remediation correctness or pentest success. No raw malicious instructions are sent:
+privacy tests verify their exclusion; rejection cases test the local output validator.
+Context v2 includes only generated IDs, kind/tool and normalized severity, transport,
+port and historical status. Native captures, broader reasoning labels, real-provider
+comparison and authorized scanner execution retain separate evidence gates.

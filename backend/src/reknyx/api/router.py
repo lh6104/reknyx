@@ -15,7 +15,7 @@ from reknyx.assessments.service import AssessmentService, require_membership
 from reknyx.contracts import CONTRACT, parse_json, validate_schema, SCHEMAS
 from reknyx.evidence.service import ArtifactService
 from reknyx.infrastructure.auth import token_digest, verify_password
-from reknyx.infrastructure.errors import DomainError
+from reknyx.infrastructure.errors import DomainError, error_body
 from reknyx.infrastructure.events import append_event
 from reknyx.infrastructure.idempotency import begin_operation, finalize_known_database_failure
 from reknyx.infrastructure.models import Actor, AuthSession, LoginBucket, Assessment, Membership, Message, AuditEvent, Artifact
@@ -25,13 +25,9 @@ from .dependencies import get_session, require_origin, require_csrf
 
 from reknyx.infrastructure.models import ObservationRecord, FindingRecord, ReviewRecord, ReportRecord
 
-REVISION = "0002_import_reporting"
+REVISION = "0003_evidence_analysis"
 COOKIE = "reknyx_session"
 MUTATIONS = {"post", "put", "patch", "delete"}
-
-
-def error_body(exc, request_id):
-    return {"error": {"code": exc.code, "message": exc.message, "details": exc.details, "request_id": request_id}}
 
 
 def session_body(settings, session):
@@ -112,10 +108,15 @@ def _login(request, body, db, settings):
     return result
 
 
-def _capabilities():
-    implemented = {"foundation", "assessments.persistence", "messages.persistence", "evidence", "imports", "imports.nmap_xml", "imports.zap_json", "imports.greenbone_xml", "findings.review", "reports.pdf"}
+def _capabilities(settings):
+    implemented = {"foundation", "assessments.persistence", "messages.persistence", "evidence", "imports", "imports.nmap_xml", "imports.zap_json", "imports.greenbone_xml", "findings.review", "reports.pdf", "planner"}
     ids = SCHEMAS["Capability"]["properties"]["id"]["enum"]
-    return {"contract_version": "0.1.0", "capabilities": [{"id": item, "availability": "available" if item in implemented else "planned", "reason_code": "phase_one_implemented" if item in implemented else "not_implemented", "message": "Verified with synthetic fixtures and isolated local PostgreSQL; live execution unavailable" if item in implemented else "In development", "mode": "http" if item in implemented else "none", "evidence_level": "local_integration_verified" if item in implemented else "none", "profile": None} for item in ids]}
+    result = {"contract_version": "0.1.0", "capabilities": [{"id": item, "availability": "available" if item in implemented else "planned", "reason_code": "phase_one_implemented" if item in implemented else "not_implemented", "message": "Verified with synthetic fixtures and isolated local PostgreSQL; live execution unavailable" if item in implemented else "In development", "mode": "http" if item in implemented else "none", "evidence_level": "local_integration_verified" if item in implemented else "none", "profile": None} for item in ids]}
+    for capability in result['capabilities']:
+        if capability['id']=='planner':
+            from reknyx.security_analysis.readiness import describe
+            capability.update(describe(settings))
+    return result
 
 
 def _health(db):
@@ -162,7 +163,7 @@ def execute(request, operation, body):
             result.delete_cookie(COOKIE, path="/api/v1", secure=settings.secure_cookie, httponly=True, samesite="strict")
             return result
         if operation_id == "getCapabilities":
-            return response(200, _capabilities())
+            return response(200, _capabilities(settings))
         value = _validated_body(operation, body) if mutation else None
         digest_value = value
         if operation_id == "createImport":
@@ -173,6 +174,10 @@ def execute(request, operation, body):
                 if record.assessment_id:
                     require_membership(db, auth.actor_id, record.assessment_id)
                 return response(record.status, record.body, record.location)
+            if operation_id == "createPlan":
+                from reknyx.security_analysis.assessment_planning import create_plan
+                status, result, location = create_plan(db, auth, settings, assessment_id, value, record, request.state.request_id)
+                return response(status, result, location)
             namespace = record.namespace
             try:
                 try:
@@ -238,7 +243,10 @@ def _dispatch(request, db, auth, operation, value, params):
     if operation == "appendMessage":
         result = assessments.append_message(assessment_id, value)
         return 201, result, f"/api/v1/assessments/{assessment_id}/messages"
-    listing = {"listAssessments": Assessment, "listMessages": Message, "listTimeline": AuditEvent, "listArtifacts": Artifact, "listObservations": ObservationRecord, "listFindings": FindingRecord, "listReports": ReportRecord, "listWorkspaceFindings": FindingRecord, "listWorkspaceReports": ReportRecord, "listWorkspaceTimeline": AuditEvent}
+    from reknyx.infrastructure.models import AnalysisDecision
+    if operation == "listActions":
+        return 200, {"items": [], "next_cursor": None}, None
+    listing = {"listDecisions": AnalysisDecision, "listAssessments": Assessment, "listMessages": Message, "listTimeline": AuditEvent, "listArtifacts": Artifact, "listObservations": ObservationRecord, "listFindings": FindingRecord, "listReports": ReportRecord, "listWorkspaceFindings": FindingRecord, "listWorkspaceReports": ReportRecord, "listWorkspaceTimeline": AuditEvent}
     if operation == "getWorkspaceSummary":
         # One SQL statement provides a consistent authorized count snapshot.
         counts = []

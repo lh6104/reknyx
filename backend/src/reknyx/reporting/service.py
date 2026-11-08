@@ -43,7 +43,7 @@ def build_snapshot(identifier, assessment, scope, actor, instant, findings, obse
               'severity_distribution': severities, 'counts': counts, 'findings': selected,
               'observations': observations, 'artifacts': artifacts, 'reviews': reviews,
               'approvals': [], 'failures': failures,
-              'limitations': ['No live scanner execution, provider analysis or offensive validation was performed by this import workflow.',
+              'limitations': ['No live scanner execution or offensive validation was performed. Any evidence review is advisory, not technical confirmation.',
                               'Technical validation and analyst disposition are independent; this report remains a draft.',
                               f"Suspected findings {'included' if include_suspected else 'excluded except rejected audit entries'}; counts describe included findings."],
               'assumptions': ['Source timestamps and evidence claims are retained without independent verification.'],
@@ -97,10 +97,16 @@ class ReportService:
         artifact_by_id = {item['id']: item for item in artifacts}
         failures = [f"Import {row.id}: {row.data.get('failure_code') or 'failed'}"
                     for row in imports if row.data.get('state') == 'failed']
+        from reknyx.infrastructure.models import AnalysisDecision
+        decisions=data(AnalysisDecision)
+        failures += [f"Analysis {d['id']}: {d['failure_code']}" for d in decisions if d['failure_code']]
         tools = [f"Import {row.id}; kind={row.data['kind']}; parser={row.data.get('parser_version') or 'unknown'}; "
                  f"source_label={row.source_label}; artifact={row.data['artifact_id']}; "
                  f"provenance={artifact_by_id[row.data['artifact_id']]['provenance']}; state={row.data['state']}"
                  for row in imports]
+        tools += [f"Evidence review {d['id']}; source={d['source']}; outcome={d['outcome']}; state_revision={d['state_revision']}; {d['rationale']}" for d in decisions]
+        if len(tools)>100:
+            raise DomainError(413,'request_too_large','Report trace exceeds the contract limit of 100 summary entries')
         snapshot = build_snapshot(snapshot_id, assessment.data, scope.data, self.actor_id,
                                   timestamp(instant), data(FindingRecord), data(ObservationRecord),
                                   artifacts, data(ReviewRecord), failures, value['include_suspected'], tools)

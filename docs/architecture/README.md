@@ -1,6 +1,6 @@
 # Reknyx Cybersecurity Assessment Architecture
 
-This document describes the platform and its security responsibilities. The frontend has explicit synthetic preview and authenticated API modes; persistence, evidence, import and reporting paths are implemented and locally tested. Import/report worker and draft PDF reporting are implemented; provider and scanner execution modules below remain implementation targets.
+This document describes the platform and its security responsibilities. The frontend has explicit synthetic preview and authenticated API modes; persistence, evidence, import and reporting paths are implemented and locally tested. Import/report worker and draft PDF reporting are implemented; bounded evidence review and its optional Groq adapter are implemented; live provider evaluation and scanner execution remain separate targets.
 
 ## Application shape
 

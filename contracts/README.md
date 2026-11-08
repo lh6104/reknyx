@@ -3,8 +3,7 @@
 P1-01 delivers an executable contract with offline G0 verification. Frontend/backend
 owner approvals are recorded under `admin` in [review-status.json](review-status.json)
 against the exact OpenAPI SHA-256, alongside an exact-input gate attestation and
-local evidence path. Foundation services are being implemented;
-scanner execution, providers and PDF generation remain in development.
+local evidence path. Authenticated persistence, native imports, finding review, draft PDF generation and explicit bounded evidence review are implemented. The optional Groq adapter is tested with fake transport; real-provider evaluation and scanner execution remain separate pending gates.
 
 ## Authority and files
 

@@ -1,6 +1,6 @@
 # Reknyx API tutorial
 
-This guide describes the current local Phase 1 API. It uses synthetic evidence and a disposable test database. The API is an import and review workflow; it does not run scanners or AI analysis. A recorded scope or a sample IP address does not grant permission to scan.
+This guide describes the current local Phase 1 API. It uses synthetic evidence and a disposable test database. The API is an import and review workflow; it does not run scanners. Explicit evidence review supports local rules and an optional Groq adapter. A recorded scope or a sample IP address does not grant permission to scan.
 
 ## Start and inspect the API
 
@@ -58,7 +58,7 @@ All paths below are relative to `/api/v1`. The schema and exact fields are in th
 
 For the shortened evidence, finding, and report paths in the table, retain the `/assessments/{id}` prefix. Lists return `items` and `next_cursor`; use `limit` and `cursor` to read subsequent pages. Reads and downloads enforce assessment ownership.
 
-Planning, real model analysis, scanner execution, and approval decisions remain in development. Planned calls may return HTTP 501. A draft PDF is not automatically a client-ready assessment.
+Explicit evidence review is available. Live provider evaluation, executable scan planning, scanner execution, and approval decisions remain in development. Planned calls may return HTTP 501. A draft PDF is not automatically a client-ready assessment.
 
 ## Try the full synthetic workflow
 
@@ -134,3 +134,46 @@ this browser under `reknyx.api.preferences.v1`. Existing scope and report snapsh
 are unaffected. Analyst identity is supplied by the authenticated server session.
 Rate limits, execution deadlines, audit customization and approval configuration
 remain in development. Reset preferences restores browser defaults only.
+
+## Ask Agents and evidence review
+
+Open an assessment and click **Ask Agents → Review evidence**, or use the
+**Review evidence** button in Conversation. Local mode returns a decision and
+assistant message labelled `deterministic`; it performs no model call. The source,
+limitations and decision revision remain visible. Appending a message only saves it.
+
+For direct API use, `POST /assessments/{id}/plans` requires the same cookie, Origin,
+CSRF and idempotency headers as other mutations, with body
+`{"expected_revision":CURRENT_REVISION,"retry":null}`. Success returns a
+`PlanResult` containing `decision` and `proposal:null`. Read the current revision
+before a new request. Read history through `GET /assessments/{id}/decisions`.
+Same-key replay returns the stored result; it does not call the provider again.
+
+For Groq, follow [backend provider setup](backend/README.md#explicit-evidence-review-and-groq-setup).
+Use your free-plan account and keep the API key in private server configuration.
+Only synthetic structural evidence is eligible for this first adapter. Model
+budget defaults to zero; choose an explicit allowance on new assessment creation
+before requesting Groq review. Provider failures are errors, not successful local
+fallbacks. The adapter does not accept arbitrary tools or executable proposals.
+
+Settings → **Evidence analysis** displays the configured review mode and any missing
+Groq setup requirement. The operator can also run
+`python -m reknyx.security_analysis.check_setup` in the configured backend environment.
+This offline command never sends a request or prints the API key. A configured
+status does not mean the key or live provider has been verified.
+
+Groq model selection is configured in `backend/.env` using `REKNYX_GROQ_MODEL`
+(default `openai/gpt-oss-120b`). Set it explicitly to `openai/gpt-oss-20b` for a
+light-model run. Temperature, reasoning effort and output-token limit use
+`REKNYX_GROQ_TEMPERATURE`, `REKNYX_GROQ_REASONING_EFFORT` and
+`REKNYX_GROQ_MAX_OUTPUT_TOKENS`. Restart after edits. Strict schemas, evidence
+references and disabled direct execution remain enforced; retries and model
+switching never occur automatically.
+
+## Benchmark the review algorithm
+
+Use the [backend benchmark instructions](backend/README.md#review-selection-benchmark).
+Start with the deterministic run; it makes zero provider requests. Compare Groq on
+the same frozen dataset and split only after authorizing a live run and its call
+budget. Inspect per-case failures, coverage and validation results, not only the
+pass fraction. Synthetic review-selection scores do not measure pentest success.

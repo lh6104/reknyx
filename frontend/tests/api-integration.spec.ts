@@ -12,9 +12,11 @@ test(`actual HTTP ${kind} import, review and immutable PDF workflow`, async ({pa
   await page.getByRole('button', {name:'Sign in', exact:true}).click();
   await expect(page.getByText('Authenticated API mode', {exact:true})).toBeVisible();
   await page.getByRole('button',{name:'Ask Agents',exact:true}).click();
-  await expect(page.getByRole('dialog')).toContainText('This feature is now implementing');
+  await expect(page.getByRole('dialog')).toContainText('Open an assessment to request evidence review.');
   await page.getByRole('button',{name:'Close dialog'}).click();
   await page.getByRole('link',{name:'Settings',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Evidence analysis',exact:true})).toBeVisible();
+  await expect(page.getByText('Local rules',{exact:true})).toBeVisible();
   await expect(page.getByRole('checkbox',{name:'OpenVAS / Greenbone import available',exact:true})).toBeChecked();
   await expect(page.getByRole('checkbox',{name:'OpenVAS / Greenbone import available',exact:true})).toBeDisabled();
   await expect(page.getByRole('checkbox',{name:'Metasploit import available',exact:true})).not.toBeChecked();
@@ -51,6 +53,9 @@ test(`actual HTTP ${kind} import, review and immutable PDF workflow`, async ({pa
   await page.getByLabel('Source file',{exact:true}).setInputFiles({name:'synthetic.json',mimeType:kind==='greenbone_xml'?'application/xml':'application/json',buffer:raw});
   await page.getByRole('button',{name:'Upload evidence'}).click();
   await expect(page.getByText('succeeded',{exact:true}).first()).toBeVisible({timeout:30000});
+  await page.getByRole('button',{name:'Review evidence',exact:true}).click();
+  await expect(page.getByText('ask · source: deterministic',{exact:true})).toBeVisible();
+  await expect(page.getByText('Evidence review cites 1 recorded observation(s).',{exact:false}).first()).toBeVisible();
   await page.getByRole('link',{name:'Findings',exact:true}).last().click();
   await expect(page.getByRole('link',{name:title,exact:true})).toBeVisible();
   await page.getByText('Source references and uncertainty',{exact:true}).click();

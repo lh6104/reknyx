@@ -148,3 +148,19 @@ class SnapshotRecord(Base):
     assessment_id: Mapped[str] = mapped_column(ForeignKey("assessments.id"), index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
     data: Mapped[dict] = mapped_column(JSONB)
+
+
+class AnalysisAttempt(Base):
+    __tablename__ = 'analysis_attempts'
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    assessment_id: Mapped[str] = mapped_column(ForeignKey('assessments.id'), index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    data: Mapped[dict] = mapped_column(JSONB)
+
+
+class AnalysisDecision(Base):
+    __tablename__ = 'analysis_decisions'
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    assessment_id: Mapped[str] = mapped_column(ForeignKey('assessments.id'), index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    data: Mapped[dict] = mapped_column(JSONB)
