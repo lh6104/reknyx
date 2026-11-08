@@ -25,9 +25,19 @@ def test_projection_allows_only_normalized_facts_and_no_source_text():
 def test_scoring_cannot_pass_service_remediation_or_missing_topic():
     data,_=load_dataset();case=data['cases'][1]
     value=local_review(case['context']);value['topics']=['confirm_scope']
-    assert 'missing_required_topic' in score(case,value)
+    with pytest.raises(ValueError,match='missing_required_review_topic'):score(case,value)
     value['topics']=['review_remediation']
     with pytest.raises(ValueError):score(case,value)
+
+
+def test_topic_rejection_is_distinct_from_transport_failure_and_has_no_retry():
+    data,digest=load_dataset()
+    def omitted(context,key,options):
+        return {'value':{'outcome':'ask','topics':['confirm_scope'],'basis_observation_ids':[]},'usage':None}
+    result=run(data,digest,provider='groq',settings=settings(),allow_live=True,max_calls=1,review=omitted)
+    assert result['provider_calls']==1 and result['not_run']==7
+    assert result['cases'][0]['reason']=='invalid_output'
+    assert result['cases'][0]['validation_failure_code']=='missing_required_review_topic'
 
 
 def settings():

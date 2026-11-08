@@ -2,7 +2,7 @@
 
 This backend provides the initial session, assessment, message, audit and private
 artifact services, durable Nmap/ZAP/Greenbone imports, finding review and immutable draft PDF reports.
-Scanner execution remains in development. Explicit evidence review is implemented; real Groq evaluation remains pending. G0 verification is recorded in
+Scanner execution remains in development. Explicit evidence review and a bounded synthetic Groq development benchmark are implemented; broader AI acceptance remains pending. G0 verification is recorded in
 `contracts/review-status.json`; full browser acceptance is reported separately.
 
 Use Python 3.13 and `uv`; dependencies are locked in `uv.lock`.
@@ -124,13 +124,32 @@ for transmission. The default model is `openai/gpt-oss-120b`, at Groq's fixed ch
 completions endpoint. Free-plan limits and account billing remain controlled by
 Groq; the app neither upgrades plans nor falls back to another provider.
 
-The initial adapter sends only generated observation IDs, kinds and source tools
+The adapter sends only generated observation IDs, kinds, source tools and normalized
+severity/transport/port/historical facts
 from at most 32 observations. It excludes request/message text, target addresses,
 raw evidence and artifact download links. Only synthetic-fixture observations are
 eligible. The model selects fixed review topics and valid observation IDs; server
 templates render the explanation. This is not general natural-language answering,
 scanner planning or vulnerability confirmation. Missing evidence/data-use/key or
 budget produces a recorded error; no silent local fallback occurs in Groq mode.
+
+Review output v3 applies the `review-coverage-v1` checklist independently of the
+provider. Existing observations require source review; vulnerability candidates
+require analyst remediation review and a supporting vulnerability citation;
+unknown-severity candidates also require uncertainty review and a supporting
+unknown-severity citation. Empty context requests evidence and scope clarification.
+This is minimum checklist coverage, not autonomous vulnerability reasoning or
+technical confirmation. Models may select a supported subset of references; it is
+not proof that every imported observation was reviewed. Truncated context remains
+explicitly limited to the supplied observations.
+
+Omitted required topics or supporting references fail the analysis. Attempts retain
+an application-owned `validation_failure_code`, provider status, output hash and
+reported usage; no assistant message or repaired output is substituted. Prompt,
+schema and selection-policy versions identify new attempts and evaluation reports.
+Historical decisions and same-key replays retain their original output and versions.
+The v2 prompt, frozen dataset and original run files are preserved. A new prompt
+requires a separately authorized live run before claiming improved Groq results.
 
 Choose a nonzero model allowance when creating a new assessment (optional model
 budget section); existing scopes require an explicit scope revision via the API.
@@ -221,5 +240,21 @@ review-topic/reference selection, not vulnerability detection, calibrated risk,
 remediation correctness or pentest success. No raw malicious instructions are sent:
 privacy tests verify their exclusion; rejection cases test the local output validator.
 Context v2 includes only generated IDs, kind/tool and normalized severity, transport,
-port and historical status. Native captures, broader reasoning labels, real-provider
-comparison and authorized scanner execution retain separate evidence gates.
+port and historical status. The first development-only live comparison used v2
+review rules; those results do not evaluate the v3 prompt/coverage policy. Native
+captures, broader reasoning labels, holdout provider evaluation and authorized
+scanner execution retain separate evidence gates.
+
+Compare two compatible run reports without making provider requests:
+
+```bash
+backend/.venv/bin/python -m reknyx.security_analysis.compare_evaluations --baseline eval-results/review-local-001.json --candidate eval-results/review-groq-001.json --output eval-results/review-comparison-001.json
+```
+
+Use the same split for both runs. The tool rejects mismatched dataset, algorithm,
+context, prompt, schema or selection-policy identity, different case selections, duplicate cases and
+inconsistent counters. It reports paired improvements/regressions and not-comparable
+cases. Comparison exit code 0 means a valid comparison file was written, not that
+the candidate passed a quality gate. It does not authenticate how input runs were
+executed or infer significance from a small synthetic sample. No provider calls,
+retries, report overwrites or changes to the frozen labels are performed.

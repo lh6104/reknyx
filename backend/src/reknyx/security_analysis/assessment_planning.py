@@ -12,7 +12,8 @@ from reknyx.infrastructure.models import AnalysisAttempt,AnalysisDecision,AuthSe
 from reknyx.shared.time import now,timestamp
 from .evidence_context import build_context
 from .evidence_analysis import local_review,render_review
-from .output_validation import validate_output,SCHEMA,VERSION
+from .output_validation import validate_output,SCHEMA,VERSION,ReviewValidationError
+from .review_policy import VERSION as POLICY_VERSION
 from .model_providers import groq
 
 
@@ -56,9 +57,10 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
                     budget={k:n-required.get(k,0) for k,n in budget.items()}
         attempt=AnalysisAttempt(id=identifier,assessment_id=assessment_id,created_at=instant,data={
             'state':'reserved','actor_id':auth.actor_id,'operation_namespace':namespace,'provider':provider,'model':options.model if provider=='groq' else None,
-            'request_options':{'model':options.model,'temperature':options.temperature,'reasoning_effort':options.reasoning_effort,'max_output_tokens':options.max_output_tokens},'free_plan_confirmed':settings.groq_free_plan_confirmed,'adapter_version':'groq-chat-strict-v1' if provider=='groq' else 'local-review-v1','endpoint':groq.ENDPOINT if provider=='groq' else None,'source':'llm' if provider=='groq' else 'deterministic',
+            'request_options':{'model':options.model,'temperature':options.temperature,'reasoning_effort':options.reasoning_effort,'max_output_tokens':options.max_output_tokens},'free_plan_confirmed':settings.groq_free_plan_confirmed,'adapter_version':'groq-chat-strict-v2' if provider=='groq' else 'local-review-v2','endpoint':groq.ENDPOINT if provider=='groq' else None,'source':'llm' if provider=='groq' else 'deterministic',
             'state_revision':assessment.data['state_revision'],'scope_version':scope['version'],'scope_hash':scope['hash'],
             'context':context,'http_request_id':request_id,'context_hash':context['sha256'],'context_version':context['version'],'schema_version':VERSION,
+            'selection_policy_version':POLICY_VERSION,
             'schema_hash':hashlib.sha256(canonical_request(SCHEMA)).hexdigest(),
             'wire_schema_hash':hashlib.sha256(canonical_request(groq.WIRE_SCHEMA)).hexdigest(),
             'prompt_hash':hashlib.sha256(groq.PROMPT.encode()).hexdigest(),'reserved':reserved,
@@ -74,6 +76,7 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
     result=None
     provider_metadata=None
     provider_http_status=None
+    validation_failure=None
     if failure is None:
         try:
             if provider=='groq':
@@ -87,6 +90,9 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
         except groq.ProviderError as exc:
             failure=exc.code
             provider_http_status=exc.http_status if exc.http_status is not None else provider_http_status
+        except ReviewValidationError as exc:
+            failure='invalid_model_output'
+            validation_failure=exc.code
         except (ValueError,TypeError,KeyError):failure='invalid_model_output'
         except Exception:failure='analysis_unavailable'
     elapsed=int((time.monotonic()-started)*1000)
@@ -121,6 +127,7 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
     validate('DecisionRecord',decision)
     db.add(AnalysisDecision(id=identifier,assessment_id=assessment_id,created_at=now(),data=decision))
     attempt.data={**frozen,'state':'failed' if failure else 'completed','failure_code':failure,'elapsed_ms':elapsed,
+                  'validation_failure_code':validation_failure,
                   'provider_http_status':provider_http_status,'usage':provider_metadata.get('usage') if provider_metadata else None,
                   'provider_request_id':provider_metadata.get('request_id') if provider_metadata else None,
                   'output_hash':hashlib.sha256(canonical_request(provider_metadata['value'])).hexdigest() if provider_metadata else None,

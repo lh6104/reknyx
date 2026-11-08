@@ -15,7 +15,7 @@ from ..output_validation import SCHEMA
 MODEL='openai/gpt-oss-120b'
 ENDPOINT='https://api.groq.com/openai/v1/chat/completions'
 OUTPUT_CAP=1024
-PROMPT=Path(__file__).parents[1].joinpath('prompts/evidence_review_v2.txt').read_text()
+PROMPT=Path(__file__).parents[1].joinpath('prompts/evidence_review_v3.txt').read_text()
 WIRE_SCHEMA=copy.deepcopy(SCHEMA)
 for field in ('basis_observation_ids','topics'):
     for constraint in ('minItems','maxItems','uniqueItems'):
@@ -69,7 +69,7 @@ def payload(context,options=None):
     projected={'observations':[project_observation(o) for o in context['observations']],'truncated':context['truncated']}
     return {'model':options.model,'messages':[{'role':'system','content':PROMPT},{'role':'user','content':canonical_request(projected).decode()}],
       'max_completion_tokens':options.max_output_tokens,'temperature':options.temperature,'reasoning_effort':options.reasoning_effort,'stream':False,
-      'response_format':{'type':'json_schema','json_schema':{'name':'evidence_review_v2','strict':True,'schema':WIRE_SCHEMA}}}
+      'response_format':{'type':'json_schema','json_schema':{'name':'evidence_review_v3','strict':True,'schema':WIRE_SCHEMA}}}
 
 def input_reservation(context,options=None):
     # UTF-8 byte upper bound plus conservative chat-format overhead; no tokenizer claim.

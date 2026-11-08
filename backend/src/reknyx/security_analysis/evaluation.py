@@ -12,8 +12,9 @@ import tempfile
 from reknyx.contracts import ROOT,canonical_request
 from .evidence_analysis import local_review
 from .evidence_context import VERSION as CONTEXT_VERSION
-from .output_validation import validate_output,SCHEMA,VERSION
+from .output_validation import validate_output,SCHEMA,VERSION,ReviewValidationError
 from .model_providers import groq
+from .review_policy import VERSION as POLICY_VERSION
 
 DATASET=ROOT/'backend/tests/evals/review-selection-v1.1.json'
 
@@ -62,7 +63,9 @@ def run(dataset,digest,*,split='development',provider='deterministic',settings=N
             rows.append({'id':case['id'],'status':'failed' if reasons else 'passed','reasons':reasons,'output':value,'usage':usage,'elapsed_ms':round((time.monotonic()-started)*1000)})
         except Exception as exc:
             # Never copy exception text, provider bodies or keys into evaluation output.
-            rows.append({'id':case['id'],'status':'error','reason':exc.code if isinstance(exc,groq.ProviderError) else 'invalid_output' if isinstance(exc,ValueError) else 'evaluation_error','usage':usage,'elapsed_ms':round((time.monotonic()-started)*1000)})
+            rows.append({'id':case['id'],'status':'error','reason':exc.code if isinstance(exc,groq.ProviderError) else 'invalid_output' if isinstance(exc,ValueError) else 'evaluation_error',
+                         'validation_failure_code':exc.code if isinstance(exc,ReviewValidationError) else None,
+                         'usage':usage,'elapsed_ms':round((time.monotonic()-started)*1000)})
     validation=[]
     for case in dataset['validation_cases']:
         try:validate_output(case['output'],case['context']);rejected=False
@@ -70,7 +73,7 @@ def run(dataset,digest,*,split='development',provider='deterministic',settings=N
         validation.append({'id':case['id'],'passed':rejected==case['expect_rejected']})
     attempted=sum(r['status']!='not_run' for r in rows)
     passed=sum(r['status']=='passed' for r in rows)
-    source_files=['evaluation.py','evidence_context.py','evidence_analysis.py','output_validation.py','model_providers/groq.py']
+    source_files=['evaluation.py','evidence_context.py','evidence_analysis.py','output_validation.py','review_policy.py','model_providers/groq.py']
     algorithm_hash=hashlib.sha256(b''.join((Path(__file__).parent/name).read_bytes() for name in source_files)).hexdigest()
     known_usage=[r['usage'] for r in rows if isinstance(r.get('usage'),dict)]
     elapsed=sorted(r['elapsed_ms'] for r in rows if 'elapsed_ms' in r)
@@ -81,6 +84,7 @@ def run(dataset,digest,*,split='development',provider='deterministic',settings=N
       'dataset_version':dataset['version'],'dataset_sha256':digest,'split':split,
       'provider':provider,'model_options':asdict(options) if options else None,
       'schema_version':VERSION,'schema_sha256':hashlib.sha256(canonical_request(SCHEMA)).hexdigest(),
+      'selection_policy_version':POLICY_VERSION,
       'prompt_sha256':hashlib.sha256(groq.PROMPT.encode()).hexdigest(),
       'complete':attempted==len(cases),'selected':len(cases),'attempted':attempted,'provider_calls':calls,
       'selection_passes':{'numerator':passed,'denominator':attempted},

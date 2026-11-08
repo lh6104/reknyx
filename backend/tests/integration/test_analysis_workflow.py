@@ -133,6 +133,39 @@ def test_foreign_assessment_and_retry_do_not_expose_records(workspace):
     assert post(path+'/plans',{'expected_revision':1,'retry':{'kind':'decision','prior_id':str(uuid4()),'reason':'Synthetic retry'}}).status_code==404
 
 
+def test_omitted_review_is_a_replayable_failure_without_assistant_message(workspace,monkeypatch):
+    app,c,path,post,_=workspace
+    upload(workspace)
+    app.state.settings=replace(app.state.settings,analysis_provider='groq',groq_api_key='fixture-only',
+                               groq_synthetic_enabled=True,groq_free_plan_confirmed=True)
+    calls=[]
+    def omitted(context,key,options=None):
+        calls.append(1)
+        output=local_review(context)
+        output['topics']=['supply_evidence','confirm_scope']
+        return {'http_status':200,'value':output,'usage':{'prompt_tokens':100,'completion_tokens':20}}
+    monkeypatch.setattr(groq,'review',omitted)
+    rev=c.get(path).json()['assessment']['state_revision']
+    payload={'expected_revision':rev,'retry':None}
+    key=uuid4().hex
+    response=post(path+'/plans',payload,key)
+    assert response.status_code==503,response.text
+    assert post(path+'/plans',payload,key).json()==response.json()
+    assert calls==[1]
+    assert c.get(path+'/messages').json()['items']==[]
+    assert c.get(path).json()['assessment']['state_revision']==rev
+    decision=c.get(path+'/decisions').json()['items'][0]
+    assert decision['outcome']=='failed' and decision['failure_code']=='invalid_model_output'
+    with app.state.session_factory() as db:
+        attempt=db.scalar(select(AnalysisAttempt).where(AnalysisAttempt.id==decision['id']))
+        assert attempt.data['schema_version']=='evidence-review-v3'
+        assert attempt.data['selection_policy_version']=='review-coverage-v1'
+        assert attempt.data['validation_failure_code']=='missing_required_review_topic'
+        assert attempt.data['validated_output'] is None and attempt.data['output_hash']
+        assert attempt.data['usage']=={'prompt_tokens':100,'completion_tokens':20}
+        assert attempt.data['provider_http_status']==200 and attempt.data['reserved']['max_model_calls']==1
+
+
 def test_groq_key_does_not_imply_free_plan_or_data_use_authorization(workspace,monkeypatch):
     app,c,path,post,_=workspace
     upload(workspace)
