@@ -45,6 +45,7 @@ def build_snapshot(identifier, assessment, scope, actor, instant, findings, obse
               'approvals': [], 'failures': failures,
               'limitations': ['No live scanner execution or offensive validation was performed. Any evidence review is advisory, not technical confirmation.',
                               'Technical validation and analyst disposition are independent; this report remains a draft.',
+                              'Exact-capture deduplication is limited to indexed repeat imports; other duplicate issues may remain. Counts do not establish independently validated unique vulnerabilities.',
                               f"Suspected findings {'included' if include_suspected else 'excluded except rejected audit entries'}; counts describe included findings."],
               'assumptions': ['Source timestamps and evidence claims are retained without independent verification.'],
               'assessment_started_at': assessment['created_at'], 'assessment_finished_at': None,

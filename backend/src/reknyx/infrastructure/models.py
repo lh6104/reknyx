@@ -1,7 +1,7 @@
 """Canonical persistence. JSON projections are validated at service boundaries."""
 from datetime import datetime
 
-from sqlalchemy import String, Integer, DateTime, ForeignKey, UniqueConstraint, BigInteger, Boolean
+from sqlalchemy import String, Integer, DateTime, ForeignKey, ForeignKeyConstraint, UniqueConstraint, BigInteger, Boolean
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -124,6 +124,17 @@ class FindingRecord(Base):
     assessment_id: Mapped[str] = mapped_column(ForeignKey("assessments.id"), index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
     data: Mapped[dict] = mapped_column(JSONB)
+    __table_args__ = (UniqueConstraint('assessment_id', 'id', name='uq_findings_assessment_id_id'),)
+
+
+class FindingCaptureKey(Base):
+    __tablename__ = 'finding_capture_keys'
+    assessment_id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    fingerprint: Mapped[str] = mapped_column(String(64), primary_key=True)
+    finding_id: Mapped[str] = mapped_column(String(36))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    __table_args__ = (ForeignKeyConstraint(['assessment_id','finding_id'],
+                                         ['findings.assessment_id','findings.id']),)
 
 
 class ReviewRecord(Base):

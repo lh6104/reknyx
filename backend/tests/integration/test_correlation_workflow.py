@@ -134,10 +134,10 @@ def test_link_preserves_explicit_cvss_attribution_for_older_imported_findings(wo
     app,c,path,post,headers,_,_,_,_=workspace
     raw=(Path('backend/tests/fixtures/greenbone/synthetic-report.xml')).read_bytes()
     ids=[]
-    for _ in range(2):
+    for index in range(2):
         result=c.post(path+'/imports',headers={**headers,'Idempotency-Key':uuid4().hex},
-            data={'kind':'greenbone_xml','observed_at':'null','provenance':'synthetic_fixture','source_label':'Synthetic Greenbone fixture'},
-            files={'file':('fixture.xml',raw,'application/xml')})
+            data={'kind':'greenbone_xml','observed_at':'2026-11-08T00:00:00Z','provenance':'synthetic_fixture','source_label':'Synthetic Greenbone fixture'},
+            files={'file':('fixture.xml',raw+b'\n'*index,'application/xml')})
         assert result.status_code==202,result.text
         assert process_one(app.state.session_factory,app.state.artifact_store)
         status=c.get(result.json()['status_url']).json()
@@ -150,7 +150,7 @@ def test_link_preserves_explicit_cvss_attribution_for_older_imported_findings(wo
         record.data={**record.data,'risk_input_sources':[]}
         db.commit()
     result=post(path+'/correlations/review',{'finding_id':finding['id'],'observation_ids':ids[1:],
-        'decision':'link','expected_revision':1,'rationale':'Identical retained synthetic captures.'})
+        'decision':'link','expected_revision':1,'rationale':'Distinct capture bytes with the same recorded time and native rule.'})
     assert result.status_code==201,result.text
     linked=c.get(path+'/findings/'+finding['id']).json()
     assert linked['cvss']==finding['cvss']==7.5

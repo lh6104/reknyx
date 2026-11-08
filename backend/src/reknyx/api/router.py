@@ -25,7 +25,7 @@ from .dependencies import get_session, require_origin, require_csrf
 
 from reknyx.infrastructure.models import ObservationRecord, FindingRecord, ReviewRecord, ReportRecord
 
-REVISION = "0003_evidence_analysis"
+REVISION = "0004_finding_capture_keys"
 COOKIE = "reknyx_session"
 MUTATIONS = {"post", "put", "patch", "delete"}
 

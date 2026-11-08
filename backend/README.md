@@ -109,6 +109,43 @@ populates canonical CVSS; missing/other native CVSS fields remain in source evid
 Verification uses the labelled synthetic fixture under `tests/fixtures/greenbone/`;
 a permitted native capture and broader format acceptance remain separate gates.
 
+## Exact-capture repeat imports
+
+Migration `0004_finding_capture_keys` adds an immutable same-assessment capture
+index. Apply `alembic upgrade head` with the migration-owner connection before
+starting the updated API and worker, following the setup command above. Readiness
+requires this revision. Migration checks were run only on an isolated test database;
+existing application databases are not automatically upgraded by source edits.
+
+Newly indexed imports of the exact same native record share a canonical finding.
+Identity binds the assessment, original byte hash, parser version, native rule and
+locator, asset/service/request location, recorded observation time and provenance.
+Generated IDs, source labels and ingestion times do not change capture identity.
+Changing bytes, parser version, time, provenance or assessment creates a separate
+finding; similarity of title or CVE is never sufficient. This is exact-capture
+duplicate handling, not cross-tool equivalence or general issue deduplication.
+
+Every repeated import still retains its own artifact, native observation and raw
+locator. Existing finding memberships gain the new observation, the finding revision
+advances, and worker audit records identify the attachment. Original source fields,
+analyst disposition, technical validation and reviews are preserved: replaying the
+same capture is not new supporting proof. Old snapshots stay frozen. New reports
+disclose the limited deduplication policy and retain all source traces.
+
+Any previous `keep_separate` review on the indexed finding vetoes automatic
+attachment to that finding. This conservative veto applies even when that review
+concerned another observation; use explicit analyst review for further links.
+The index remains unchanged and the repeated source gets a separate finding.
+Publication is atomic: if a membership/trace bound is exceeded, the import visibly
+fails without partial observations, finding changes or duplicate-link audit events;
+its original stored bytes remain accessible. No automatic retry occurs.
+
+Existing findings are not backfilled or retroactively merged by this migration.
+The first post-upgrade import establishes a new index entry, so older duplicate
+finding records may remain. No cross-tool mapping is enabled; Greenbone's current
+normalized records do not retain the exact web request location needed to claim
+equivalence with a ZAP instance. Native-capture acceptance remains a separate gate.
+
 ## Analyst correlation and review priority
 
 `POST /api/v1/assessments/{id}/correlations/review` accepts the existing

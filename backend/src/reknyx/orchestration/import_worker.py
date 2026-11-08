@@ -10,6 +10,8 @@ from sqlalchemy import select
 
 from reknyx.contracts import validate
 from reknyx.evidence.imports import normalize
+from reknyx.findings.duplicate_identity import DuplicatePublicationError
+from reknyx.findings.import_publication import publish_findings
 from reknyx.shared.time import now, timestamp
 
 
@@ -43,7 +45,7 @@ def isolated_parse(kind, raw, source):
 
 
 def process_one(session_factory, store):
-    from reknyx.infrastructure.models import ImportRecord, Artifact, Assessment, ObservationRecord, FindingRecord, AuditEvent
+    from reknyx.infrastructure.models import ImportRecord, Artifact, Assessment, ObservationRecord, AuditEvent
     with session_factory() as session:
         record = session.scalar(select(ImportRecord).where(ImportRecord.data['state'].astext == 'queued')
                                 .order_by(ImportRecord.created_at, ImportRecord.id).with_for_update(skip_locked=True).limit(1))
@@ -70,27 +72,34 @@ def process_one(session_factory, store):
             return True
         instant = now()
         finished = timestamp(instant)
+        duplicates = 0
+        if 'failure_code' not in result:
+            batch = result['result']
+            try:
+                with session.begin_nested():
+                    for observation, native in zip(batch['observations'], batch['native'], strict=True):
+                        validate('Observation', observation)
+                        session.add(ObservationRecord(id=observation['id'], assessment_id=assessment_id,
+                            created_at=instant, data=observation, source_data=native))
+                    session.flush()
+                    manifest = session.get(Artifact, record.data['artifact_id'])
+                    if manifest is None:
+                        raise DuplicatePublicationError('source_manifest_unavailable')
+                    duplicates = publish_findings(session,assessment_id,batch,manifest.data,instant)
+            except DuplicatePublicationError as exc:
+                result = {'failure_code':exc.code}
         if 'failure_code' in result:
             record.data = {**record.data, 'state': 'failed', 'failure_code': result['failure_code'],
                 'finished_at': finished, 'job': {**record.data['job'], 'state': 'failed',
                 'failure_code': result['failure_code'], 'finished_at': finished}}
         else:
-            batch = result['result']
-            for observation, native in zip(batch['observations'], batch['native'], strict=True):
-                validate('Observation', observation)
-                session.add(ObservationRecord(id=observation['id'], assessment_id=assessment_id,
-                    created_at=instant, data=observation, source_data=native))
-            session.flush()
-            for finding in batch['findings']:
-                validate('Finding', finding)
-                session.add(FindingRecord(id=finding['id'], assessment_id=assessment_id, created_at=instant, data=finding))
             record.data = {**record.data, 'state': batch['outcome'], 'parser_version': batch['parser_version'],
                 'warnings': batch['warnings'], 'observation_ids': [o['id'] for o in batch['observations']],
                 'finished_at': finished, 'job': {**record.data['job'], 'state': 'succeeded', 'finished_at': finished}}
         validate('Import', record.data)
         event = {'id': str(uuid4()), 'assessment_id': assessment_id, 'at': finished,
                  'actor_type': 'worker', 'actor_id': None, 'kind': 'import.finished',
-                 'resource_id': identifier, 'reason': 'Import completed from immutable stored bytes.',
+                 'resource_id': identifier, 'reason': f'Import completed from immutable stored bytes; {duplicates} exact capture duplicate(s) linked.',
                  'outcome': record.data['state']}
         validate('TimelineEvent', event)
         session.add(AuditEvent(id=event['id'], assessment_id=assessment_id, created_at=instant, data=event))
