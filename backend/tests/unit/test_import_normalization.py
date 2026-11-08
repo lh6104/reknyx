@@ -25,6 +25,18 @@ def test_zap_observation_and_finding_keep_source_identity():
     assert finding['analyst_disposition'] == 'needs_review'
     assert finding['priority'] == 'review_next'
     assert finding['cvss'] is None
+    assert finding['risk_input_sources']==[{'field':'severity','observation_ids':[observation['id']],'analyst':None}]
+
+
+def test_greenbone_cvss_and_severity_have_separate_source_attribution():
+    from pathlib import Path
+    raw=(Path(__file__).parents[1]/'fixtures/greenbone/synthetic-report.xml').read_bytes()
+    source={'assessment_id':str(uuid4()),'artifact_id':str(uuid4()),'observed_at':None,
+            'ingested_at':'2026-11-08T00:00:00Z'}
+    batch=normalize('greenbone_xml',raw,source)
+    observation,finding=batch['observations'][0],batch['findings'][0]
+    assert {s['field'] for s in finding['risk_input_sources']}=={'severity','cvss'}
+    assert all(s['observation_ids']==[observation['id']] for s in finding['risk_input_sources'])
 
 
 def test_unsupported_kind_is_explicit():

@@ -2,7 +2,7 @@
 
 This backend provides the initial session, assessment, message, audit and private
 artifact services, durable Nmap/ZAP/Greenbone imports, finding review and immutable draft PDF reports.
-Scanner execution remains in development. Explicit evidence review and a bounded synthetic Groq development benchmark are implemented; broader AI acceptance remains pending. G0 verification is recorded in
+Scanner execution remains in development. Analyst evidence correlation and the contract's ordinal review-priority rules are implemented. Explicit evidence review and a bounded synthetic Groq development benchmark are implemented; broader AI acceptance remains pending. G0 verification is recorded in
 `contracts/review-status.json`; full browser acceptance is reported separately.
 
 Use Python 3.13 and `uv`; dependencies are locked in `uv.lock`.
@@ -108,6 +108,58 @@ fields remain traceable. Only an explicit supported CVSS 3.0/3.1 score/vector pa
 populates canonical CVSS; missing/other native CVSS fields remain in source evidence.
 Verification uses the labelled synthetic fixture under `tests/fixtures/greenbone/`;
 a permitted native capture and broader format acceptance remain separate gates.
+
+## Analyst correlation and review priority
+
+`POST /api/v1/assessments/{id}/correlations/review` accepts the existing
+`CorrelationReview` contract. Use an authenticated cookie, exact configured Origin,
+CSRF token and a fresh idempotency key, as for finding review:
+
+```json
+{
+  "finding_id": "<finding UUID>",
+  "observation_ids": ["<candidate observation UUID>"],
+  "decision": "link",
+  "expected_revision": 1,
+  "rationale": "Explain why the retained source observations describe the same issue."
+}
+```
+
+Get IDs from the assessment's findings and observations lists; `expected_revision`
+is the finding revision. This example's UUID placeholders must be replaced.
+Success returns an attributed immutable `ReviewRecord` and advances finding and
+assessment revisions. Same-key requests replay the stored success or denial.
+
+Links require same-assessment vulnerability observations with matching canonical
+asset, known service endpoint, exact web request location, native tool/rule and
+recorded capture time. No timestamp tolerance or hostname/IP alias is inferred.
+When capture time is missing, only identical retained capture bytes are compatible.
+Different queries, methods, parameters, redacted locations, unknown endpoints,
+different rules or incompatible provenance are refused. Titles, CVEs and analyst
+rationale alone cannot supply compatibility. Cross-tool linking is refused until
+reviewed rule-equivalence mappings exist; no such mapping is enabled in this release.
+
+Use `decision: "keep_separate"` to record a negative review for other owned
+observations. It preserves memberships and source fields; it cannot unlink existing
+members. A later different decision requires a fresh key and current finding revision.
+Newly linked evidence returns disposition to `needs_review` without promoting
+technical validation. Original observations, native values, artifacts and other
+source findings remain unchanged. Links do not delete or deduplicate source findings;
+reports explicitly distinguish canonical finding counts from deduplicated issue counts.
+
+New imports attribute source severity and supported CVSS separately. Linking uses
+the highest supported source severity for conservative review ordering, flags
+disagreements/unknown severity, and preserves the original primary CVSS, confidence
+and remediation. Inspect all source artifacts; an aggregate severity is not technical
+confirmation. Existing records are not rewritten in bulk.
+
+The frozen `ordinal-v1` rule assigns `review_first` to high/critical severity,
+recorded demonstrated exploitation, or medium severity on a recorded reachable,
+high-impact asset. Low/informational severity with all three context inputs known
+is `routine`; otherwise it is `review_next`. Confidence never discounts severity.
+Exposure, exploitability and asset impact remain unknown unless supported separately.
+This is an explainable review queue, not a numeric risk score or probability.
+Report snapshots freeze their original memberships, priorities and review history.
 
 ## Explicit evidence review and Groq setup
 

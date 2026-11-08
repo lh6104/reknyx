@@ -6,6 +6,7 @@ from uuid import uuid4
 from reknyx.assessments.service import require_membership
 from reknyx.contracts import validate
 from reknyx.evidence.service import ArtifactService
+from reknyx.findings.priority import prioritize
 from reknyx.infrastructure.errors import DomainError
 from reknyx.infrastructure.events import append_event
 from reknyx.shared.time import now, timestamp
@@ -77,9 +78,8 @@ def normalize(kind, raw, source):
                    'analyst_disposition': 'needs_review', 'observation_ids': [identifier],
                    'correlation_reason': 'Single native instance; no cross-source merge performed.',
                    'exposure': unknown.copy(), 'exploitability': unknown.copy(), 'asset_impact': unknown.copy(),
-                   'risk_input_sources': [], 'priority': 'review_first' if item.severity in ('high', 'critical') else 'review_next',
-                   'priority_reasons': ['Source severity requires review.' if item.severity in ('high', 'critical') else 'Context remains unknown.'],
-                   'risk_rule_version': 'ordinal-v1', 'unknowns': ['Exposure, exploitability and asset impact are unknown.', 'CVSS is not supplied by this parser.'],
+                   'risk_input_sources': [],
+                   'unknowns': ['Exposure, exploitability and asset impact are unknown.', 'CVSS is not supplied by this parser.'],
                    'remediation': item.solution or 'Review the source evidence and determine appropriate remediation.'}
         if kind == 'greenbone_xml':
             finding.update(cvss=item.cvss, cvss_vector=item.cvss_vector,
@@ -89,6 +89,11 @@ def normalize(kind, raw, source):
             finding['unknowns'] = ['Exposure, exploitability and asset impact are unknown.']
             if item.cvss is None:
                 finding['unknowns'].append('No supported explicit CVSS score/vector/version pair supplied; native NVT fields retained.')
+        if finding['severity'] != 'unknown':
+            finding['risk_input_sources'].append({'field':'severity','observation_ids':[identifier],'analyst':None})
+        if finding['cvss'] is not None:
+            finding['risk_input_sources'].append({'field':'cvss','observation_ids':[identifier],'analyst':None})
+        finding.update(prioritize(finding))
         validate('Finding', finding)
         findings.append(finding)
     warnings = [{'code': w.code, 'message': 'Native parser warning: ' + w.code, 'raw_locator': w.raw_locator}

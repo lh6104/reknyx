@@ -295,6 +295,9 @@ def _dispatch(request, db, auth, operation, value, params):
         return 200, Response(raw, media_type=artifact.data["content_type"], headers={"Content-Disposition": f'attachment; filename="{artifact_id}"', "X-Content-Type-Options": "nosniff", "X-Content-SHA256": artifact.data["sha256"]}), None
     from reknyx.evidence.imports import ImportService
     from reknyx.findings.service import FindingsService
+    if operation == "reviewCorrelation":
+        from reknyx.findings.correlation_service import CorrelationService
+        return 201, CorrelationService(db, auth.actor_id).review(assessment_id, value), None
     store = request.app.state.artifact_store
     if operation == "createImport":
         result = ImportService(db, store, auth.actor_id).create(assessment_id, value, request.state.upload)

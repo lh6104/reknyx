@@ -50,6 +50,8 @@ def build_snapshot(identifier, assessment, scope, actor, instant, findings, obse
               'assessment_started_at': assessment['created_at'], 'assessment_finished_at': None,
               'provenance_notice': 'Provenance is retained per source artifact; synthetic fixtures are not native scanner captures.',
               'release_status': 'draft'}
+    if any(review.get('correlation_decision') == 'link' for review in reviews):
+        result['limitations'].append('Correlation links retain source findings; canonical finding counts are not deduplicated issue counts.')
     validate('ReportSnapshot', result)
     if len(json.dumps(result).encode()) > 10 * 1024 * 1024:
         raise DomainError(413, 'request_too_large', 'Snapshot exceeds 10 MiB')
