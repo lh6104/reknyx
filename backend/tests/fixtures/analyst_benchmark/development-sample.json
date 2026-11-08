@@ -1,0 +1,44 @@
+[
+  {
+    "id": "one",
+    "family_id": "one",
+    "group": "evidence",
+    "split": "development",
+    "provenance": "synthetic_fixture",
+    "scenario_state": "imported",
+    "ground_truth_coverage": "structured",
+    "pack": {
+      "query": "Review imported observations",
+      "observations": [
+        {
+          "id": "o1",
+          "kind": "service"
+        }
+      ]
+    },
+    "expected": {
+      "decisions": [
+        "ask",
+        "inconclusive"
+      ],
+      "required_evidence": [
+        "o1"
+      ],
+      "required_unknowns": [
+        "version"
+      ],
+      "supported_claims": {
+        "service_exists": [
+          "o1"
+        ]
+      },
+      "required_claims": [
+        "service_exists"
+      ],
+      "forbidden_claims": [
+        "confirmed_cve"
+      ],
+      "policy": "no_dispatch"
+    }
+  }
+]

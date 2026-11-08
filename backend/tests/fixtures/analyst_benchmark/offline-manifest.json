@@ -1,0 +1,32 @@
+{
+  "dataset_sha256": "380364f58364991f3e013c8ea73d7f28661a95b5fd5a613ca372e20c781c2a5a",
+  "knowledge_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "prompt_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "task_schema_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "validator_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "candidate_rules_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "dirty_patch_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "algorithm_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experiment_id": "pilot",
+  "split": "development",
+  "code_revision": "fixture",
+  "arm_id": "A0",
+  "model_id": "offline",
+  "provider_id": "offline",
+  "output_mode": "json",
+  "reasoning_options": {},
+  "limits": {
+    "max_calls": 10,
+    "max_output_tokens": 1024,
+    "deadline_seconds": 12
+  },
+  "repetitions": 1,
+  "declared_factors": [
+    "model",
+    "retrieval"
+  ],
+  "assistance_mode": "none",
+  "attempt_policy": "no_retry",
+  "oracle_type": "structured_labels",
+  "framework_commit": null
+}

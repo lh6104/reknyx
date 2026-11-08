@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataset_sha256",
+    "knowledge_sha256",
+    "prompt_sha256",
+    "task_schema_sha256",
+    "validator_sha256",
+    "candidate_rules_sha256",
+    "dirty_patch_sha256",
+    "algorithm_sha256",
+    "experiment_id",
+    "code_revision",
+    "arm_id",
+    "model_id",
+    "provider_id",
+    "split",
+    "output_mode",
+    "repetitions",
+    "declared_factors",
+    "reasoning_options",
+    "limits",
+    "assistance_mode",
+    "attempt_policy",
+    "oracle_type",
+    "framework_commit"
+  ],
+  "properties": {
+    "dataset_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "knowledge_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "task_schema_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "validator_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "candidate_rules_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dirty_patch_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "algorithm_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "experiment_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "code_revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "arm_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "provider_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "split": {
+      "enum": [
+        "development",
+        "validation",
+        "holdout"
+      ]
+    },
+    "output_mode": {
+      "enum": [
+        "json",
+        "strict_json"
+      ]
+    },
+    "repetitions": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "declared_factors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "model",
+          "architecture",
+          "retrieval",
+          "prompt",
+          "reasoning"
+        ]
+      }
+    },
+    "reasoning_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "effort": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_calls",
+        "max_output_tokens",
+        "deadline_seconds"
+      ],
+      "properties": {
+        "max_calls": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "deadline_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 300
+        }
+      }
+    },
+    "assistance_mode": {
+      "enum": [
+        "none",
+        "human",
+        "simulated"
+      ]
+    },
+    "attempt_policy": {
+      "const": "no_retry"
+    },
+    "oracle_type": {
+      "enum": [
+        "structured_labels",
+        "human_review",
+        "environment"
+      ]
+    },
+    "framework_commit": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

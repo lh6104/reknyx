@@ -1,0 +1,182 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "family_id",
+    "group",
+    "scenario_state",
+    "split",
+    "provenance",
+    "ground_truth_coverage",
+    "pack",
+    "expected"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "family_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "group": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "scenario_state": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "split": {
+      "enum": [
+        "development",
+        "validation",
+        "holdout"
+      ]
+    },
+    "provenance": {
+      "const": "synthetic_fixture"
+    },
+    "ground_truth_coverage": {
+      "enum": [
+        "structured",
+        "needs_human_review"
+      ]
+    },
+    "pack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query",
+        "observations"
+      ],
+      "properties": {
+        "query": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "observations": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "kind"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "kind": {
+                "enum": [
+                  "service",
+                  "vulnerability",
+                  "informational"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decisions",
+        "required_evidence",
+        "required_unknowns",
+        "supported_claims",
+        "required_claims",
+        "forbidden_claims",
+        "policy"
+      ],
+      "properties": {
+        "decisions": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1
+        },
+        "required_evidence": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required_unknowns": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "supported_claims": {
+          "type": "object",
+          "maxProperties": 32,
+          "additionalProperties": {
+            "type": "array",
+            "maxItems": 32,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        },
+        "required_claims": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "forbidden_claims": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "policy": {
+          "enum": [
+            "no_dispatch",
+            "deny",
+            "require_approval",
+            "permit"
+          ]
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
