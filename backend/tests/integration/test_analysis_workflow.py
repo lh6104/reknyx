@@ -240,3 +240,162 @@ def test_interpretation_is_frozen_and_replay_preserves_cited_unknowns(workspace)
         assert attempt.data['accepted_interpretation']['counts']['service']==1
         assert attempt.data['accepted_interpretation']['unknowns']==decision['unknowns']
         assert attempt.data['accepted_interpretation']['hypotheses']==[]
+
+
+def _knowledge_fixture():
+    from reknyx.security_analysis.knowledge import load_snapshot
+    source=Path('backend/tests/fixtures/knowledge/synthetic-snapshot-v1.json')
+    return load_snapshot(json.loads(source.read_text()))
+
+
+def test_assessment_bound_pack_retrieves_and_revalidates_without_mutation(workspace):
+    from datetime import datetime,timezone
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack,accept_analysis_review
+    from reknyx.security_analysis.analysis_pack import local_analysis
+    app,c,path,post,_=workspace
+    upload(workspace)
+    assessment_id=path.rsplit('/',1)[1]
+    revision=c.get(path).json()['assessment']['state_revision']
+    with app.state.session_factory() as db:
+        pack=prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,
+            snapshot=_knowledge_fixture(),query='output encoding',as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=revision)
+        assert len(pack['evidence']['observations'])==1
+        assert [r['id'] for r in pack['knowledge']['references']]==['CWE-79']
+        result=local_analysis(pack)
+        assert accept_analysis_review(db,app.state.settings.actor_id,assessment_id,pack=pack,output=result)==result
+        db.rollback()
+    assert c.get(path).json()['assessment']['state_revision']==revision
+    assert c.get(path+'/decisions').json()['items']==[]
+    assert c.get(path+'/messages').json()['items']==[]
+
+
+def test_foreign_member_is_denied_before_snapshot_or_search(workspace):
+    from datetime import datetime,timezone
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack
+    from reknyx.infrastructure.errors import DomainError
+    app,c,path,post,_=workspace
+    with app.state.session_factory() as db:
+        # Invalid snapshot would raise ValueError if knowledge was touched before membership.
+        with pytest.raises(DomainError) as error:
+            prepare_analysis_pack(db,str(uuid4()),path.rsplit('/',1)[1],snapshot={},query='secret',
+                as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=1)
+        assert error.value.status==404
+
+
+def test_pack_rejects_revision_changes_between_assembly_and_acceptance(workspace):
+    from datetime import datetime,timezone
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack,accept_analysis_review
+    from reknyx.security_analysis.analysis_pack import local_analysis
+    from reknyx.infrastructure.errors import DomainError
+    app,c,path,post,_=workspace
+    assessment_id=path.rsplit('/',1)[1]
+    with app.state.session_factory() as db:
+        pack=prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,snapshot=_knowledge_fixture(),
+            query='output encoding',as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=1)
+        db.rollback()  # Never carry the assembly lock over an external operation.
+    assert post(path+'/messages',{'expected_revision':1,'content':'Concurrent edit'}).status_code==201
+    with app.state.session_factory() as db:
+        with pytest.raises(DomainError) as error:
+            accept_analysis_review(db,app.state.settings.actor_id,assessment_id,pack=pack,output=local_analysis(pack))
+        assert error.value.status==409
+
+
+def test_pack_stale_expected_revision_fails_before_retrieval(workspace):
+    from datetime import datetime,timezone
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack
+    from reknyx.infrastructure.errors import DomainError
+    app,c,path,post,_=workspace
+    with app.state.session_factory() as db:
+        with pytest.raises(DomainError) as error:
+            prepare_analysis_pack(db,app.state.settings.actor_id,path.rsplit('/',1)[1],snapshot={},
+                query='',as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=99)
+        assert error.value.status==409
+
+
+@pytest.mark.skipif(not os.getenv('REKNYX_TEST_ADMIN_DATABASE_URL'),reason='isolated admin URL required')
+def test_pack_membership_revocation_denies_acceptance(workspace):
+    from datetime import datetime,timezone
+    from sqlalchemy import create_engine,delete
+    from reknyx.infrastructure.models import Membership
+    from reknyx.infrastructure.errors import DomainError
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack,accept_analysis_review
+    from reknyx.security_analysis.analysis_pack import local_analysis
+    app,c,path,post,_=workspace
+    assessment_id=path.rsplit('/',1)[1]
+    with app.state.session_factory() as db:
+        pack=prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,snapshot=_knowledge_fixture(),
+            query='',as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=1)
+        db.rollback()
+    engine=create_engine(os.environ['REKNYX_TEST_ADMIN_DATABASE_URL'])
+    try:
+        with engine.begin() as conn:
+            conn.execute(delete(Membership).where(Membership.assessment_id==assessment_id))
+    finally:
+        engine.dispose()
+    with app.state.session_factory() as db:
+        with pytest.raises(DomainError) as error:
+            accept_analysis_review(db,app.state.settings.actor_id,assessment_id,pack=pack,output=local_analysis(pack))
+        assert error.value.status==404
+
+
+def test_paired_local_analysis_keeps_evidence_decision_separate_from_retrieval(workspace):
+    from datetime import datetime,timezone
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack
+    from reknyx.security_analysis.analysis_pack import local_analysis
+    app,c,path,post,_=workspace
+    upload(workspace)
+    assessment_id=path.rsplit('/',1)[1]
+    revision=c.get(path).json()['assessment']['state_revision']
+    packs=[]
+    with app.state.session_factory() as db:
+        for query in ('','output encoding'):
+            packs.append(prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,
+                snapshot=_knowledge_fixture(),query=query,as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=revision))
+        db.rollback()
+    baseline,enriched=map(local_analysis,packs)
+    assert packs[0]['evidence']==packs[1]['evidence']
+    assert packs[0]['context_sha256']==packs[1]['context_sha256']
+    assert {k:v for k,v in baseline.items() if k!='knowledge_reference_ids'}=={k:v for k,v in enriched.items() if k!='knowledge_reference_ids'}
+    assert baseline['knowledge_reference_ids']==[]
+    assert len(enriched['knowledge_reference_ids'])==1
+    assert packs[0]['sha256']!=packs[1]['sha256']
+    # Reference enrichment is not an improvement in model or decision correctness.
+    assert enriched['outcome']=='ask'
+
+
+def test_reused_session_refreshes_state_before_accepting_pack(workspace):
+    from datetime import datetime,timezone
+    from reknyx.infrastructure.models import Assessment
+    from reknyx.infrastructure.errors import DomainError
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack,accept_analysis_review
+    from reknyx.security_analysis.analysis_pack import local_analysis
+    app,c,path,post,_=workspace
+    assessment_id=path.rsplit('/',1)[1]
+    with app.state.session_factory() as db:
+        cached=db.get(Assessment,assessment_id)
+        pack=prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,snapshot=_knowledge_fixture(),
+            query='',as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=1)
+        db.commit()
+        assert cached.data['state_revision']==1
+        assert post(path+'/messages',{'expected_revision':1,'content':'Change from another session'}).status_code==201
+        with pytest.raises(DomainError) as error:
+            accept_analysis_review(db,app.state.settings.actor_id,assessment_id,pack=pack,output=local_analysis(pack))
+        assert error.value.status==409
+
+
+def test_reused_session_refreshes_state_before_preparing_pack(workspace):
+    from datetime import datetime,timezone
+    from reknyx.infrastructure.models import Assessment
+    from reknyx.infrastructure.errors import DomainError
+    from reknyx.security_analysis.analysis_service import prepare_analysis_pack
+    app,c,path,post,_=workspace
+    assessment_id=path.rsplit('/',1)[1]
+    with app.state.session_factory() as db:
+        cached=db.get(Assessment,assessment_id)
+        db.commit()
+        assert cached.data['state_revision']==1
+        assert post(path+'/messages',{'expected_revision':1,'content':'New revision before preparation'}).status_code==201
+        with pytest.raises(DomainError) as error:
+            prepare_analysis_pack(db,app.state.settings.actor_id,assessment_id,snapshot={},query='',
+                as_of=datetime(2026,11,9,tzinfo=timezone.utc),expected_revision=1)
+        assert error.value.status==409

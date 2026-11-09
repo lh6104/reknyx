@@ -85,3 +85,25 @@ def test_frozen_retrieval_development_labels(connection,snapshot):
     assert (hits,relevant)==(4,4)
     assert sum(reciprocal_ranks)/len(reciprocal_ranks)==1.0
     assert empty_gold_false_hits==0
+
+
+def test_archived_snapshot_paired_retrieval_baseline(connection,tmp_path):
+    from reknyx.evidence.storage import LocalArtifactStore
+    from reknyx.security_analysis.knowledge_snapshots import ingest_snapshot, read_snapshot
+    from reknyx.security_analysis.benchmarks.retrieval import run_retrieval_benchmark
+    source=Path(__file__).parents[1]/'fixtures/knowledge'
+    store=LocalArtifactStore(tmp_path/'knowledge-archive')
+    receipt=ingest_snapshot(store,(source/'synthetic-snapshot-v1.json').read_bytes())
+    restored=read_snapshot(LocalArtifactStore(tmp_path/'knowledge-archive'),receipt)
+    dataset=json.loads((source/'retrieval-development-v1.json').read_text())
+    report=run_retrieval_benchmark(connection,restored,dataset,as_of=NOW,k=5)
+    exact=report['arms']['exact'];fts=report['arms']['exact_fts']
+    assert exact['coverage']==fts['coverage']=={'numerator':5,'denominator':5}
+    assert exact['errors']==fts['errors']==0
+    assert exact['metrics']['recall_at_k']=={'sum':1.0,'denominator':4,'value':.25}
+    assert fts['metrics']['recall_at_k']=={'sum':4.0,'denominator':4,'value':1.0}
+    assert fts['metrics']['mrr']['value']==fts['metrics']['ndcg_at_k']['value']==1.0
+    assert fts['metrics']['empty_gold_correct']=={'numerator':1,'denominator':1}
+    assert report['provider_calls']==0 and report['snapshot_sha256']==restored['sha256']
+    # Private per-run report, not a tracked evidence or a model-quality claim.
+    (tmp_path/'paired-retrieval.json').write_text(json.dumps(report,indent=2))

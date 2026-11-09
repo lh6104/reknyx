@@ -521,3 +521,89 @@ adds no tables or migration branches. Synthetic development fixtures exercise so
 validation, exact/lexical retrieval and reproducibility. Official feed ingestion,
 persistent indexing and knowledge-enriched model requests remain follow-up work.
 The existing Groq payload and data-use restrictions remain unchanged.
+
+## Private knowledge snapshot archive
+
+An operator may import an already permitted JSON snapshot into a dedicated private
+knowledge archive. This CLI does not fetch sources, change the active assessment,
+create observations or send knowledge to a model. From the repository root:
+
+```bash
+mkdir -p .local/knowledge-demo
+uv run --project backend --frozen python -m reknyx.security_analysis.knowledge_snapshots import \
+  --archive-root .local/knowledge-demo/archive \
+  --input backend/tests/fixtures/knowledge/synthetic-snapshot-v1.json \
+  --receipt .local/knowledge-demo/import-001.json
+uv run --project backend --frozen python -m reknyx.security_analysis.knowledge_snapshots verify \
+  --archive-root .local/knowledge-demo/archive \
+  --receipt .local/knowledge-demo/import-001.json
+```
+
+Use a new receipt filename for every import; existing files are never overwritten by
+new import requests. The example is synthetic, not an official source capture.
+Original accepted bytes are retained before parsing. Rejected sources retain a raw
+blob receipt. Successful receipts bind raw bytes, normalized bytes and logical
+snapshot identity. Verification rechecks byte hashes and the derivation from raw
+JSON after reload. Only bounded regular files are read; API/client filesystem paths
+are not accepted by a new endpoint.
+
+The CLI reserves a private pending receipt before publishing raw bytes. Final and
+rejected receipts use an atomic file replacement with file/directory synchronization.
+A pending receipt after interruption requires reconciliation against archive blob
+receipts. Do not blindly repeat imports or delete unreferenced bytes. A ready receipt
+establishes local byte integrity, not source trust, applicability or human gold review.
+Exit codes: 0 ready/verified, 1 rejected with source retained, 2 incomplete/setup or
+verification failure. Local artifact permissions and hashes are not storage-level
+object-lock guarantees or backup/restore acceptance.
+
+## Paired retrieval diagnostics
+
+`security_analysis.benchmarks.retrieval.run_retrieval_benchmark` compares exact-only
+lookup with exact-plus-FTS on the same frozen snapshot, labels, as-of time and top-k.
+Reports retain per-case retrieved IDs, errors, coverage and Recall@k/MRR/nDCG.
+Cases without relevant labels have a separate empty-gold metric, not a zero-valued
+recall. Errors remain in scheduled denominators; no retries or model calls occur.
+All labels are validated before SQL; only query and exact identifiers enter search.
+
+Run `scripts/test_database.py` with the two integration test paths above to exercise
+archive reload and paired retrieval using read-only PostgreSQL transactions. The
+fixture has five project-authored cases: four with relevant documents and one
+no-match query. Its lexical supplementation result does not establish general RAG
+quality or an improvement in Analyst decisions. A private per-test report is written
+under pytest's temporary directory. Official feed ingestion, durable DB indexes,
+provider-enriched analysis and embeddings remain subsequent work.
+
+## Assessment-bound analysis packs (internal E2 seam)
+
+`security_analysis.analysis_service.prepare_analysis_pack` joins the existing
+membership-authorized, bounded canonical context with an operator-approved knowledge
+snapshot. It checks the expected revision and assembles a versioned pack bound to
+actor, assessment, state/scope revisions, context digest, query and knowledge snapshot.
+Evidence interpretation and external knowledge remain separate. The query is supplied
+explicitly; messages, addresses and raw scanner bytes are not automatically selected.
+
+The caller owns the database transaction. Assembly and acceptance serialize on the
+assessment row; release the assembly transaction before any external operation.
+`accept_analysis_review` rechecks membership, revisions and current evidence context.
+Packs must be retained by trusted server code. Their digest detects changes but is
+not a signature; never accept arbitrary client-supplied packs as authorization.
+
+`analysis_pack.local_analysis` produces only existing review topics, observation IDs
+and separate knowledge reference IDs. The validator rejects arbitrary claims,
+confirmation fields, unsupported topics, foreign references and action proposals.
+Knowledge references cannot replace observation IDs. A valid citation is not proof
+of applicability, remediation correctness or claim entailment. The deterministic
+interpreter preserves these unknowns instead of inventing product/version matches.
+
+This is a tested internal application seam, not a newly enabled HTTP operation or
+provider-enriched Analyst. It does not append messages, create findings, persist
+analysis attempts, change scope or dispatch work. Existing plans/decisions API behavior
+and Groq payload/data-use restrictions are unchanged. A future explicit analysis
+operation needs reviewed public schemas, replay/persistence and provider data-use
+coverage before this pack may be transmitted.
+
+Focused tests are `backend/tests/unit/test_analysis_pack.py` and the assessment pack
+cases in `backend/tests/integration/test_analysis_workflow.py`. They include foreign
+access before retrieval, stale state, membership revocation, unchanged source evidence
+and paired local review with/without knowledge. That pair measures citation enrichment;
+it does not establish model-quality improvement. No real-provider calls are made.
