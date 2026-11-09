@@ -461,3 +461,63 @@ rotate existing DB credentials. Consistent DB/artifact backups, tested restore,
 retention/access review, diagnostics and measured load remain separate pilot gates.
 Vultr deployment, TLS and registry promotion need actual run evidence; these files
 and preflight establish configuration preparation only.
+
+## Evidence interpretation (E1 initial slice)
+
+Explicit evidence review now renders a deterministic interpretation of the cited
+bounded context: recorded service observations, unconfirmed detection hypotheses,
+source severity, historical labels and missing applicability information. An open
+service is never promoted to a vulnerability. The projection lacks asset identity
+and product/version detail, so it cannot establish correlation, CVE applicability,
+current exposure or technical confirmation. Missing values remain unknown.
+
+Analysis attempts retain interpretation version/hash and the accepted cited
+projection; existing decision unknowns reflect the same cited evidence. No public
+DTO, provider payload, scan capability or model destination is added. This initial
+E1 slice does not implement the full planner or knowledge retrieval.
+
+Focused offline verification:
+
+```bash
+cd backend
+uv run --frozen pytest tests/unit/test_evidence_interpretation.py tests/unit/test_analyst_benchmarks.py tests/unit/test_security_analysis.py tests/unit/test_review_evaluation.py tests/unit/test_compare_evaluations.py -q
+```
+
+The eight `interpretation-development-v1.json` cases are project-authored synthetic
+regression labels, not independently reviewed gold data or live-model benchmarks.
+Database replay/persistence checks remain in `tests/integration/test_analysis_workflow.py`
+and require the dedicated PostgreSQL setup described above.
+
+## Disposable PostgreSQL test runner
+
+Database integration tests exist from the foundation milestone. To provision a fresh
+PostgreSQL 17 database and run them without using any existing application database:
+
+```bash
+uv run --project backend --frozen python scripts/test_database.py \
+  --docker-context default \
+  backend/tests/integration/test_analysis_workflow.py \
+  backend/tests/integration/test_knowledge.py
+```
+
+Run from the repository root. Choose a running Docker context explicitly; this does
+not change your global Docker context. The `postgres:17-alpine` image must already
+be cached. The runner uses a unique container, loopback-only random port and tmpfs
+storage. It applies migrations as owner and tests with a non-owner runtime login.
+Inherited application database/model configuration is stripped. Generated passwords
+are not printed; only that invocation's container is removed. No persistent database
+or volume is selected. If cleanup fails, reconcile the named disposable container.
+
+## Structured knowledge retrieval (E2 initial slice)
+
+`security_analysis/knowledge.py` validates bounded, versioned snapshots with content
+hashes, source revisions and explicit freshness windows. Exact CVE/CWE/WSTG lookup
+precedes PostgreSQL full-text retrieval; expired/future sources are disclosed and
+excluded. Knowledge references use a distinct `knowledge:` namespace and do not
+establish observations, applicability, findings or execution permission.
+
+This slice uses at most 128 frozen documents with read-only JSONB/FTS queries; it
+adds no tables or migration branches. Synthetic development fixtures exercise source
+validation, exact/lexical retrieval and reproducibility. Official feed ingestion,
+persistent indexing and knowledge-enriched model requests remain follow-up work.
+The existing Groq payload and data-use restrictions remain unchanged.

@@ -1,0 +1,12 @@
+{
+  "version": "knowledge-retrieval-development-v1",
+  "provenance": "synthetic_fixture",
+  "label_status": "project_authored_not_independently_reviewed",
+  "cases": [
+    {"id": "exact-identifier", "query": "", "identifiers": ["CWE-79"], "relevant_ids": ["CWE-79"]},
+    {"id": "output-encoding", "query": "output encoding", "identifiers": [], "relevant_ids": ["CWE-79"]},
+    {"id": "parameter-binding", "query": "parameter binding", "identifiers": [], "relevant_ids": ["CWE-89"]},
+    {"id": "directory-boundaries", "query": "directory boundaries", "identifiers": [], "relevant_ids": ["CWE-22"]},
+    {"id": "no-source-match", "query": "unlistedmethodxyz", "identifiers": [], "relevant_ids": []}
+  ]
+}

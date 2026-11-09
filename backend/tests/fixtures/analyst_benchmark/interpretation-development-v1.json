@@ -1,0 +1,240 @@
+{
+  "version": "interpretation-synthetic-development-v1",
+  "provenance": "synthetic_fixture",
+  "label_status": "project_authored_not_independently_reviewed",
+  "split": "development",
+  "cases": [
+    {
+      "id": "empty",
+      "context": {
+        "observations": [],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 0,
+        "detection_count": 0,
+        "hypothesis_count": 0,
+        "historical_count": 0,
+        "required_unknown_fragments": [
+          "Import"
+        ]
+      }
+    },
+    {
+      "id": "service-historical",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "service",
+            "source_tool": "nmap",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 1,
+        "detection_count": 0,
+        "hypothesis_count": 0,
+        "historical_count": 1,
+        "required_unknown_fragments": [
+          "current live applicability"
+        ]
+      }
+    },
+    {
+      "id": "service-not-labelled-historical",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "service",
+            "source_tool": "nmap",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": false,
+              "severity": "unknown"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 1,
+        "detection_count": 0,
+        "hypothesis_count": 0,
+        "historical_count": 0,
+        "required_unknown_fragments": [
+          "current live applicability"
+        ]
+      }
+    },
+    {
+      "id": "detection-high",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "vulnerability",
+            "source_tool": "greenbone",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "high"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 0,
+        "detection_count": 1,
+        "hypothesis_count": 1,
+        "historical_count": 1,
+        "required_unknown_fragments": [
+          "Product/version"
+        ]
+      }
+    },
+    {
+      "id": "detection-unknown",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "vulnerability",
+            "source_tool": "greenbone",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 0,
+        "detection_count": 1,
+        "hypothesis_count": 1,
+        "historical_count": 1,
+        "required_unknown_fragments": [
+          "Source severity"
+        ]
+      }
+    },
+    {
+      "id": "distinct-observations-retained",
+      "context": {
+        "observations": [
+          {
+            "id": "a",
+            "kind": "vulnerability",
+            "source_tool": "greenbone",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          },
+          {
+            "id": "b",
+            "kind": "vulnerability",
+            "source_tool": "greenbone",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 0,
+        "detection_count": 2,
+        "hypothesis_count": 2,
+        "historical_count": 2,
+        "required_unknown_fragments": [
+          "Product/version"
+        ]
+      }
+    },
+    {
+      "id": "mixed-sources",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "service",
+            "source_tool": "nmap",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          },
+          {
+            "id": "o2",
+            "kind": "vulnerability",
+            "source_tool": "greenbone",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": false,
+              "severity": "medium"
+            }
+          }
+        ],
+        "truncated": false
+      },
+      "expected": {
+        "service_count": 1,
+        "detection_count": 1,
+        "hypothesis_count": 1,
+        "historical_count": 1,
+        "required_unknown_fragments": [
+          "current live applicability"
+        ]
+      }
+    },
+    {
+      "id": "truncated-service",
+      "context": {
+        "observations": [
+          {
+            "id": "o1",
+            "kind": "service",
+            "source_tool": "nmap",
+            "facts": {
+              "transport": "tcp",
+              "port": 443,
+              "historical": true,
+              "severity": "unknown"
+            }
+          }
+        ],
+        "truncated": true
+      },
+      "expected": {
+        "service_count": 1,
+        "detection_count": 0,
+        "hypothesis_count": 0,
+        "historical_count": 1,
+        "required_unknown_fragments": []
+      }
+    }
+  ]
+}

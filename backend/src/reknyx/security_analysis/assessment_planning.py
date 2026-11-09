@@ -11,7 +11,8 @@ from reknyx.infrastructure.events import append_event
 from reknyx.infrastructure.models import AnalysisAttempt,AnalysisDecision,AuthSession,IdempotencyRecord,Message,ScopeRevision,Assessment,Membership
 from reknyx.shared.time import now,timestamp
 from .evidence_context import build_context
-from .evidence_analysis import local_review,render_review
+from .evidence_analysis import local_review,render_review,review_unknowns
+from .evidence_interpretation import interpret_evidence, VERSION as INTERPRETATION_VERSION
 from .output_validation import validate_output,SCHEMA,VERSION,ReviewValidationError
 from .review_policy import VERSION as POLICY_VERSION
 from .model_providers import groq
@@ -41,6 +42,7 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
             if prior is None or prior.assessment_id!=assessment_id:raise DomainError(404,'not_found')
         scope=db.get(ScopeRevision,(assessment_id,assessment.data['scope_version'])).data
         context=build_context(db,assessment)
+        interpretation=interpret_evidence(context)
         budget=remaining_budget(db,assessment_id,scope['budget'])
         reserved={}
         failure=None
@@ -61,6 +63,8 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
             'state_revision':assessment.data['state_revision'],'scope_version':scope['version'],'scope_hash':scope['hash'],
             'context':context,'http_request_id':request_id,'context_hash':context['sha256'],'context_version':context['version'],'schema_version':VERSION,
             'selection_policy_version':POLICY_VERSION,
+            'interpretation_version':INTERPRETATION_VERSION,
+            'interpretation_hash':interpretation['sha256'],'interpretation':interpretation,
             'schema_hash':hashlib.sha256(canonical_request(SCHEMA)).hexdigest(),
             'wire_schema_hash':hashlib.sha256(canonical_request(groq.WIRE_SCHEMA)).hexdigest(),
             'prompt_hash':hashlib.sha256(groq.PROMPT.encode()).hexdigest(),'reserved':reserved,
@@ -122,7 +126,7 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
        'candidate_profile':None,'basis_observation_ids':result['basis_observation_ids'] if failure is None else [],
        'proposal_id':None,'rationale':rationale,'policy_result':None,'budget_remaining':budget,
        'outcome':result['outcome'] if failure is None else 'failed',
-       'unknowns':['Imported observations do not establish technical confirmation or current live applicability.'],
+       'unknowns':review_unknowns(result,context) if failure is None else ['Evidence analysis failed; source applicability remains unknown.'],
        'limitations':limitations,'failure_code':failure,'retry_of':value['retry']}
     validate('DecisionRecord',decision)
     db.add(AnalysisDecision(id=identifier,assessment_id=assessment_id,created_at=now(),data=decision))
@@ -131,7 +135,8 @@ def create_plan(db,auth,settings,assessment_id,value,record,request_id):
                   'provider_http_status':provider_http_status,'usage':provider_metadata.get('usage') if provider_metadata else None,
                   'provider_request_id':provider_metadata.get('request_id') if provider_metadata else None,
                   'output_hash':hashlib.sha256(canonical_request(provider_metadata['value'])).hexdigest() if provider_metadata else None,
-                  'validated_output':result if failure is None else None}
+                  'validated_output':result if failure is None else None,
+                  'accepted_interpretation':interpret_evidence(context,result['basis_observation_ids']) if failure is None else None}
     # Keep conservative reservations even when usage is unknown. No automatic refund/retry.
     status=200
     body={'decision':decision,'proposal':None}

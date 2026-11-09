@@ -218,3 +218,25 @@ def test_context_v2_bounds_normalized_facts_and_excludes_imported_addresses(work
     assert context['version']=='bounded-observations-v2'
     assert context['observations'][0]['facts']=={'severity':'unknown','transport':'tcp','port':443,'historical':True}
     assert '192.0.2.' not in json.dumps(context) and 'Private' not in json.dumps(context)
+
+
+def test_interpretation_is_frozen_and_replay_preserves_cited_unknowns(workspace):
+    from reknyx.security_analysis.evidence_interpretation import VERSION as INTERPRETATION_VERSION
+    app,c,path,post,_=workspace
+    upload(workspace)
+    revision=c.get(path).json()['assessment']['state_revision']
+    key=uuid4().hex
+    payload={'expected_revision':revision,'retry':None}
+    response=post(path+'/plans',payload,key)
+    assert response.status_code==200,response.text
+    decision=response.json()['decision']
+    assert '1 recorded service' in decision['rationale']
+    assert any('current live applicability' in text for text in decision['unknowns'])
+    assert post(path+'/plans',payload,key).json()==response.json()
+    with app.state.session_factory() as db:
+        attempt=db.get(AnalysisAttempt,decision['id'])
+        assert attempt.data['interpretation_version']==INTERPRETATION_VERSION
+        assert attempt.data['interpretation_hash']==attempt.data['interpretation']['sha256']
+        assert attempt.data['accepted_interpretation']['counts']['service']==1
+        assert attempt.data['accepted_interpretation']['unknowns']==decision['unknowns']
+        assert attempt.data['accepted_interpretation']['hypotheses']==[]

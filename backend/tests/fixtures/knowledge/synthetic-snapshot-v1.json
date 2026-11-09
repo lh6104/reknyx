@@ -1,0 +1,35 @@
+{
+  "version": "synthetic-knowledge-v1",
+  "documents": [
+    {
+      "id": "CWE-79",
+      "source_url": "https://cwe.mitre.org/data/definitions/79.html",
+      "source_revision": "project-fixture-v1",
+      "fetched_at": "2026-11-08T00:00:00Z",
+      "valid_until": "2026-12-01T00:00:00Z",
+      "provenance": "synthetic_fixture",
+      "content": "Synthetic guidance: review output encoding of untrusted input in browser contexts.",
+      "content_sha256": "8e2a56ed4dadb6e02b1fb1685ccc1605950d31b80ece3fa4a814da79fb9fda31"
+    },
+    {
+      "id": "CWE-89",
+      "source_url": "https://cwe.mitre.org/data/definitions/89.html",
+      "source_revision": "project-fixture-v1",
+      "fetched_at": "2026-11-08T00:00:00Z",
+      "valid_until": "2026-12-01T00:00:00Z",
+      "provenance": "synthetic_fixture",
+      "content": "Synthetic guidance: review parameter binding for database queries with untrusted input.",
+      "content_sha256": "65d94887afb4cbac8d18ce850d9907fb5150620487b39b5eb8594524c1a8e3af"
+    },
+    {
+      "id": "CWE-22",
+      "source_url": "https://cwe.mitre.org/data/definitions/22.html",
+      "source_revision": "project-fixture-v1",
+      "fetched_at": "2026-11-08T00:00:00Z",
+      "valid_until": "2026-12-01T00:00:00Z",
+      "provenance": "synthetic_fixture",
+      "content": "Synthetic guidance: review filesystem path normalization and directory access boundaries.",
+      "content_sha256": "1d191bf978da903e86cec42ec4ae9b4264d2d2d2809afb20a6622c204a76069d"
+    }
+  ]
+}
